@@ -16,8 +16,9 @@
     
     <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->
     <insert id="insertMember" parameterType="com.my.zipcode.Member" >
-   		INSERT INTO shop_member ( mem_id,mem_passwd,mem_email,mem_phone,mem_postcode,mem_birth,mem_jibunAddress,mem_roadAddress,mem_chk_admin)
-   						 VALUES (#{mid},#{password},#{email},#{phone},#{postcode},#{birth},#{jibunAddress},#{roadAddress},#{admin})
+  
+   		INSERT INTO SPOON_MEMBER ( MEMBER_ID,MEMBER_EMAIL,MEMBER_PASSWORD,MEMBER_CREATED)
+   						 VALUES (#{MEMBER_ID},#{MEMBER_EMAIL},#{MEMBER_PASSWORD},#{MEMBER_CREATED})
     </insert>
     
     <!-- update와 delete는 생략한다. -->
