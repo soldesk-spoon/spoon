@@ -6,12 +6,15 @@
 <mapper namespace="com.my.zipcode.MemberMapper">
  
     <resultMap type="Member" id="MemberResultMap">
-        <result property="email" column="EMAIL" />
+        <result property="member" column="EMAIL" />
     </resultMap>
  
     <!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
     <select id="getMembers" resultMap="MemberResultMap">
         SELECT * FROM shop_member
+    </select>
+    <select id="JoinIdCheck" resultType="int" parameterType="com.my.zipcode.Member" >
+    	SELECT COUNT(MEMBER_ID) FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
     </select>
     
     <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->

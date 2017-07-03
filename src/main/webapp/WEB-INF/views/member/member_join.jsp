@@ -16,33 +16,12 @@ function createXhr(){
 }
  
 function idcheck(){
-    var id = document.getElementById("MEMBER_ID").value;
-    var queryString = "select count(member_id) from spoon_member where member_id =  "+id;
-    if(id.length<6){
-        document.getElementById("idcheckLayer").innerHTML = "<font color=red>6자리 이상 입력하세요.</font>";    
-    }else{
-        // 1. XMLHttpReqeust 객체 생성
-        createXhr();
-        // 2. 이벤트 핸들러 등록
-        xhr.onreadystatechange = callback;  // callback 함수를 등록
-        // 3. open()를 통해 요청관련 설정을 설정
-        xhr.open("POST", "/JoinIdCheckController", true);
-        // 4. Header에 contentType 지정 - post
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        // 5. send()를 통해 요청
-        xhr.send(queryString);  // 요청 쿼리를 보내준다.
-    }
-}
-function callback(){
-    if(xhr.readyState==4){      // 응답을 다 받은 경우
-        if(xhr.status == 200){  // 응답코드가 200인 경우 - 정상인 경우
-            var resTxt = xhr.responseText;  // 서버가 보낸 응답 text
-            //alert(resTxt);
-            document.getElementById("idcheckLayer").innerHTML = resTxt;        
-        }else{
-            alert("요청 처리가 정상적으로 되지 않았습니다.\n"+xhr.status);
-        }
-    }
+    var MEMBER_ID = document.getElementById("MEMBER_ID").value;
+    window.open(
+    		"/shop/member/JoinIdCheck?MEMBER_ID="+MEMBER_ID,
+    		"EventFrame",
+    		"menubar=no,width=430,height=360,toolbar=no"
+    		);
 }
 </script>
 
@@ -54,7 +33,8 @@ function callback(){
 		<table>
 			<tr>
 				<td>아이디 :</td>
-				<td><input type="text" id="MEMBER_ID" name="MEMBER_ID" onkeyup="idcheck();"></td>
+				<td><input type="text" id="MEMBER_ID" name="MEMBER_ID"></td>
+				<td><input type="button" id="IdCheck" name="IdCheck" value="중복 확인" onclick="idcheck();">
 		<tr>
 				<td>비밀번호 :</td>
 				<td><input type="password" id="MEMBER_PASSWORD" name="MEMBER_PASSWORD"></td>

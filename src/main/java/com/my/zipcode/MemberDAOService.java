@@ -36,6 +36,17 @@ public class MemberDAOService implements MemberDAO {
         MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
         memberMapper.deleteMember(name);
     }
+	@Override
+	public int JoinIdCheck(String name) {
+		// TODO Auto-generated method stub
+		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
+       int result = 0;
+		
+       result = memberMapper.JoinIdCheck(name);
+       return result;
+       
+        
+	}
 }
  
 

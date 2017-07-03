@@ -83,5 +83,6 @@ ALTER DATABASE javadb DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 SELECT * FROM SPOON_SUBWAY
 
 SELECT * FROM SPOON_MEMBER
+select count(member_id) from spoon_member where member_id = 'km94sm'
 
 
