@@ -13,6 +13,8 @@ public class Member {
 	private String MEMBER_UPDATED; 
 	private String MEMBER_DELYN; 
 	private String MEMBER_ADMINYN;
+	private int CheckParam;
+	
 	public int getMID() {
 		return MID;
 	}
@@ -66,6 +68,12 @@ public class Member {
 	}
 	public void setMEMBER_ADMINYN(String mEMBER_ADMINYN) {
 		MEMBER_ADMINYN = mEMBER_ADMINYN;
+	}
+	public int getCheckParam() {
+		return CheckParam;
+	}
+	public void setCheckParam(int checkParam) {
+		CheckParam = checkParam;
 	} 
 	
 	

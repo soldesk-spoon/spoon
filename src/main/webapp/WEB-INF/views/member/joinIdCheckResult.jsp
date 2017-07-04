@@ -6,6 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function Idcheckparam(){
+		var CheckParam = document.getElementById("CheckParam").value;
+		
+		if(CheckParam==0){
+			self.close();
+		}else(CheckParam==1){
+			
+		}
+		
+		
+	}
+
+</script>
 </head>
 <body>
 	<table>

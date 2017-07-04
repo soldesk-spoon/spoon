@@ -17,8 +17,9 @@ function createXhr(){
  
 function idcheck(){
     var MEMBER_ID = document.getElementById("MEMBER_ID").value;
+    var CheckParam = document.getElementById("CheckParam").value;
     window.open(
-    		"/shop/member/JoinIdCheck?MEMBER_ID="+MEMBER_ID,
+    		"/shop/member/JoinIdCheck?MEMBER_ID="+MEMBER_ID+"&CheckParam="+CheckParam,
     		"EventFrame",
     		"menubar=no,width=430,height=360,toolbar=no"
     		);
@@ -30,6 +31,7 @@ function idcheck(){
 <body>
 	<form action="/shop/member/join_action" method="post">
 	MEMBER_ID,MEMBER_EMAIL,MEMBER_PASSWORD
+	<input type="hidden" id="CheckParam" name="CheckParam" value="0">
 		<table>
 			<tr>
 				<td>¾ÆÀÌµð :</td>

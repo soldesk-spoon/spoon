@@ -26,6 +26,7 @@ public class JoinSubmitController {
 	       member.setMEMBER_ID(MEMBER_ID);
 	       member.setMEMBER_EMAIL(MEMBER_EMAIL);
 	       member.setMEMBER_PASSWORD(MEMBER_PASSWORD);
+	       
 	       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 	         
 	         Calendar calendar = Calendar.getInstance();
