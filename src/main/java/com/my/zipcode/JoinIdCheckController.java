@@ -30,15 +30,13 @@ public class JoinIdCheckController {
 	       
 	       if(result==0){
 	    	   view.addObject("MEMBER_INFO", "사용할 수 있는 아이디 입니다. ");
-	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();' name='useCheck' id='useCheck' value='1'>");
-	    	   member.setCheckParam(1);
-	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam' name ='CheckParam' value='1'>");
+	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();' name='useCheck' id='useCheck' value='사용하기'>");
+	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam1' name ='CheckParam1' value='1'>");
 	    	   
 	       }else {
 	    	   view.addObject("MEMBER_INFO", "사용할 수 없는 아이디입니다.");
-	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();'  name='useCheck' id='useCheck' value='0'>");
-	    	   member.setCheckParam(0);
-	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam' name ='CheckParam' value='0'>");
+	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();'  name='useCheck' id='useCheck' value='다시쓰기'>");
+	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam1' name ='CheckParam1' value='0'>");
 	       }
 	       view.setViewName("/member/joinIdCheckResult");
 	       

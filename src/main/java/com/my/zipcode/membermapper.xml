@@ -17,6 +17,12 @@
     	SELECT COUNT(MEMBER_ID) FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
     </select>
     
+    
+    <select id="LoginCheck" resultType="int" parameterType="com.my.zipcode.Member">
+    	SELECT COUNT(*) FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_PASSWORD = #{MEMBER_PASSWORD}
+    </select>
+    
+    
     <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->
     <insert id="insertMember" parameterType="com.my.zipcode.Member" >
   

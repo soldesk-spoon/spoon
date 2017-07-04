@@ -8,6 +8,7 @@ public interface MemberMapper {
 	    void updateMember(String name);
 	    void deleteMember(String name);
 	    int JoinIdCheck(String name);
+	    int LoginCheck(Member member);
 
 
 }

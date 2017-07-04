@@ -24,12 +24,49 @@ function idcheck(){
     		"menubar=no,width=430,height=360,toolbar=no"
     		);
 }
+
+
+function checkValue()
+{
+	var form = document.joinAction;
+
+	if(!form.MEMBER_ID.value){
+		alert("아이디를 입력하세요.");
+		return false;
+	}
+	
+	if(form.CheckParam.value != "1"){
+		alert("아이디 중복체크를 해주세요.");
+		return false;
+	}
+	
+	if(!form.MEMBER_PASSWORD.value){
+		alert("비밀번호를 입력하세요.");
+		return false;
+	}
+	
+	// 비밀번호와 비밀번호 확인에 입력된 값이 동일한지 확인
+	if(form.MEMBER_PASSWORD.value != form.MEMBER_PASSWORD2.value ){
+		alert("비밀번호를 동일하게 입력하세요.");
+		return false;
+	}	
+	
+	
+	if(!form.MEMBER_EMAIL.value){
+		alert("메일 주소를 입력하세요.");
+		return false;
+	}
+	
+	form.submit();
+
+}
+
 </script>
 
 
 </head>
 <body>
-	<form action="/shop/member/join_action" method="post">
+	<form action="/shop/member/join_action" method="post" name="joinAction">
 	MEMBER_ID,MEMBER_EMAIL,MEMBER_PASSWORD
 	<input type="hidden" id="CheckParam" name="CheckParam" value="0">
 		<table>
@@ -51,7 +88,7 @@ function idcheck(){
 				<td><input type="text" id="MEMBER_EMAIL" name="MEMBER_EMAIL"></td>
 			</tr>
 			<tr>
-				<td><input type="submit" value="가입"></td>
+				<td><input type="button" value="가입" onclick="checkValue();"></td>
 			</tr>
 		</table>
 

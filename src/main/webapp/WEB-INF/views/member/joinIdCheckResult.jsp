@@ -8,15 +8,13 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	function Idcheckparam(){
-		var CheckParam = document.getElementById("CheckParam").value;
+		var CheckParam1 = document.getElementById('CheckParam1').value;
 		
-		if(CheckParam==0){
-			self.close();
-		}else(CheckParam==1){
-			
-		}
-		
-		
+			if(CheckParam1==1){
+				
+				window.opener.document.joinAction.CheckParam.value = "1";
+		} 
+			window.close();
 	}
 
 </script>
@@ -26,6 +24,7 @@
 		<tr>
 			<td>${MEMBER_INFO}</td>
 			<td>${pop_button}</td>
+			<td>${CheckParam}</td>
 		</tr>
 	</table>
 </body>
