@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>°Ô½ÃÆÇ ¸ñ·Ï</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ê²Œì‹œíŒ ëª©ë¡</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </head>
 <body>
-<h2>°Ô½ÃÆÇ ¸ñ·Ï</h2>
+<h2>ê²Œì‹œíŒ ëª©ë¡</h2>
 <table style="border:1px solid #ccc">
     <colgroup>
         <col width="10%"/>
@@ -19,10 +19,10 @@
     </colgroup>
     <thead>
         <tr>
-            <th scope="col">±Û¹øÈ£</th>
-            <th scope="col">Á¦¸ñ</th>
-            <th scope="col">Á¶È¸¼ö</th>
-            <th scope="col">ÀÛ¼ºÀÏ</th>
+            <th scope="col">ê¸€ë²ˆí˜¸</th>
+            <th scope="col">ì œëª©</th>
+            <th scope="col">ì¡°íšŒìˆ˜</th>
+            <th scope="col">ìž‘ì„±ì¼</th>
         </tr>
     </thead>
     <tbody>
@@ -39,7 +39,7 @@
             </c:when>
             <c:otherwise>
                 <tr>
-                    <td colspan="4">Á¶È¸µÈ °á°ú°¡ ¾ø½À´Ï´Ù.</td>
+                    <td colspan="4">ì¡°íšŒëœ ê²°ê³¼ê°€ ì—†ìŠµë‹ˆë‹¤.</td>
                 </tr>
             </c:otherwise>
         </c:choose>
