@@ -2,7 +2,8 @@ package com.my.shop;
 
 import java.util.List;
 import java.util.Map;
- 
+
+import javax.activation.CommandMap;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -30,22 +31,29 @@ public class SampleController {
         return mv;
     }
     
-	@RequestMapping(value="/sample/show_write_form.do", method=RequestMethod.GET)
-	public String show_write_form( Model model){
-		logger.info("show_write_form called!!");
-		model.addAttribute("boardBeanObjToWrite", new BoardBean());
-		
-		return "board/writeBoard";
-	}
-	/*
-	@RequestMapping(value="/DoWriteBoard.do", method=RequestMethod.POST)
-	public String DoWriteBoard(BoardBean boardBeanObjToWrite, Model model){		
-		logger.info("DoWriteBoard called!!");				
-		logger.info("memo=["+boardBeanObjToWrite.getMemo()+"]");
-		boardService.insertBoard(boardBeanObjToWrite);
-		model.addAttribute("totalCnt", new Integer(boardService.getTotalCnt()));
-		model.addAttribute("current_page", "1");
-		model.addAttribute("boardList", boardService.getList(1, 2));
-		return "board/listSpecificPage";		
-	}*/
+    @RequestMapping(value="/sample/openBoardWrite.do")
+    public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception{
+        ModelAndView mv = new ModelAndView("/board/boardWrite");
+         
+        return mv;
+    }
+    
+    @RequestMapping(value="/sample/insertBoard.do")
+    public ModelAndView insertBoard(CommandMap commandMap) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+         
+        sampleService.insertBoard(commandMap.getMap());
+        
+        return mv;
+    }
+    
+    @RequestMapping(value="/sample/openBoardDetail.do")
+    public ModelAndView openBoardDetail(CommandMap commandMap) throws Exception{
+        ModelAndView mv = new ModelAndView("/sample/boardDetail");
+         
+        Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
+        mv.addObject("map", map);
+         
+        return mv;
+    }
 }
