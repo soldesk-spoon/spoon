@@ -2,6 +2,7 @@ package com.my.shop;
 
 import org.springframework.stereotype.Repository;
 
+@Repository
 public class BoardBean {
 	int bid;
 	int mid;
