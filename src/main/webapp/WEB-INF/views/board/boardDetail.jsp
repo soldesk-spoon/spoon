@@ -15,8 +15,8 @@
         <caption>게시글 상세</caption>
         <tbody>
             <tr>
-                <th scope="row">글 번호</th>
-                <td>${map.bid }</td>
+                <th scope="row">글 제목</th>
+                <td>${map.board_subject }</td>
                 <th scope="row">조회수</th>
                 <td>${map.board_hits }</td>
             </tr>
@@ -55,7 +55,7 @@
         });
          
         function fn_openBoardList(){
-        	document.location.href="/shop/sample/openBoardList.do.do";
+        	document.location.href="/sample/openBoardList.do";
         }
          
         function fn_openBoardUpdate(){

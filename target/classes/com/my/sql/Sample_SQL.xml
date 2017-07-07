@@ -42,7 +42,6 @@
         SELECT
             bid,
             board_hits,
-            member_id,
             board_created,
             board_subject,
             board_contents
