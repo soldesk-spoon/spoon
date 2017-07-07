@@ -51,4 +51,15 @@
             bid = #{bid}       
     
 </select>
+
+<update id="updateBoard" parameterType="hashmap">
+    <![CDATA[
+        UPDATE spoon_board
+        SET
+            board_subject = #{board_subject},
+            board_contents = #{board_contents}
+        WHERE
+            bid = #{bid}   
+    ]]>
+</update>
 </mapper>

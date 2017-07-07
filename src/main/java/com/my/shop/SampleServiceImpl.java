@@ -32,4 +32,9 @@ public class SampleServiceImpl implements SampleService{
         Map<String, Object> resultMap = (Map<String, Object>) sampleDAO.selectBoardDetail(bid);
         return resultMap;
     }
+    
+    @Override
+    public void updateBoard(BoardBean boardBean) throws Exception{
+        sampleDAO.updateBoard(boardBean);
+    }
 }

@@ -60,5 +60,24 @@ public class SampleController {
         return mv;
     }
     
+    @RequestMapping(value="/sample/openBoardUpdate.do")
+    public ModelAndView openBoardUpdate(BoardBean boardBean) throws Exception{
+        ModelAndView mv = new ModelAndView("/board/boardUpdate");
+         
+        Map<String,Object> map = sampleService.selectBoardDetail(boardBean.getBid());
+        mv.addObject("map", map);
+         
+        return mv;
+    }
+     
+    @RequestMapping(value="/sample/updateBoard.do")
+    public ModelAndView updateBoard(BoardBean boardBean) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
+         
+        sampleService.updateBoard(boardBean);
+         
+        mv.addObject("BID", boardBean.getBid());
+        return mv;
+    }    
     
 }
