@@ -6,7 +6,7 @@
     <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
       
             SELECT bid, board_subject, board_hits, board_created FROM spoon_board
-   
+   WHERE BOARD_DELYN='N'
     </select>
      
      <insert id="insertBoard" parameterType="com.my.shop.BoardBean">
@@ -31,7 +31,7 @@
    
         UPDATE spoon_board
         SET
-            board_hits = NVL(board_hits, 0) + 1
+            board_hits = board_hits+ 1
         WHERE
             bid = #{bid}   
     
@@ -42,7 +42,6 @@
         SELECT
             bid,
             board_hits,
-            member_id,
             board_created,
             board_subject,
             board_contents
@@ -52,4 +51,25 @@
             bid = #{bid}       
     
 </select>
+
+<update id="updateBoard" parameterType="hashmap">
+   
+        UPDATE spoon_board
+        SET
+            board_subject = #{board_subject},
+            board_contents = #{board_contents}
+        WHERE
+            bid = #{bid}   
+    
+</update>
+
+<delete id="deleteBoard" parameterType="hashmap">
+   
+        UPDATE spoon_board
+        SET
+            BOARD_DELYN = 'Y'
+        WHERE
+            bid = #{bid}   
+    
+</delete>
 </mapper>

@@ -17,12 +17,20 @@ public class SampleDAO extends AbstractDAO{
         insert("sample.insertBoard", boardbean);
     } 
     
-    public void updateHitCnt(BoardBean boardbean) throws Exception{
-        update("sample.updateHitCnt", boardbean);
+    public void updateHitCnt(int bid) throws Exception{
+        update("sample.updateHitCnt", bid);
     }
      
     @SuppressWarnings("unchecked")
-    public BoardBean selectBoardDetail(BoardBean boardbean) throws Exception{
-        return (BoardBean) selectOne("sample.selectBoardDetail", boardbean);
+    public Map<String, Object> selectBoardDetail(int bid) throws Exception{
+        return (Map<String, Object>) selectOne("sample.selectBoardDetail", bid);
     }
+    
+    public void updateBoard(BoardBean boardBean) throws Exception{
+        update("sample.updateBoard", boardBean);
+    }
+    
+    public void deleteBoard(int bid) throws Exception{
+    	delete("sample.deleteBoard", bid);
+    } 
 }

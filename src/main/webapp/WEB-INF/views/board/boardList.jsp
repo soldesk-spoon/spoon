@@ -32,7 +32,10 @@
                 <c:forEach items="${list }" var="row">
                     <tr>
                         <td>${row.bid }</td>
-                        <td>${row.board_subject }</td>
+                        <td class="board_subject">
+                                <a href="#this" name="board_subject">${row.board_subject }</a>
+                                <input type="hidden" id="bid" value="${row.bid }">
+                            </td>
                         <td>${row.board_hits }</td>
                         <td>${row.board_created }</td>
                     </tr>
@@ -71,11 +74,10 @@
         	document.location.href="/shop/sample/openBoardWrite.do";
         }
          
-        function fn_openBoardDetail(obj){        	
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/shop/sample/openBoardDetail.do' />");
-            comSubmit.addParam("bid", obj.parent().find("#bid").val());
-            comSubmit.submit();
+        function fn_openBoardDetail(obj){
+            var B=obj.parent().find("#bid").val();
+            document.location.href="/shop/sample/openBoardDetail.do?bid="+B;
+            
         }
     </script>
 </body>

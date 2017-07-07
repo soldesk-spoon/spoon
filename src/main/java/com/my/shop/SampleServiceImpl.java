@@ -25,10 +25,21 @@ public class SampleServiceImpl implements SampleService{
         sampleDAO.insertBoard(boardbean);
     }
     
-    @Override
-    public BoardBean selectBoardDetail(BoardBean boardBean) throws Exception {
-        sampleDAO.updateHitCnt(boardBean);
-        BoardBean resultMap = sampleDAO.selectBoardDetail(boardBean);
+    @Override 
+    public Map<String, Object> selectBoardDetail(int bid) throws Exception {
+       // sampleDAO.updateHitCnt(boardBean);
+    	sampleDAO.updateHitCnt(bid);
+        Map<String, Object> resultMap = (Map<String, Object>) sampleDAO.selectBoardDetail(bid);
         return resultMap;
+    }
+    
+    @Override
+    public void updateBoard(BoardBean boardBean) throws Exception{
+        sampleDAO.updateBoard(boardBean);
+    }
+    
+    @Override
+    public void deleteBoard(int bid) throws Exception{
+        sampleDAO.deleteBoard(bid);
     }
 }

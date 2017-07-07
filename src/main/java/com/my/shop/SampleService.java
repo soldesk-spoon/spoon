@@ -8,6 +8,9 @@ public interface SampleService {
 	
 	void insertBoard(BoardBean boardBean) throws Exception;
 	
-	BoardBean selectBoardDetail(BoardBean boardBean) throws Exception;
+	Map<String, Object> selectBoardDetail(int bid) throws Exception;
 
+	void updateBoard(BoardBean boardBean) throws Exception;
+	
+	void deleteBoard(int bid) throws Exception;
 }
