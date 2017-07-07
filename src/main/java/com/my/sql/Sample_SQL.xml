@@ -31,7 +31,7 @@
    
         UPDATE spoon_board
         SET
-            board_hits = NVL(board_hits, 0) + 1
+            board_hits = board_hits+ 1
         WHERE
             bid = #{bid}   
     

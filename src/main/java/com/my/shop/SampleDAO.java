@@ -17,8 +17,8 @@ public class SampleDAO extends AbstractDAO{
         insert("sample.insertBoard", boardbean);
     } 
     
-    public void updateHitCnt(BoardBean boardbean) throws Exception{
-        update("sample.updateHitCnt", boardbean);
+    public void updateHitCnt(int bid) throws Exception{
+        update("sample.updateHitCnt", bid);
     }
      
     @SuppressWarnings("unchecked")

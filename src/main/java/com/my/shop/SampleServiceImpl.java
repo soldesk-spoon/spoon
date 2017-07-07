@@ -28,6 +28,7 @@ public class SampleServiceImpl implements SampleService{
     @Override 
     public Map<String, Object> selectBoardDetail(int bid) throws Exception {
        // sampleDAO.updateHitCnt(boardBean);
+    	sampleDAO.updateHitCnt(bid);
         Map<String, Object> resultMap = (Map<String, Object>) sampleDAO.selectBoardDetail(bid);
         return resultMap;
     }
