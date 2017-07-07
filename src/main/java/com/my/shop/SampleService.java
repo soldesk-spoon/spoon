@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 public interface SampleService {
-	List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
+	List<BoardBean> selectBoardList(BoardBean boardBean) throws Exception;
 	
 	void insertBoard(BoardBean boardBean) throws Exception;
 	
-	Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception;
+	BoardBean selectBoardDetail(BoardBean boardBean) throws Exception;
 
 }

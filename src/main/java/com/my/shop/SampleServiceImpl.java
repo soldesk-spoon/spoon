@@ -16,8 +16,8 @@ public class SampleServiceImpl implements SampleService{
     private SampleDAO sampleDAO;
      
     @Override
-    public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-        return sampleDAO.selectBoardList(map);
+    public List<BoardBean> selectBoardList(BoardBean boardBean) throws Exception {
+        return sampleDAO.selectBoardList(boardBean);
     }
     
     @Override
@@ -26,9 +26,9 @@ public class SampleServiceImpl implements SampleService{
     }
     
     @Override
-    public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-        sampleDAO.updateHitCnt(map);
-        Map<String, Object> resultMap = sampleDAO.selectBoardDetail(map);
+    public BoardBean selectBoardDetail(BoardBean boardBean) throws Exception {
+        sampleDAO.updateHitCnt(boardBean);
+        BoardBean resultMap = sampleDAO.selectBoardDetail(boardBean);
         return resultMap;
     }
 }

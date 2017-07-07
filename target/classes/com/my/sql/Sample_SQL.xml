@@ -9,23 +9,25 @@
    
     </select>
      
-     <insert id="insertBoard" parameterType="hashmap">
+     <insert id="insertBoard" parameterType="com.my.shop.BoardBean">
   
         INSERT INTO spoon_board
         (
             board_subject,
             board_contents,
             board_hits
+          
         )
         VALUES
         (
             #{board_subject},
             #{board_contents},
             0
+           
         )
 </insert>
 
-<update id="updateHitCnt" parameterType="hashmap">
+<update id="updateHitCnt" parameterType="com.my.shop.BoardBean">
    
         UPDATE spoon_board
         SET

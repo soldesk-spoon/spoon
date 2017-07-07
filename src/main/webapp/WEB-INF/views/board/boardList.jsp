@@ -50,6 +50,8 @@
     <a href="#this" class="btn" id="write">글쓰기</a>
      
     <%@ include file="/WEB-INF/include/include-body.jsp" %>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $("#write").on("click", function(e){ //글쓰기 버튼
@@ -57,7 +59,7 @@
                 fn_openBoardWrite();
             });
              
-            $("a[name='title']").on("click", function(e){ //제목
+            $("a[name='board_subject']").on("click", function(e){ //제목
                 e.preventDefault();
                 fn_openBoardDetail($(this));
             });
@@ -65,16 +67,14 @@
          
          
         function fn_openBoardWrite(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/sample/openBoardWrite.do' />");
-            comSubmit.submit();
+        	document.location.href="/shop/sample/openBoardWrite.do";
         }
          
-        function fn_openBoardDetail(obj){
+        function fn_openBoardDetail(obj){/*
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />");
-            comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
-            comSubmit.submit();
+            comSubmit.setUrl("<c:url value='//sample/openBoardDetail.do' />");
+            comSubmit.addParam("bid", obj.parent().find("#bid").val());
+            comSubmit.submit();*/
         }
     </script>
 </body>

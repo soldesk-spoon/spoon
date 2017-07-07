@@ -23,11 +23,11 @@ public class SampleController {
     @Resource(name="sampleService")
     private SampleService sampleService;
      
-    @RequestMapping(value="/sample/openSampleBoardList.do")
-    public ModelAndView openSampleBoardList(Map<String,Object> commandMap) throws Exception{
+    @RequestMapping(value="/sample/openBoardList.do")
+    public ModelAndView openSampleBoardList(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardList");
          
-        List<Map<String,Object>> list = sampleService.selectBoardList(commandMap);
+        List<BoardBean> list = sampleService.selectBoardList(boardBean);
         mv.addObject("list", list);
          
         return mv;
@@ -43,8 +43,9 @@ public class SampleController {
     @RequestMapping(value="/sample/insertBoard.do")
     public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-         
-        sampleService.insertBoard(new BoardBean());
+
+        System.out.println(boardBean.getBoard_subject());
+        sampleService.insertBoard(boardBean);
         
         return mv;
     }
@@ -53,7 +54,7 @@ public class SampleController {
     public ModelAndView openBoardDetail(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("/sample/boardDetail");
          
-        Map<String,Object> map = sampleService.selectBoardDetail(new BoardBean());
+        BoardBean map = sampleService.selectBoardDetail(boardBean);
         mv.addObject("map", map);
          
         return mv;
