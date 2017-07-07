@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.shop.BoardBean;
@@ -50,11 +51,10 @@ public class SampleController {
         return mv;
     }
     
-    @RequestMapping(value="/sample/openBoardDetail.do")
-    public ModelAndView openBoardDetail(BoardBean boardBean) throws Exception{
-        ModelAndView mv = new ModelAndView("/sample/boardDetail");
-         
-        BoardBean map = sampleService.selectBoardDetail(boardBean);
+    @RequestMapping(value="/sample/openBoardDetail.do", method=RequestMethod.GET)
+    public ModelAndView openBoardDetail(@RequestParam("bid")int bid) throws Exception{
+        ModelAndView mv = new ModelAndView("/board/boardDetail");
+        Map<String, Object> map = sampleService.selectBoardDetail(bid);
         mv.addObject("map", map); 
          
         return mv;

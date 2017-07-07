@@ -21,8 +21,6 @@
                 <td>${map.board_hits }</td>
             </tr>
             <tr>
-                <th scope="row">작성자</th>
-                <td>${map.member_id }</td>
                 <th scope="row">작성시간</th>
                 <td>${map.board_created }</td>
             </tr>

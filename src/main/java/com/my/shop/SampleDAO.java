@@ -22,7 +22,7 @@ public class SampleDAO extends AbstractDAO{
     }
      
     @SuppressWarnings("unchecked")
-    public BoardBean selectBoardDetail(BoardBean boardbean) throws Exception{
-        return (BoardBean) selectOne("sample.selectBoardDetail", boardbean);
+    public Map<String, Object> selectBoardDetail(int bid) throws Exception{
+        return (Map<String, Object>) selectOne("sample.selectBoardDetail", bid);
     }
 }

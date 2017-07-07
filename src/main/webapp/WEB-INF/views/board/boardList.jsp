@@ -74,11 +74,10 @@
         	document.location.href="/shop/sample/openBoardWrite.do";
         }
          
-        function fn_openBoardDetail(obj){        	
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />");
-            comSubmit.addParam("bid", obj.parent().find("#bid").val());
-            comSubmit.submit();
+        function fn_openBoardDetail(obj){
+            var B=obj.parent().find("#bid").val();
+            document.location.href="/shop/sample/openBoardDetail.do?bid="+B;
+            
         }
     </script>
 </body>
