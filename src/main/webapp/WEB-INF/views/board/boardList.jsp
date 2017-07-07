@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jsp" %>
+<%@ include file="../include/include-header.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시판 목록</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -50,7 +50,7 @@
 <br/>
     <a href="#this" class="btn" id="write">글쓰기</a>
      
-    <%@ include file="/WEB-INF/include/include-body.jsp" %>
+    <%@ include file="../include/include-body.jsp" %>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <script type="text/javascript">
