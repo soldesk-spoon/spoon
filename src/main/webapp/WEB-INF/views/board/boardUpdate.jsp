@@ -5,6 +5,8 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
+<form id="frm"  action="/shop/sample/updateBoard.do" method="post">
+<input type="hidden" id="BID" name="BID" value="${map.BID }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -17,7 +19,7 @@
             <tr>
                 <th scope="row">글 번호</th>
                 <td>${map.bid }</td>
-                <input type="hidden" id="BID" name="BID" value="${map.BID }">
+                
                 <th scope="row">조회수</th>
                 <td>${map.board_hits }</td>
             </tr>
@@ -40,9 +42,10 @@
 			</tr>
         </tbody>
     </table>
-     
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">저장하기</a>
+      </form>
+    
     
 
 	<%@ include file="../include/include-body.jsp" %>
@@ -67,9 +70,11 @@
         }
          
         function fn_updateBoard(){
-            var comSubmit = new ComSubmit("frm");
+        	var frm = document.getElementById("frm");
+        	frm.submit();
+           /* var comSubmit = new ComSubmit("frm");
             comSubmit.setUrl("<c:url value='/sample/updateBoard.do' />");
-            comSubmit.submit();
+            comSubmit.submit();*/
         }
         
         

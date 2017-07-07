@@ -44,10 +44,9 @@ public class SampleController {
     @RequestMapping(value="/sample/insertBoard.do")
     public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-
-        System.out.println(boardBean.getBoard_subject());
-        sampleService.insertBoard(boardBean);
         
+        sampleService.insertBoard(boardBean);
+        System.out.println(boardBean.getBid());
         return mv;
     }
     
@@ -70,13 +69,21 @@ public class SampleController {
         return mv;
     }
      
-    @RequestMapping(value="/sample/updateBoard.do")
-    public ModelAndView updateBoard(BoardBean boardBean) throws Exception{
-        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
-         
+    @RequestMapping(value="/sample/updateBoard.do"/*, method=RequestMethod.POST*/)
+    public ModelAndView updateBoard(BoardBean boardBean
+    		/*
+    		@RequestParam("board_subject")String board_subject,
+    		@RequestParam("board_contents")String board_contents*/
+    		) throws Exception{    	
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+        /*BoardBean boardBean = new BoardBean();
+        
+        boardBean.setBoard_subject(board_subject);
+        boardBean.setBoard_contents(board_contents);*/
+        
         sampleService.updateBoard(boardBean);
          
-        mv.addObject("BID", boardBean.getBid());
+        //mv.addObject("BID", boardBean.getBid());
         return mv;
     }    
     
