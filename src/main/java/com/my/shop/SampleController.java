@@ -60,11 +60,11 @@ public class SampleController {
         return mv;
     }
     
-    @RequestMapping(value="/sample/openBoardUpdate.do")
-    public ModelAndView openBoardUpdate(BoardBean boardBean) throws Exception{
+    @RequestMapping(value="/sample/openBoardUpdate.do", method=RequestMethod.GET)
+    public ModelAndView openBoardUpdate(@RequestParam("bid")int bid) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardUpdate");
          
-        Map<String,Object> map = sampleService.selectBoardDetail(boardBean.getBid());
+        Map<String,Object> map = sampleService.selectBoardDetail(bid);
         mv.addObject("map", map);
          
         return mv;
@@ -79,5 +79,14 @@ public class SampleController {
         mv.addObject("BID", boardBean.getBid());
         return mv;
     }    
+    
+    @RequestMapping(value="/sample/deleteBoard.do")
+    public ModelAndView deleteBoard(int bid) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+
+        sampleService.deleteBoard(bid);
+        
+        return mv;
+    }
     
 }

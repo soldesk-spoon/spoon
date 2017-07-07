@@ -43,7 +43,7 @@
      
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">저장하기</a>
-    <a href="#this" class="btn" id="delete">삭제하기</a>
+    
 
 	<%@ include file="../include/include-body.jsp" %>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -59,10 +59,7 @@
                 fn_updateBoard();
             });
              
-            $("#delete").on("click", function(e){ //삭제하기 버튼
-                e.preventDefault();
-                fn_deleteBoard();
-            });
+            
         });
          
         function fn_openBoardList(){
@@ -75,13 +72,7 @@
             comSubmit.submit();
         }
         
-        function fn_deleteBoard(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");
-            comSubmit.addParam("BID", $("#BID").val());
-            comSubmit.submit();
-             
-        }
+        
         
         /* function fn_openBoardUpdate(){
             var bid = "${map.bid}";

@@ -5,6 +5,7 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
+<input type="hidden" id="BID" name="BID" value="${map.BID }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -17,7 +18,7 @@
             <tr>
                 <th scope="row">글 번호</th>
                 <td>${map.bid }</td>
-                <input type="hidden" id="BID" name="BID" value="${map.BID }">
+                
                 <th scope="row">조회수</th>
                 <td>${map.board_hits }</td>
             </tr>
@@ -39,6 +40,8 @@
      
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">수정하기</a>
+     <a href="#this" class="btn" id="delete">삭제하기</a>
+     
      
     <%@ include file="../include/include-body.jsp" %>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -53,18 +56,37 @@
                 e.preventDefault();
                 fn_openBoardUpdate();
             });
+            
+            $("#delete").on("click", function(e){ //삭제하기 버튼
+                e.preventDefault();
+                fn_deleteBoard();
+            });
         });
          
         function fn_openBoardList(){
         	document.location.href="/shop/sample/openBoardList.do";
         }
          
-        function fn_openBoardUpdate(){
+        function fn_openBoardUpdate(obj){
+        	var B = ${map.bid};
+            document.location.href="/shop/sample/openBoardUpdate.do?bid="+B;
+            /*
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/openBoardUpdate.do' />");
             comSubmit.addParam("BID", bid);
+            comSubmit.submit();*/
+        }
+        
+        function fn_deleteBoard(){
+        	var B = ${map.bid};
+            document.location.href="/shop/sample/deleteBoard.do?bid="+B;
+            /*
+        	var comSubmit = new ComSubmit();
+            comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");
+            comSubmit.addParam("BID", $("#BID").val());
             comSubmit.submit();
+             */
         }
     </script>
 </body>

@@ -37,4 +37,9 @@ public class SampleServiceImpl implements SampleService{
     public void updateBoard(BoardBean boardBean) throws Exception{
         sampleDAO.updateBoard(boardBean);
     }
+    
+    @Override
+    public void deleteBoard(int bid) throws Exception{
+        sampleDAO.deleteBoard(bid);
+    }
 }

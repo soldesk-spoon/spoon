@@ -11,4 +11,6 @@ public interface SampleService {
 	Map<String, Object> selectBoardDetail(int bid) throws Exception;
 
 	void updateBoard(BoardBean boardBean) throws Exception;
+	
+	void deleteBoard(int bid) throws Exception;
 }

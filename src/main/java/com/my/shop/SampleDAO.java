@@ -29,4 +29,8 @@ public class SampleDAO extends AbstractDAO{
     public void updateBoard(BoardBean boardBean) throws Exception{
         update("sample.updateBoard", boardBean);
     }
+    
+    public void deleteBoard(int bid) throws Exception{
+    	delete("sample.deleteBoard", bid);
+    } 
 }
