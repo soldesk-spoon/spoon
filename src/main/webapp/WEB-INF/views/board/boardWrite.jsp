@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/include/include-header.jsp" %>
+<%@ include file="../include/include-header.jsp" %>
 </head>
 
 <body>
@@ -30,7 +30,8 @@
         <a href="#this" class="btn" id="list" >목록으로</a>
     </form>
      
-    <%@ include file="/WEB-INF/include/include-body.jsp" %>
+    <%@ include file="../include/include-body.jsp" %>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
         $("#list").on("click", function(e){ //목록으로 버튼
@@ -45,9 +46,10 @@
     });
      
     function fn_openBoardList(){
+    	document.location.href="/shop/sample/openBoardList.do";/*
         var comSubmit = new ComSubmit();
-        comSubmit.setUrl("<c:url value='/sample/openBoardList.do' />");
-        comSubmit.submit();
+        comSubmit.setUrl("<c:url value='/shop/sample/openBoardList.do' />");
+        comSubmit.submit();*/
     }
      
     function fn_insertBoard(){
