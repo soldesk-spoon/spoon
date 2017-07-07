@@ -1,4 +1,4 @@
-package com.my.zipcode;
+package com.my.member;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;

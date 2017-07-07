@@ -1,4 +1,4 @@
-package com.my.zipcode;
+package com.my.member;
 
 import java.util.Locale;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import com.my.zipcode.Member;
-import com.my.zipcode.MemberDAOService;
+import com.my.member.Member;
+import com.my.member.MemberDAOService;
 @Controller
 public class JoinActionController {
 

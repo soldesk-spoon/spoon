@@ -55,7 +55,7 @@ public class SampleController {
         ModelAndView mv = new ModelAndView("/sample/boardDetail");
          
         BoardBean map = sampleService.selectBoardDetail(boardBean);
-        mv.addObject("map", map);
+        mv.addObject("map", map); 
          
         return mv;
     }
