@@ -4,8 +4,9 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jsp" %>
 </head>
+
 <body>
-    <form id="frm">
+    <form id="frm" action="/shop/sample/insertBoard.do" method="post">
         <table class="board_view">
             <colgroup>
                 <col width="15%">
@@ -50,14 +51,10 @@
     }
      
     function fn_insertBoard(){
-        var comSubmit = new ComSubmit("frm");
-        comSubmit.setUrl("<c:url value='/sample/insertBoard.do' />");
-        comSubmit.submit();
+		var frm = document.getElementById("frm");
+    	frm.submit();
+       
     }
-</script>
-        $(document).ready(function(){
-                     
-        });
     </script>
 </body>
 </html>

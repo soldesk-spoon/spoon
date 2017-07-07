@@ -32,17 +32,17 @@ public class SampleController {
     }
     
     @RequestMapping(value="/sample/openBoardWrite.do")
-    public ModelAndView openBoardWrite(CommandMap commandMap) throws Exception{
+    public ModelAndView openBoardWrite(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardWrite");
          
         return mv;
     }
     
     @RequestMapping(value="/sample/insertBoard.do")
-    public ModelAndView insertBoard(CommandMap commandMap) throws Exception{
+    public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
          
-        sampleService.insertBoard(commandMap.getMap());
+        sampleService.insertBoard(boardBean);
         
         return mv;
     }
