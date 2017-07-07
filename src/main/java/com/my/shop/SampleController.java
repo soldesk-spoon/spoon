@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.my.shop.BoardBean;
+
  
 @Controller
 public class SampleController {
@@ -42,16 +44,16 @@ public class SampleController {
     public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
          
-        sampleService.insertBoard(boardBean);
+        sampleService.insertBoard(new BoardBean());
         
         return mv;
     }
     
     @RequestMapping(value="/sample/openBoardDetail.do")
-    public ModelAndView openBoardDetail(CommandMap commandMap) throws Exception{
+    public ModelAndView openBoardDetail(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("/sample/boardDetail");
          
-        Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap());
+        Map<String,Object> map = sampleService.selectBoardDetail(new BoardBean());
         mv.addObject("map", map);
          
         return mv;

@@ -19,8 +19,8 @@
         )
         VALUES
         (
-            #{TITLE},
-            #{CONTENTS},
+            #{board_subject},
+            #{board_contents},
             0
         )
 </insert>

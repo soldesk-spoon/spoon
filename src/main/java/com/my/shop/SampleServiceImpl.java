@@ -21,8 +21,8 @@ public class SampleServiceImpl implements SampleService{
     }
     
     @Override
-    public void insertBoard(Map<String, Object> map) throws Exception {
-        sampleDAO.insertBoard(map);
+    public void insertBoard(BoardBean boardbean) throws Exception {
+        sampleDAO.insertBoard(boardbean);
     }
     
     @Override

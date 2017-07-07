@@ -13,8 +13,8 @@ public class SampleDAO extends AbstractDAO{
         return (List<Map<String, Object>>)selectList("sample.selectBoardList", map);
     }
     
-    public void insertBoard(Map<String, Object> map) throws Exception{
-        insert("sample.insertBoard", map);
+    public void insertBoard(BoardBean boardbean) throws Exception{
+        insert("sample.insertBoard", boardbean);
     } 
     
     public void updateHitCnt(Map<String, Object> map) throws Exception{
