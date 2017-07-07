@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ include file="/WEB-INF/include/include-header.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시판 목록</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +11,7 @@
 </head>
 <body>
 <h2>게시판 목록</h2>
-<table style="border:1px solid #ccc">
+<table class="board_list">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>
@@ -70,11 +71,11 @@
         	document.location.href="/shop/sample/openBoardWrite.do";
         }
          
-        function fn_openBoardDetail(obj){/*
+        function fn_openBoardDetail(obj){        	
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='//sample/openBoardDetail.do' />");
+            comSubmit.setUrl("<c:url value='/shop/sample/openBoardDetail.do' />");
             comSubmit.addParam("bid", obj.parent().find("#bid").val());
-            comSubmit.submit();*/
+            comSubmit.submit();
         }
     </script>
 </body>
