@@ -53,7 +53,7 @@
         });
          
         function fn_openBoardList(){
-        	document.location.href="/sample/openBoardList.do";
+        	document.location.href="/shop/sample/openBoardList.do";
         }
          
         function fn_openBoardUpdate(){
