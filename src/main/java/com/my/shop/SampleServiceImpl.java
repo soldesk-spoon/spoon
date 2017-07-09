@@ -16,8 +16,8 @@ public class SampleServiceImpl implements SampleService{
     private SampleDAO sampleDAO;
      
     @Override
-    public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-        return sampleDAO.selectBoardList(map);
+    public List<BoardBean> selectBoardList(BoardBean boardBean) throws Exception {
+        return sampleDAO.selectBoardList(boardBean);
     }
     
     @Override
@@ -25,10 +25,21 @@ public class SampleServiceImpl implements SampleService{
         sampleDAO.insertBoard(boardbean);
     }
     
-    @Override
-    public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-        sampleDAO.updateHitCnt(map);
-        Map<String, Object> resultMap = sampleDAO.selectBoardDetail(map);
+    @Override 
+    public Map<String, Object> selectBoardDetail(int bid) throws Exception {
+       // sampleDAO.updateHitCnt(boardBean);
+    	sampleDAO.updateHitCnt(bid);
+        Map<String, Object> resultMap = (Map<String, Object>) sampleDAO.selectBoardDetail(bid);
         return resultMap;
+    }
+    
+    @Override
+    public void updateBoard(BoardBean boardBean) throws Exception{
+        sampleDAO.updateBoard(boardBean);
+    }
+    
+    @Override
+    public void deleteBoard(int bid) throws Exception{
+        sampleDAO.deleteBoard(bid);
     }
 }

@@ -5,8 +5,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function login_check(){
+		var member_id = document.getElementById('MEMBER_ID').value;
+		var member_password = document.getElementById('MEMBER_PASSWORD').value;
+		
+		if(member_id== ""){
+			alert("아이디를 입력하세요 ");
+			return false;
+		}
+		if(member_password==""){
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+		
+		document.logForm.submit();
+		
+	}
+</script>
 </head>
 <body>
+	${alert}
 	<form action="/shop/member/login_action" method="post" name="logForm">
 		<table>
 			<tr>
@@ -19,8 +38,8 @@
 			</tr>
 			
 			<tr>
-				<td><input type="submit" value="로그인"></td>
-				<td><input type="button" value="회원가입" onclick="document.location.href='/member/member_join'">
+				<td><input type="button" value="로그인" onclick="login_check();"></td>
+				<td><input type="button" value="회원가입" onclick="document.location.href='/shop/member/member_join'">
 			</tr>
 		</table>
 	</form>

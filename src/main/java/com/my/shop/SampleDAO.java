@@ -9,20 +9,28 @@ import org.springframework.stereotype.Repository;
 public class SampleDAO extends AbstractDAO{
  
     @SuppressWarnings("unchecked")
-    public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception{
-        return (List<Map<String, Object>>)selectList("sample.selectBoardList", map);
+    public List<BoardBean> selectBoardList(BoardBean boardBean) throws Exception{
+        return (List<BoardBean>)selectList("sample.selectBoardList", boardBean);
     }
     
     public void insertBoard(BoardBean boardbean) throws Exception{
         insert("sample.insertBoard", boardbean);
     } 
     
-    public void updateHitCnt(Map<String, Object> map) throws Exception{
-        update("sample.updateHitCnt", map);
+    public void updateHitCnt(int bid) throws Exception{
+        update("sample.updateHitCnt", bid);
     }
      
     @SuppressWarnings("unchecked")
-    public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception{
-        return (Map<String, Object>) selectOne("sample.selectBoardDetail", map);
+    public Map<String, Object> selectBoardDetail(int bid) throws Exception{
+        return (Map<String, Object>) selectOne("sample.selectBoardDetail", bid);
     }
+    
+    public void updateBoard(BoardBean boardBean) throws Exception{
+        update("sample.updateBoard", boardBean);
+    }
+    
+    public void deleteBoard(int bid) throws Exception{
+    	delete("sample.deleteBoard", bid);
+    } 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.shop.BoardBean;
@@ -23,11 +24,11 @@ public class SampleController {
     @Resource(name="sampleService")
     private SampleService sampleService;
      
-    @RequestMapping(value="/sample/openSampleBoardList.do")
-    public ModelAndView openSampleBoardList(Map<String,Object> commandMap) throws Exception{
+    @RequestMapping(value="/sample/openBoardList.do")
+    public ModelAndView openSampleBoardList(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardList");
          
-        List<Map<String,Object>> list = sampleService.selectBoardList(commandMap);
+        List<BoardBean> list = sampleService.selectBoardList(boardBean);
         mv.addObject("list", list);
          
         return mv;
@@ -43,19 +44,49 @@ public class SampleController {
     @RequestMapping(value="/sample/insertBoard.do")
     public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-         
-        sampleService.insertBoard(new BoardBean());
+
+        System.out.println(boardBean.getBoard_subject());
+        sampleService.insertBoard(boardBean);
         
         return mv;
     }
     
-    @RequestMapping(value="/sample/openBoardDetail.do")
-    public ModelAndView openBoardDetail(BoardBean boardBean) throws Exception{
-        ModelAndView mv = new ModelAndView("/sample/boardDetail");
+    @RequestMapping(value="/sample/openBoardDetail.do", method=RequestMethod.GET)
+    public ModelAndView openBoardDetail(@RequestParam("bid")int bid) throws Exception{
+        ModelAndView mv = new ModelAndView("/board/boardDetail");
+        Map<String, Object> map = sampleService.selectBoardDetail(bid);
+        mv.addObject("map", map); 
          
-        Map<String,Object> map = sampleService.selectBoardDetail(new BoardBean());
+        return mv;
+    }
+    
+    @RequestMapping(value="/sample/openBoardUpdate.do", method=RequestMethod.GET)
+    public ModelAndView openBoardUpdate(@RequestParam("bid")int bid) throws Exception{
+        ModelAndView mv = new ModelAndView("/board/boardUpdate");
+         
+        Map<String,Object> map = sampleService.selectBoardDetail(bid);
         mv.addObject("map", map);
          
         return mv;
     }
+     
+    @RequestMapping(value="/sample/updateBoard.do")
+    public ModelAndView updateBoard(BoardBean boardBean) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
+         
+        sampleService.updateBoard(boardBean);
+         
+        mv.addObject("BID", boardBean.getBid());
+        return mv;
+    }    
+    
+    @RequestMapping(value="/sample/deleteBoard.do")
+    public ModelAndView deleteBoard(int bid) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+
+        sampleService.deleteBoard(bid);
+        
+        return mv;
+    }
+    
 }

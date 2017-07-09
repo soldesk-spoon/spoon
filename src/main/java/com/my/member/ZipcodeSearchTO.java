@@ -1,4 +1,4 @@
-package com.my.zipcode;
+package com.my.member;
 public class ZipcodeSearchTO{
 	 
     /*target    string(ÇÊ¼ö)  

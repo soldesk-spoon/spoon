@@ -1,4 +1,4 @@
-package com.my.zipcode;
+package com.my.member;
 
 import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;

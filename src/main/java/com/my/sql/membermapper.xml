@@ -3,7 +3,7 @@
      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="com.my.zipcode.MemberMapper">
+<mapper namespace="com.my.member.MemberMapper">
  
     <resultMap type="Member" id="MemberResultMap">
         <result property="email" column="EMAIL" />
@@ -13,23 +13,23 @@
     <select id="getMembers" resultMap="MemberResultMap">
         SELECT * FROM shop_member
     </select>
-     <select id="JoinIdCheck" resultType="int" parameterType="com.my.zipcode.Member" >
+     <select id="JoinIdCheck" resultType="int" parameterType="com.my.member.Member" >
     	SELECT COUNT(MEMBER_ID) FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID}
    </select>
     <!-- parameterType 에는 구문에 전달될 파라미터의 패키지 경로를 포함한 전체 클래명이나 별칭이 들어간다  -->
-    <insert id="insertMember" parameterType="com.my.zipcode.Member" >
+    <insert id="insertMember" parameterType="com.my.member.Member" >
     
     INSERT INTO SPOON_MEMBER ( MEMBER_ID,MEMBER_EMAIL,MEMBER_PASSWORD,MEMBER_CREATED)
 	 VALUES (#{MEMBER_ID},#{MEMBER_EMAIL},#{MEMBER_PASSWORD},#{MEMBER_CREATED})
     
     </insert>
-        <select id="LoginCheck" resultType="int" parameterType="com.my.zipcode.Member">
+        <select id="LoginCheck" resultType="int" parameterType="com.my.member.Member">
 	SELECT COUNT(*) FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_PASSWORD = #{MEMBER_PASSWORD}
    </select>
     <!-- update와 delete는 생략한다. -->
     <update id=""></update>
     
-    <delete id="deleteMember" parameterType="com.my.zipcode.Member">
+    <delete id="deleteMember" parameterType="com.my.member.Member">
     </delete>
  
 </mapper>

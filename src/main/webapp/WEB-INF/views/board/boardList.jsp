@@ -3,6 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ include file="../include/include-header.jsp" %>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시판 목록</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +11,7 @@
 </head>
 <body>
 <h2>게시판 목록</h2>
-<table style="border:1px solid #ccc">
+<table class="board_list">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>
@@ -31,7 +32,10 @@
                 <c:forEach items="${list }" var="row">
                     <tr>
                         <td>${row.bid }</td>
-                        <td>${row.board_subject }</td>
+                        <td class="board_subject">
+                                <a href="#this" name="board_subject">${row.board_subject }</a>
+                                <input type="hidden" id="bid" value="${row.bid }">
+                            </td>
                         <td>${row.board_hits }</td>
                         <td>${row.board_created }</td>
                     </tr>
@@ -49,7 +53,9 @@
 <br/>
     <a href="#this" class="btn" id="write">글쓰기</a>
      
-    <%@ include file="/WEB-INF/include/include-body.jsp" %>
+    <%@ include file="../include/include-body.jsp" %>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $("#write").on("click", function(e){ //글쓰기 버튼
@@ -57,7 +63,7 @@
                 fn_openBoardWrite();
             });
              
-            $("a[name='title']").on("click", function(e){ //제목
+            $("a[name='board_subject']").on("click", function(e){ //제목
                 e.preventDefault();
                 fn_openBoardDetail($(this));
             });
@@ -65,16 +71,13 @@
          
          
         function fn_openBoardWrite(){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/sample/openBoardWrite.do' />");
-            comSubmit.submit();
+        	document.location.href="/shop/sample/openBoardWrite.do";
         }
          
         function fn_openBoardDetail(obj){
-            var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/sample/openBoardDetail.do' />");
-            comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
-            comSubmit.submit();
+            var B=obj.parent().find("#bid").val();
+            document.location.href="/shop/sample/openBoardDetail.do?bid="+B;
+            
         }
     </script>
 </body>
