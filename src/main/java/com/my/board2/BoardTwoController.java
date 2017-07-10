@@ -29,7 +29,7 @@ public class BoardTwoController {
          
         List<BoardBean2> list = boardTwoService.selectBoardList(boardBean);
         mv.addObject("list", list);
-         
+        
         return mv;
     }
     
@@ -92,6 +92,5 @@ public class BoardTwoController {
         boardTwoService.deleteBoard(bid);
         
         return mv;
-    }
-    
+    }    
 }
