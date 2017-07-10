@@ -36,7 +36,54 @@ public class LoginActionController {
 	     member.setMEMBER_PASSWORD(MEMBER_PASSWORD);
 	     System.out.println(member.getMEMBER_ID());
 	     System.out.println(member.getMEMBER_PASSWORD());
-	     int result = memberDAOService.LoginCheck(member);
+	     String result = memberDAOService.LoginCheck(member);
+	     
+	     Map<String, Object> map = new HashMap<String,Object>();
+	        
+	        
+	    
+	     System.out.println("result : " + result);
+	     if(result==null){
+	    	 System.out.println("다시 확인해주세요");
+	    	 map.put("log", 0);
+	    	 map.put("mid", result);
+	    	 request.getSession().setAttribute("member", map);
+	    	 view.setViewName("redirect:/sample/openBoardList.do");
+	     }else {
+	    	 System.out.println("로그인 성공");
+	    	 session.setAttribute("member_id", MEMBER_ID);
+	    	 map.put("log", 0);
+	    	 map.put("mid", result);
+	    	 map.put("member_id", member.getMEMBER_ID());
+	    	 request.getSession().setAttribute("member", map);
+	    	 System.out.println("session.get : " + session.getAttribute("member_id"));
+	    	 view.addObject("member_id",session.getAttribute("member_id"));
+	    	 view.setViewName("redirect:/sample/openBoardList.do");
+	     }
+	       return view;
+	    }
+	 
+	 @RequestMapping(value="/include/include-sessionLogout", method=RequestMethod.GET)
+	 public ModelAndView logout(@RequestParam("member_id") String member_id ,Model model,HttpSession session, HttpServletRequest request){
+		 ModelAndView view = new ModelAndView();
+		 System.out.println("include-session.logout");
+		 System.out.println(session.getAttribute("member_id"));
+		 session.invalidate();
+		 view.setViewName("redirect:/sample/openBoardList.do");
+		 return view;
+	 }
+	 @RequestMapping(value="/include/include-session", method = {RequestMethod.GET, RequestMethod.POST})
+	 public ModelAndView logSession(Model model,HttpSession session, HttpServletRequest request){
+		 ModelAndView view = new ModelAndView();
+		 Member member = new Member();
+		 if(session.getAttribute("member_id")==null){
+			 view.setViewName("member/login");
+		 }else{
+		 
+		 
+	     System.out.println(member.getMEMBER_ID());
+	     System.out.println(member.getMEMBER_PASSWORD());
+	     String result = memberDAOService.LoginCheck(member);
 	     
 	     Map<String, Object> map = new HashMap<String,Object>();
 	        map.put("mid", result);
@@ -45,7 +92,7 @@ public class LoginActionController {
 
 
 	     System.out.println("result : " + result);
-	     if(result==0){
+	     if(result==null){
 	    	 
 	    	 System.out.println("다시 확인해주세요");
 	    	 view.addObject("alert","<script type='text/javascript'>"
@@ -56,23 +103,16 @@ public class LoginActionController {
 	     }else {
 	    	 System.out.println("로그인 성공");
 	    	 view.addObject("log", "1");
-	    	 session.setAttribute("member_id", MEMBER_ID);
+	    	 String member_id = member.getMEMBER_ID();
+	  
+	    	 session.setAttribute("member_id", member_id);
 	    	 System.out.println("session.get : " + session.getAttribute("member_id"));
 	    	 view.addObject("member_id",session.getAttribute("member_id"));
 	    	 view.setViewName("/include/include-session");
-	    	
-	     }
-	       return view;
-	    }
-	 
-	 @RequestMapping(value="/include/include-sessionLogout", method=RequestMethod.GET)
-	 public ModelAndView logout(@RequestParam("member_id") String member_id ,Model model,HttpSession session, HttpServletRequest request){
-		 ModelAndView view = new ModelAndView();
-		 
-		 view.setViewName("/include/include-session");
-		 return view;
-	 }
-	 
+	     	}
+		 }
+	     return view;
+	 	}	
 	 
 	 @RequestMapping(value="/member/member_join", method=RequestMethod.GET)
 	    public ModelAndView JoinForm (Locale locale, Model model) {

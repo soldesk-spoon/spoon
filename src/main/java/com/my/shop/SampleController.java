@@ -26,7 +26,7 @@ public class SampleController {
     @Resource(name="sampleService")
     private SampleService sampleService;
      
-    @RequestMapping(value="/sample/openBoardList.do")
+    @RequestMapping(value="/sample/openBoardList.do", method=RequestMethod.GET)
     public ModelAndView openSampleBoardList(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardList");
          
@@ -35,6 +35,7 @@ public class SampleController {
          
         return mv;
     }
+   
     
     @RequestMapping(value="/sample/openBoardWrite.do")
     public ModelAndView openBoardWrite(BoardBean boardBean) throws Exception{

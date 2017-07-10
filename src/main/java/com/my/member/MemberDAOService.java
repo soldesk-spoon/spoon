@@ -48,10 +48,10 @@ public class MemberDAOService implements MemberDAO {
         
 	}
 	@Override
-	public int LoginCheck(Member member) {
+	public String LoginCheck(Member member) {
 		// TODO Auto-generated method stub
 		MemberMapper memberMapper = sqlSession.getMapper(MemberMapper.class);
-		int result;
+		String result;
 		result = memberMapper.LoginCheck(member);
 		
 		System.out.println("LoginCheck result :  " + result);
