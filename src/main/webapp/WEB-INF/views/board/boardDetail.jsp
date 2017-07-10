@@ -5,7 +5,9 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/include-session.jsp" %>
 <input type="hidden" id="bid" name="bid" value="${map.bid }">
+<input type="hidden" id="mid1" name="mid1" value="${map.mid}">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -24,7 +26,7 @@
             </tr>
             <tr>
             <th scope="row">작성자</th>
-                <td>***추가해야됨<%-- ${map.board_hits } --%></td>
+                <td>${map.member_id}</td>
                 <th scope="row">작성시간</th>
                 <td>${map.board_created }</td>
             </tr>
@@ -58,8 +60,21 @@
             });
             
             $("#delete").on("click", function(e){ //삭제하기 버튼
-                e.preventDefault();
-                fn_deleteBoard();
+               
+            	var mid = document.getElementById('mid').value;
+           		var mid1 = document.getElementById('mid1').value;
+            	
+            	if(mid != mid1){
+            		alert("삭제 권한이 없습니다.");
+            		return false;
+            	}
+            	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+            		e.preventDefault();
+                    fn_deleteBoard();
+            	}else{   //취소
+            	    return;
+            	}
+            	
             });
         });
          

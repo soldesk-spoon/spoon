@@ -1,12 +1,12 @@
 <%@page import="com.my.member.Member"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
 <script type="text/javascript">
@@ -47,7 +47,6 @@
 	<form action="/shop//member/login_action" name="logForm" method="post" >
 		<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }"> 
 		<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
-		${sessionScope.member.mid }
 		<c:if test="${sessionScope.member.mid  ne null}">
 			${sessionScope.member.member_id} 환영합니다. 
 			<input type="button" value="로그아웃" onclick="logout();">
@@ -55,6 +54,7 @@
 		</c:if>
 		
 		<c:if test="${sessionScope.member.mid eq null}">
+		${sessionScope.member.alert}
 		<table>
 			<tr>
 				<td>아이디 : </td>

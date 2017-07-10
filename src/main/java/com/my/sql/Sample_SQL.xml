@@ -5,7 +5,7 @@
      
     <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
       
-            SELECT bid, board_subject, board_hits, board_created FROM spoon_board
+            SELECT bid, board_subject,member_id, board_hits, board_created FROM spoon_board
    WHERE BOARD_DELYN='N'
     </select>
      
@@ -16,7 +16,9 @@
             board_subject,
             board_contents,
             board_hits,
-            subway_name
+            subway_name,
+            mid,
+            member_id
             
           
         )
@@ -25,7 +27,9 @@
             #{board_subject},
             #{board_contents},
             0,
-            #{subway_name}
+            #{subway_name},
+            #{mid},
+            #{member_id}
            
         )
 </insert>
@@ -47,7 +51,11 @@
             board_hits,
             board_created,
             board_subject,
-            board_contents
+            board_contents,
+            member_id,
+            mid,
+            subway_name,
+            subway_linenumber
         FROM
             spoon_board
         WHERE
@@ -78,7 +86,7 @@
 </delete>
 
 <select id="selectSubway" parameterType="hashmap" resultType="hashmap">
-	SELECT subway_name FROM SPOON_SUBWAY 
+	SELECT subway_name,subway_linenumber FROM SPOON_SUBWAY 
 	WHERE SUBWAY_LINENUMBER = #{subway_linenumber}
 	ORDER BY SUBWAY_NAME ASC
 </select>

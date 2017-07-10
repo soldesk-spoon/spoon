@@ -5,6 +5,7 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/include-session.jsp" %>
 <form name="update" method="post" action="/shop/sample/updateBoard.do">
 	  <input type="hidden" id="bid" name="bid" value="${map.bid }">
 <form id="frm"  action="/shop/sample/updateBoard.do" method="post">

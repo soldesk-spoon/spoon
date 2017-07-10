@@ -7,7 +7,11 @@
 </head>
 
 <body>
+	 <%@ include file="../include/include-session.jsp" %>
     <form id="frm" action="/shop/sample/insertBoard.do" method="post">
+   	<input type="hidden" name="session_mid" id="session_mid" value="">
+   	<input type="hidden" name="session_member_id" id="session_member_id" value=""> 
+    <input type="hidden" name="subway_linenumber1" id="subway_linenumber1" value="${subway_linenumber}">
         <table class="board_view">
             <colgroup>
                 <col width="15%">
@@ -17,11 +21,11 @@
             <tbody>
                 <tr>
                     <th scope="row">제목</th>
-                    <td><input type="text" id="board_subject" name="board_subject" class="wdp_90"></input></td>
+                    <td><input type="text" id="board_subject" name="board_subject" class="wdp_90" value="${board_subject}"></input></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="view_text">
-                        <textarea rows="20" cols="100" title="내용" id="board_contents" name="board_contents"></textarea>
+                        <textarea rows="20" cols="100" title="내용" id="board_contents" name="board_contents" >${board_contents}</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -80,6 +84,8 @@
          
         $("#write").on("click", function(e){ //작성하기 버튼
             e.preventDefault();
+        	document.getElementById('session_mid').value = document.getElementById('mid').value;
+        	document.getElementById('session_member_id').value = document.getElementById('member_id').value;
             fn_insertBoard();
         });
     });
@@ -100,8 +106,10 @@
     
     <script type="text/javascript">
     	function onsubSelect(){
-    		var subway_line = document.getElementById('subway_linenumber').value;
-    		document.location.href = "/shop/sample/openBoardWrite.do?subway_linenumber="+subway_line;
+    		var frm = document.getElementById('frm');
+    		var subway_linenumber = document.getElementById('subway_linenumber').value;
+    		frm.action="/shop/sample/openBoardWrite.do?subway_linenumber="+subway_linenumber;
+    		frm.submit();
     		
     	}
     

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <%@ include file="../include/include-header.jsp" %>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판 목록</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -77,6 +77,11 @@
         }
          
         function fn_openBoardDetail(obj){
+        	var mid = document.getElementById('mid').value;
+        	if(mid==""){
+        		alert("접근권한이 없습니다 . 먼저 로그인 해주세요 ");
+        		return false;
+        	}
             var B=obj.parent().find("#bid").val();
             document.location.href="/shop/sample/openBoardDetail.do?bid="+B;
             

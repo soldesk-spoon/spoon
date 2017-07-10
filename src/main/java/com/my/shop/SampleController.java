@@ -5,8 +5,10 @@ import java.util.Map;
 
 import javax.activation.CommandMap;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,21 +40,31 @@ public class SampleController {
    
     
     @RequestMapping(value="/sample/openBoardWrite.do")
-    public ModelAndView openBoardWrite(@RequestParam("subway_linenumber") String subway_linenumber) throws Exception{
+    public ModelAndView openBoardWrite(@RequestParam("subway_linenumber") String subway_linenumber, HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardWrite");
         BoardBean boardBean = new BoardBean();
         
-        List<BoardBean> list = sampleService.selectSubway(subway_linenumber);
+        String board_subject = request.getParameter("board_subject");
+        String board_contents = request.getParameter("board_contents");
+        mv.addObject("board_subject",board_subject);
+        mv.addObject("board_contents",board_contents);
         
+        List<BoardBean> list = sampleService.selectSubway(subway_linenumber);
          mv.addObject("subList",list);
          mv.addObject("subway_linenumber",subway_linenumber);
         return mv;
     }
     
     @RequestMapping(value="/sample/insertBoard.do")
-    public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
+    public ModelAndView insertBoard(BoardBean boardBean, HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+        int mid = Integer.parseInt(request.getParameter("session_mid"));
+        String member_id = request.getParameter("session_member_id");
+        boardBean.setMember_id(member_id);
+        boardBean.setMid(mid);
+        boardBean.setSubway_linenumber( request.getParameter("subway_linenumber1"));
         System.out.println(boardBean.getSubway_name());
+        System.out.println(boardBean.getSubway_linenumber());
         sampleService.insertBoard(boardBean);
         System.out.println(boardBean.getBid());
         return mv;

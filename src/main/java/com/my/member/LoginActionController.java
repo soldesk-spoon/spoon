@@ -47,6 +47,7 @@ public class LoginActionController {
 	    	 System.out.println("다시 확인해주세요");
 	    	 map.put("log", 0);
 	    	 map.put("mid", result);
+	    	 map.put("alert", "<script type='text/javascript'>window.onload=function(){alert('아이디 비밀번호를 다시 확인해주세요'); return false; }</script>");
 	    	 request.getSession().setAttribute("member", map);
 	    	 view.setViewName("redirect:/sample/openBoardList.do");
 	     }else {
