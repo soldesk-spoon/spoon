@@ -46,10 +46,9 @@ public class SampleController {
     @RequestMapping(value="/sample/insertBoard.do")
     public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-
-        System.out.println(boardBean.getBoard_subject());
-        sampleService.insertBoard(boardBean);
         
+        sampleService.insertBoard(boardBean);
+        System.out.println(boardBean.getBid());
         return mv;
     }
     
@@ -71,7 +70,7 @@ public class SampleController {
          
         return mv;
     }
-     
+
     @RequestMapping(value="/sample/updateBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView updateBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
@@ -86,6 +85,17 @@ public class SampleController {
         System.out.println(boardBean.getBoard_subject());
         System.out.println(boardBean.getBoard_contents());
         mv.addObject("bid", boardBean.getBid());
+    @RequestMapping(value="/sample/updateBoard.do"/*, method=RequestMethod.POST*/)
+    public ModelAndView updateBoard(BoardBean boardBean) throws Exception{    	
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+        /*BoardBean boardBean = new BoardBean();
+        
+        boardBean.setBoard_subject(board_subject);
+        boardBean.setBoard_contents(board_contents);*/
+        
+        sampleService.updateBoard(boardBean);
+         
+        //mv.addObject("BID", boardBean.getBid());
         return mv;
     }    
     

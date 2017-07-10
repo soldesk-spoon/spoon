@@ -52,7 +52,7 @@
     
 </select>
 
-<update id="updateBoard" parameterType="hashmap">
+<update id="updateBoard" parameterType="com.my.shop.BoardBean">
    
         UPDATE spoon_board
         SET
