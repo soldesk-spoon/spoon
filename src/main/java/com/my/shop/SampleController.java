@@ -75,29 +75,18 @@ public class SampleController {
     public ModelAndView updateBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
         System.out.println("updateBoard!!!!!!!!!!!!!!1");
-    /*    boardBean.setBid(bid);
-        boardBean.setBoard_subject(board_subject);
-        boardBean.setBoard_contents(board_contents);
-        */
+  
         
         sampleService.updateBoard(boardBean);
         System.out.println(boardBean.getBid());
         System.out.println(boardBean.getBoard_subject());
         System.out.println(boardBean.getBoard_contents());
         mv.addObject("bid", boardBean.getBid());
-    @RequestMapping(value="/sample/updateBoard.do"/*, method=RequestMethod.POST*/)
-    public ModelAndView updateBoard(BoardBean boardBean) throws Exception{    	
-        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-        /*BoardBean boardBean = new BoardBean();
-        
-        boardBean.setBoard_subject(board_subject);
-        boardBean.setBoard_contents(board_contents);*/
-        
-        sampleService.updateBoard(boardBean);
-         
-        //mv.addObject("BID", boardBean.getBid());
+    
         return mv;
-    }    
+        
+    }
+    
     
     @RequestMapping(value="/sample/deleteBoard.do")
     public ModelAndView deleteBoard(int bid) throws Exception{

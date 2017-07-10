@@ -57,7 +57,8 @@
         UPDATE spoon_board
         SET
             board_subject = #{board_subject},
-            board_contents = #{board_contents}
+            board_contents = #{board_contents},
+            board_created = now()
         WHERE
             bid = #{bid}   
     

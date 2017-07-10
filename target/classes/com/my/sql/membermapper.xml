@@ -8,7 +8,11 @@
     <resultMap type="Member" id="MemberResultMap">
         <result property="email" column="EMAIL" />
     </resultMap>
- 
+
+
+
+
+
     <!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
     <select id="getMembers" resultMap="MemberResultMap">
         SELECT * FROM shop_member

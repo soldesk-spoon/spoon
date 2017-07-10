@@ -5,13 +5,10 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
-<<<<<<< HEAD
 <form name="update" method="post" action="/shop/sample/updateBoard.do">
 	  <input type="hidden" id="bid" name="bid" value="${map.bid }">
-=======
 <form id="frm"  action="/shop/sample/updateBoard.do" method="post">
-<input type="hidden" id="BID" name="BID" value="${map.BID }">
->>>>>>> 45d46a8a974ac5dccb2d548c6fc7e119a7f7d14f
+<input type="hidden" id="bid" name="bid" value="${map.bid }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -24,10 +21,7 @@
             <tr>
                 <th scope="row">글 번호</th>
                 <td>${map.bid }</td>
-<<<<<<< HEAD
-=======
                 
->>>>>>> 45d46a8a974ac5dccb2d548c6fc7e119a7f7d14f
                 <th scope="row">조회수</th>
                 <td>${map.board_hits }</td>
             </tr>
@@ -78,20 +72,17 @@
         }
          
         function fn_updateBoard(){
-<<<<<<< HEAD
 			
         	var bid = "${map.bid}";
             var url = "/shop/sample/updateBoard.do";
             document.update.submit();
            /*  comSubmit.setUrl("<c:url value='/shop/sample/updateBoard.do?BID="+bid+"' />");
             comSubmit.submit(); */
-=======
-        	var frm = document.getElementById("frm");
-        	frm.submit();
+        /* 	var frm = document.getElementById("frm");
+        	frm.submit(); */
            /* var comSubmit = new ComSubmit("frm");
             comSubmit.setUrl("<c:url value='/sample/updateBoard.do' />");
             comSubmit.submit();*/
->>>>>>> 45d46a8a974ac5dccb2d548c6fc7e119a7f7d14f
         }
         
         
