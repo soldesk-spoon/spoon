@@ -42,4 +42,10 @@ public class SampleServiceImpl implements SampleService{
     public void deleteBoard(int bid) throws Exception{
         sampleDAO.deleteBoard(bid);
     }
+
+	@Override
+	public List<BoardBean> selectSubway(String subway_line) throws Exception {
+		// TODO Auto-generated method stub
+		return sampleDAO.selectSubway(subway_line);
+	}
 }

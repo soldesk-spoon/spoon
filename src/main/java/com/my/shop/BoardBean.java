@@ -14,8 +14,23 @@ public class BoardBean {
 	String board_created;
 	String board_updated;
 	String board_delyn;
+	public String getSubway_linenumber() {
+		return subway_linenumber;
+	}
+	public void setSubway_linenumber(String subway_linenumber) {
+		this.subway_linenumber = subway_linenumber;
+	}
+	public String getSubway_name() {
+		return subway_name;
+	}
+	public void setSubway_name(String subway_name) {
+		this.subway_name = subway_name;
+	}
 	int board_hits;
 	String board_address;
+	String subway_linenumber;
+	String subway_name;
+	
 	public int getBid() {
 		return bid;
 	}

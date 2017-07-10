@@ -56,4 +56,5 @@ public class AbstractDAO {
         printQueryId(queryId);
         return sqlSession.selectList(queryId,params);
     }
+ 
 }

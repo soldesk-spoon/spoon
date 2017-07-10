@@ -73,4 +73,11 @@
             bid = #{bid}   
     
 </delete>
+
+<select id="selectSubway" parameterType="hashmap" resultType="hashmap">
+	SELECT subway_name FROM SPOON_SUBWAY 
+	WHERE SUBWAY_LINENUMBER = #{subway_linenumber}
+	ORDER BY SUBWAY_NAME ASC
+</select>
+
 </mapper>

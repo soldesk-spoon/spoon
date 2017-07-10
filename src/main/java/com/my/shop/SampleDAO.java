@@ -33,4 +33,11 @@ public class SampleDAO extends AbstractDAO{
     public void deleteBoard(int bid) throws Exception{
     	delete("sample.deleteBoard", bid);
     } 
+    
+    
+    @SuppressWarnings("unchecked")
+	public List<BoardBean> selectSubway(String subline) throws Exception{
+        return (List<BoardBean>)selectList("sample.selectSubway", subline);
+    }
+    
 }

@@ -23,6 +23,17 @@
                         <textarea rows="20" cols="100" title="내용" id="board_contents" name="board_contents"></textarea>
                     </td>
                 </tr>
+                <tr>
+                	<td>
+                		<select id="sub" onChange="onsubSelect();">
+							<option value="1" ${subway_linenumber eq  "1" ? "selected" :""}>1호선</option>
+							<option value="2" ${subway_linenumber eq  "2" ? "selected" :""}>2호선</option>
+							<option value="3" ${subway_linenumber eq  "3" ? "selected" :""}>3호선</option>
+							<option value="4" ${subway_linenumber eq  "4" ? "selected" :""}>4호선</option>
+                		</select>
+                	</td>
+                	<td></td>
+                </tr>
             </tbody>
         </table>
          
@@ -57,6 +68,15 @@
     	frm.submit();
        
     }
+    </script>
+    
+    <script type="text/javascript">
+    	function onsubSelect(){
+    		var subway_line = document.getElementById('sub').value;
+    		document.location.href = "/shop/sample/openBoardWrite.do?subway_linenumber="+subway_line;
+    		
+    	}
+    
     </script>
 </body>
 </html>

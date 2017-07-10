@@ -73,7 +73,7 @@
          
          
         function fn_openBoardWrite(){
-        	document.location.href="/shop/sample/openBoardWrite.do";
+        	document.location.href="/shop/sample/openBoardWrite.do?subway_linenumber=1";
         }
          
         function fn_openBoardDetail(obj){
