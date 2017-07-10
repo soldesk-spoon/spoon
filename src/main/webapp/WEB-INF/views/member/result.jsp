@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
+${sessionScope.member.mid }
+${sessionScope.member.member_id}
 </body>
 </html>

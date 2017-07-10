@@ -23,8 +23,8 @@
 	 VALUES (#{MEMBER_ID},#{MEMBER_EMAIL},#{MEMBER_PASSWORD},#{MEMBER_CREATED})
     
     </insert>
-        <select id="LoginCheck" resultType="int" parameterType="com.my.member.Member">
-	SELECT COUNT(*) FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_PASSWORD = #{MEMBER_PASSWORD}
+    <select id="LoginCheck" resultType="int" parameterType="com.my.member.Member">
+		SELECT mid FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_PASSWORD = #{MEMBER_PASSWORD}
    </select>
     <!-- update와 delete는 생략한다. -->
     <update id=""></update>

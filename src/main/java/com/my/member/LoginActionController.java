@@ -1,6 +1,10 @@
 package com.my.member;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,7 +22,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginActionController {
 	@Autowired
     private MemberDAOService memberDAOService;
-
+	
+	
+	 /*
+	  * 로그인 유효성 확인 페이지
+	  * session 생성 후 login_session 페이지에 mid값과 member_id 값 넘김
+	  * */
 	 @RequestMapping(value="/member/login_action", method=RequestMethod.POST)
 	    public ModelAndView loginform (@RequestParam("MEMBER_ID") String MEMBER_ID,@RequestParam("MEMBER_PASSWORD") String MEMBER_PASSWORD, Model model,HttpSession session, HttpServletRequest request) {
 		 ModelAndView view = new ModelAndView();
@@ -29,39 +38,116 @@ public class LoginActionController {
 	     System.out.println(member.getMEMBER_PASSWORD());
 	     int result = memberDAOService.LoginCheck(member);
 	     
-	     
+	     Map<String, Object> map = new HashMap<String,Object>();
+	        map.put("mid", result);
+	        map.put("member_id", member.getMEMBER_ID());
+	        request.getSession().setAttribute("member", map);
+
+
 	     System.out.println("result : " + result);
-	     if(result==1){
-	    	 System.out.println("로그인 성공");
-	    	 view.addObject("log", "1");
-	    	 session.setAttribute("user_id", MEMBER_ID);
-	    	 System.out.println("session.get : " + session.getAttribute("user_id"));
-	    	 view.addObject("user_id",session.getAttribute("user_id"));
-	    	 view.setViewName("/include/include-session");
-	     }else {
+	     if(result==0){
+	    	 
 	    	 System.out.println("다시 확인해주세요");
 	    	 view.addObject("alert","<script type='text/javascript'>"
 	    	 		+ "alert('아이디 비밀번호를 확인해주세요.')"
 	    	 		+ " </script>");
 	    	 view.addObject("log", "0");
 	    	 view.setViewName("/member/login");
+	     }else {
+	    	 System.out.println("로그인 성공");
+	    	 view.addObject("log", "1");
+	    	 session.setAttribute("member_id", MEMBER_ID);
+	    	 System.out.println("session.get : " + session.getAttribute("member_id"));
+	    	 view.addObject("member_id",session.getAttribute("member_id"));
+	    	 view.setViewName("/include/include-session");
+	    	
 	     }
-	       
-	       
 	       return view;
 	    }
-	 @RequestMapping(value="/include/include-session", method=RequestMethod.GET)
-	 public ModelAndView logout(@RequestParam("user_id") String user_id ,Model model,HttpSession session, HttpServletRequest request){
+	 
+	 @RequestMapping(value="/include/include-sessionLogout", method=RequestMethod.GET)
+	 public ModelAndView logout(@RequestParam("member_id") String member_id ,Model model,HttpSession session, HttpServletRequest request){
 		 ModelAndView view = new ModelAndView();
-		 user_id="";
-		 if(user_id.equals("")){
-			 session.invalidate();
-			 view.addObject("user_id",null);
-		 }
 		 
 		 view.setViewName("/include/include-session");
 		 return view;
 	 }
 	 
+	 
+	 @RequestMapping(value="/member/member_join", method=RequestMethod.GET)
+	    public ModelAndView JoinForm (Locale locale, Model model) {
+	     
+	       ModelAndView view = new ModelAndView();
+	       
+	       view.setViewName("/member/member_join");
+	       
+	       return view;
+	    }
+	 
+	 @RequestMapping(value="/member/JoinIdCheck", method=RequestMethod.GET)
+	    public ModelAndView insertJoin(@RequestParam("MEMBER_ID") String MEMBER_ID,@RequestParam("CheckParam") int CheckParam) {
+		 /*MEMBER_ID,MEMBER_EMAIL,MEMBER_PASSWORD*/
+		 ModelAndView view = new ModelAndView();
+	       Member member = new Member();
+	       member.setMEMBER_ID(MEMBER_ID);
+	       
+	       
+	       System.out.println(member.getMEMBER_ID());
+	       System.out.println(memberDAOService.JoinIdCheck(member.getMEMBER_ID()));
+	       int result = memberDAOService.JoinIdCheck(member.getMEMBER_ID());
+	       
+	       if(result==0){
+	    	   view.addObject("MEMBER_INFO", "사용할 수 있는 아이디 입니다. ");
+	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();' name='useCheck' id='useCheck' value='사용하기'>");
+	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam1' name ='CheckParam1' value='1'>");
+	    	   
+	       }else {
+	    	   view.addObject("MEMBER_INFO", "사용할 수 없는 아이디입니다.");
+	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();'  name='useCheck' id='useCheck' value='다시쓰기'>");
+	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam1' name ='CheckParam1' value='0'>");
+	       }
+	       view.setViewName("/member/joinIdCheckResult");
+	       
+	       return view;    //
+	    }
+	 
+	 @RequestMapping(value="/member/join_action", method=RequestMethod.POST)
+	    public ModelAndView insertJoin(@RequestParam("MEMBER_ID") String MEMBER_ID,@RequestParam("MEMBER_EMAIL") String MEMBER_EMAIL
+	     ,@RequestParam("MEMBER_PASSWORD") String MEMBER_PASSWORD) {
+		 /*MEMBER_ID,MEMBER_EMAIL,MEMBER_PASSWORD*/
+	       ModelAndView view = new ModelAndView();
+	       Member member = new Member();
+	       
+	       member.setMEMBER_ID(MEMBER_ID);
+	       member.setMEMBER_EMAIL(MEMBER_EMAIL);
+	       member.setMEMBER_PASSWORD(MEMBER_PASSWORD);
+	       
+	       SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+	         
+	         Calendar calendar = Calendar.getInstance();
+	          
+	         System.out.println(dateFormat.format(calendar.getTime()));
+
+	    	String currentTime = dateFormat.format(calendar.getTime());
+	    	System.out.println(currentTime);
+	    	member.setMEMBER_CREATED(currentTime);
+	       memberDAOService.insertMember(member);
+	       
+	       
+	       view.setViewName("/member/result");
+	       
+	       return view;
+	    }
+	 
+
+	 @RequestMapping(value="/member/login", method=RequestMethod.GET)
+	    public ModelAndView loginform (Locale locale, Model model) {
+	     
+	       ModelAndView view = new ModelAndView();
+	       
+	       view.setViewName("/member/login");
+	       
+	       return view;
+	    }
 	 
 }

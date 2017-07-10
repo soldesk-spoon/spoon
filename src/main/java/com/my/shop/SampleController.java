@@ -12,12 +12,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.shop.BoardBean;
 
  
 @Controller
+@SessionAttributes("mid")
 public class SampleController {
     Logger logger = Logger.getLogger(this.getClass());
      
@@ -70,13 +72,20 @@ public class SampleController {
         return mv;
     }
      
-    @RequestMapping(value="/sample/updateBoard.do")
+    @RequestMapping(value="/sample/updateBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView updateBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
-         
+        System.out.println("updateBoard!!!!!!!!!!!!!!1");
+    /*    boardBean.setBid(bid);
+        boardBean.setBoard_subject(board_subject);
+        boardBean.setBoard_contents(board_contents);
+        */
+        
         sampleService.updateBoard(boardBean);
-         
-        mv.addObject("BID", boardBean.getBid());
+        System.out.println(boardBean.getBid());
+        System.out.println(boardBean.getBoard_subject());
+        System.out.println(boardBean.getBoard_contents());
+        mv.addObject("bid", boardBean.getBid());
         return mv;
     }    
     

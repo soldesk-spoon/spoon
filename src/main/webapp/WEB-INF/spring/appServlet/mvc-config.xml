@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+>
+<mvc:interceptors>
+        <mvc:interceptor>
+           <mvc:mapping path="/admin_main"/>
+           <!-- 여러개 컨트롤러 추가 가능 -->
+           <!--
+                <mvc:mapping path="/admin_write"/>
+                <mvc:mapping path="/admin_update"/>
+                <mvc:mapping path="/admin_delete"/>
+                .
+                .
+                .
+           -->
+           <!-- 로그인체크 인터셉터 클래스 -->
+           <mvc:mapping path="/shop/include/include-session"/>
+           <mvc:mapping path="/shop/member/login"/>
+           <mvc:mapping path="/shop/member/result"/>
+           <mvc:mapping path="/shop/member/login_action"/>
+           <mvc:mapping path="/shop/sample/openBoardList.do"/>
+           <bean class="com.my.interceptor.Interceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+</beans>
+
