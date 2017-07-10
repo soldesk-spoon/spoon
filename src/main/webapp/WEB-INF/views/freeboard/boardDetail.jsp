@@ -5,7 +5,7 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
-<input type="hidden" id="bid" name="bid" value="${map.bid }">
+<input type="hidden" id="fbid" name="fbid" value="${map.fbid }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -17,23 +17,23 @@
         <tbody>
             <tr>
                 <th scope="row">글 번호</th>
-                <td>${map.bid }</td>
+                <td>${map.fbid }</td>
                 
                 <th scope="row">조회수</th>
-                <td>${map.board_hits }</td>
+                <td>${map.free_hits }</td>
             </tr>
             <tr>
             <th scope="row">작성자</th>
-                <td>***추가해야됨<%-- ${map.board_hits } --%></td>
+                <td>***추가해야됨<%-- ${map.free_hits } --%></td>
                 <th scope="row">작성시간</th>
-                <td>${map.board_created }</td>
+                <td>${map.free_created }</td>
             </tr>
             <tr>
                 <th scope="row">제목</th>
-                <td colspan="3">${map.board_subject }</td>
+                <td colspan="3">${map.free_subject }</td>
             </tr>
             <tr>
-                <td colspan="4">${map.board_contents }</td>
+                <td colspan="4">${map.free_contents }</td>
             </tr>
         </tbody>
     </table>
@@ -68,19 +68,19 @@
         }
          
         function fn_openBoardUpdate(obj){
-        	var B = ${map.bid};
-            document.location.href="/shop/freeboard/openBoardUpdate.do?bid="+B;
+        	var B = ${map.fbid};
+            document.location.href="/shop/freeboard/openBoardUpdate.do?fbid="+B;
             /*
-            var bid = "${map.bid}";
+            var fbid = "${map.fbid}";
             var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/openBoardUpdate.do' />");
-            comSubmit.addParam("BID", bid);
+            comSubmit.addParam("fbid", fbid);
             comSubmit.submit();*/
         }
         
         function fn_deleteBoard(){
-        	var B = ${map.bid};
-            document.location.href="/shop/freeboard/deleteBoard.do?bid="+B;
+        	var B = ${map.fbid};
+            document.location.href="/shop/freeboard/deleteBoard.do?fbid="+B;
             /*
         	var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");

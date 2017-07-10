@@ -17,8 +17,8 @@ public class FreeBoardDAO extends AbstractDAO{
         insert("freeboard.insertBoard", boardbean);
     } 
     
-    public void updateHitCnt(int bid) throws Exception{
-        update("freeboard.updateHitCnt", bid);
+    public void updateHitCnt(int fbid) throws Exception{
+        update("freeboard.updateHitCnt", fbid);
     }
      
     @SuppressWarnings("unchecked")
@@ -30,7 +30,7 @@ public class FreeBoardDAO extends AbstractDAO{
         update("freeboard.updateBoard", boardBean);
     }
     
-    public void deleteBoard(int bid) throws Exception{
-    	delete("freeboard.deleteBoard", bid);
+    public void deleteBoard(int fbid) throws Exception{
+    	delete("freeboard.deleteBoard", fbid);
     } 
 }

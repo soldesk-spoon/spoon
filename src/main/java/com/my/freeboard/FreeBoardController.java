@@ -45,24 +45,24 @@ public class FreeBoardController {
         ModelAndView mv = new ModelAndView("redirect:/freeboard/openBoardList.do");
         
         freeBoardService.insertBoard(boardBean);
-        System.out.println(boardBean.getBid());
+        System.out.println(boardBean.getFbid());
         return mv;
     }
     
     @RequestMapping(value="/freeboard/openBoardDetail.do", method=RequestMethod.GET)
-    public ModelAndView openBoardDetail(@RequestParam("bid")int bid) throws Exception{
+    public ModelAndView openBoardDetail(@RequestParam("fbid")int fbid) throws Exception{
         ModelAndView mv = new ModelAndView("/freeboard/boardDetail");
-        Map<String, Object> map = freeBoardService.selectBoardDetail(bid);
+        Map<String, Object> map = freeBoardService.selectBoardDetail(fbid);
         mv.addObject("map", map); 
          
         return mv;
     }
     
     @RequestMapping(value="/freeboard/openBoardUpdate.do", method=RequestMethod.GET)
-    public ModelAndView openBoardUpdate(@RequestParam("bid")int bid) throws Exception{
+    public ModelAndView openBoardUpdate(@RequestParam("fbid")int fbid) throws Exception{
         ModelAndView mv = new ModelAndView("/freeboard/boardUpdate");
          
-        Map<String,Object> map = freeBoardService.selectBoardDetail(bid);
+        Map<String,Object> map = freeBoardService.selectBoardDetail(fbid);
         mv.addObject("map", map);
          
         return mv;
@@ -75,10 +75,10 @@ public class FreeBoardController {
   
         
         freeBoardService.updateBoard(boardBean);
-        System.out.println(boardBean.getBid());
-        System.out.println(boardBean.getBoard_subject());
-        System.out.println(boardBean.getBoard_contents());
-        mv.addObject("bid", boardBean.getBid());
+        System.out.println(boardBean.getFbid());
+        System.out.println(boardBean.getFree_subject());
+        System.out.println(boardBean.getFree_contents());
+        mv.addObject("fbid", boardBean.getFbid());
     
         return mv;
         
@@ -86,10 +86,10 @@ public class FreeBoardController {
     
     
     @RequestMapping(value="/freeboard/deleteBoard.do")
-    public ModelAndView deleteBoard(int bid) throws Exception{
+    public ModelAndView deleteBoard(int fbid) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/freeboard/openBoardList.do");
 
-        freeBoardService.deleteBoard(bid);
+        freeBoardService.deleteBoard(fbid);
         
         return mv;
     }    
