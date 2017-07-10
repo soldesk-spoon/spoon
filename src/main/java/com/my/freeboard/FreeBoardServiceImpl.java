@@ -26,10 +26,10 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     }
     
     @Override 
-    public Map<String, Object> selectBoardDetail(int bid) throws Exception {
+    public Map<String, Object> selectBoardDetail(int fbid) throws Exception {
        // freeBoardDAO.updateHitCnt(boardBean);
-    	freeBoardDAO.updateHitCnt(bid);
-        Map<String, Object> resultMap = (Map<String, Object>) freeBoardDAO.selectBoardDetail(bid);
+    	freeBoardDAO.updateHitCnt(fbid);
+        Map<String, Object> resultMap = (Map<String, Object>) freeBoardDAO.selectBoardDetail(fbid);
         return resultMap;
     }
     
@@ -39,7 +39,7 @@ public class FreeBoardServiceImpl implements FreeBoardService{
     }
     
     @Override
-    public void deleteBoard(int bid) throws Exception{
-    	freeBoardDAO.deleteBoard(bid);
+    public void deleteBoard(int fbid) throws Exception{
+    	freeBoardDAO.deleteBoard(fbid);
     }
 }

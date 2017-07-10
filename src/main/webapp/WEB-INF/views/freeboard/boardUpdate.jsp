@@ -6,9 +6,9 @@
 </head>
 <body>
 <form name="update" method="post" action="/shop/freeboard/updateBoard.do">
-	  <input type="hidden" id="bid" name="bid" value="${map.bid }">
+	  <input type="hidden" id="fbid" name="fbid" value="${map.fbid }">
 <form id="frm"  action="/shop/freeboard/updateBoard.do" method="post">
-<input type="hidden" id="bid" name="bid" value="${map.bid }">
+<input type="hidden" id="fbid" name="fbid" value="${map.fbid }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -20,26 +20,26 @@
         <tbody>
             <tr>
                 <th scope="row">글 번호</th>
-                <td>${map.bid }</td>
+                <td>${map.fbid }</td>
                 
                 <th scope="row">조회수</th>
-                <td>${map.board_hits }</td>
+                <td>${map.free_hits }</td>
             </tr>
             <tr>
             <th scope="row">작성자</th>
-                <td>***추가해야됨<%-- ${map.board_hits } --%></td>
+                <td>***추가해야됨<%-- ${map.free_hits } --%></td>
                 <th scope="row">작성시간</th>
-                <td>${map.board_created }</td>
+                <td>${map.free_created }</td>
             </tr>
             <tr>
                 <th scope="row">제목</th>
-				<td colspan="3"><input type="text" id="board_subject"
-					name="board_subject" class="wdp_90" value="${map.board_subject }" />
+				<td colspan="3"><input type="text" id="free_subject"
+					name="free_subject" class="wdp_90" value="${map.free_subject }" />
 				</td>
 			</tr>
             <tr>
 				<td colspan="4" class="view_text"><textarea rows="20"
-						cols="100" title="내용" id="board_contents" name="board_contents">${map.board_contents }</textarea>
+						cols="100" title="내용" id="free_contents" name="free_contents">${map.free_contents }</textarea>
 				</td>
 			</tr>
         </tbody>
@@ -73,7 +73,7 @@
          
         function fn_updateBoard(){
 			
-        	var bid = "${map.bid}";
+        	var fbid = "${map.fbid}";
             var url = "/shop/freeboard/updateBoard.do";
             document.update.submit();
            /*  comSubmit.setUrl("<c:url value='/shop/freeboard/updateBoard.do?BID="+bid+"' />");

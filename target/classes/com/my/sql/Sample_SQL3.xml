@@ -5,23 +5,22 @@
      
     <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
       
-            SELECT bid, board_subject, board_hits, board_created FROM spoon_board
-   WHERE BOARD_DELYN='N'
+            SELECT fbid, free_subject, free_hits, free_created FROM SPOON_FREEBOARD
+   WHERE FREE_DELYN='N'
     </select>
      
      <insert id="insertBoard" parameterType="com.my.freeboard.BoardBeanF">
   
-        INSERT INTO spoon_board
+        INSERT INTO SPOON_FREEBOARD
         (
-            board_subject,
-            board_contents,
-            board_hits
-          
-        )
+            free_subject,
+            free_contents,
+            free_hits
+     )
         VALUES
         (
-            #{board_subject},
-            #{board_contents},
+            #{free_subject},
+            #{free_contents},
             0
            
         )
@@ -29,48 +28,48 @@
 
 <update id="updateHitCnt" parameterType="com.my.freeboard.BoardBeanF">
    
-        UPDATE spoon_board
+        UPDATE SPOON_FREEBOARD
         SET
-            board_hits = board_hits+ 1
+            free_hits = free_hits+ 1
         WHERE
-            bid = #{bid}   
+            fbid = #{fbid}   
     
 </update>
  
 <select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
     
         SELECT
-            bid,
-            board_hits,
-            board_created,
-            board_subject,
-            board_contents
+            fbid,
+            free_hits,
+            free_created,
+            free_subject,
+            free_contents
         FROM
-            spoon_board
+            SPOON_FREEBOARD
         WHERE
-            bid = #{bid}       
+            fbid = #{fbid}       
     
 </select>
 
 <update id="updateBoard" parameterType="com.my.freeboard.BoardBeanF">
    
-        UPDATE spoon_board
+        UPDATE SPOON_FREEBOARD
         SET
-            board_subject = #{board_subject},
-            board_contents = #{board_contents},
-            board_created = now()
+            free_subject = #{free_subject},
+            free_contents = #{free_contents},
+            free_created = now()
         WHERE
-            bid = #{bid}   
+            fbid = #{fbid}   
     
 </update>
 
 <delete id="deleteBoard" parameterType="hashmap">
    
-        UPDATE spoon_board
+        UPDATE SPOON_FREEBOARD
         SET
-            BOARD_DELYN = 'Y'
+            FREE_DELYN = 'Y'
         WHERE
-            bid = #{bid}   
+            fbid = #{fbid}   
     
 </delete>
 </mapper>
