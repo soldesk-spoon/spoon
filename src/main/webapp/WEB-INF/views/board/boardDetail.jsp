@@ -5,7 +5,7 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
-<input type="hidden" id="BID" name="BID" value="${map.BID }">
+<input type="hidden" id="bid" name="bid" value="${map.bid }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>

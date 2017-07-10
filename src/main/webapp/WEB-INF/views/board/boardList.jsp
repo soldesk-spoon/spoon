@@ -4,12 +4,14 @@
 <html>
 <head>
 <%@ include file="../include/include-header.jsp" %>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>게시판 목록</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </head>
 <body>
+<%@ include file="../include/include-session.jsp" %>
 <h2>게시판 목록</h2>
 <table class="board_list">
     <colgroup>

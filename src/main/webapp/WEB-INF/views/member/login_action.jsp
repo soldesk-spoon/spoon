@@ -10,8 +10,8 @@
 	
 </script>
 <body>
-
-	
+${sessionScope.member.mid }
+${sessionScope.member.member_id}
 
 </body>
 </html>

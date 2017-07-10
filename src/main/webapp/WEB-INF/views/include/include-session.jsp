@@ -1,18 +1,18 @@
 <%@page import="com.my.member.Member"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%@ page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 
 <script type="text/javascript">
 	function logout(){
-		var user_id = document.getElementById('user_id').value;
-		document.location.href="/shop/include/include-session?user_id="+user_id;
+		var member_id = document.getElementById('member_id').value;
+		document.location.href="/shop/include/include-sessionLogout?member_id="+member_id;
 		
 	}
 
@@ -20,13 +20,16 @@
 </head>
 <body>
 <form action="GET">
-<c:if test="${user_id  ne null }">
-<input type="hidden" id="user_id" name="user_id" value="${user_id}">
-${user_id}´Ô È¯¿µÇÕ´Ï´Ù.
-<input type="button" value="·Î±×¾Æ¿ô" onclick="logout();">
+<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
+<input type="hidden" id="member_id" name="member_id"value="${sessionScope.member.member_id}">
+<c:if test="${sessionScope.member.member_id  ne null }">
+
+${sessionScope.member.member_id} í™˜ì˜í•©ë‹ˆë‹¤. 
+
+<input type="button" value="ë¡œê·¸ì•„ì›ƒ" onclick="logout();">
 </c:if>
-<c:if test="${user_id eq null}">
-<input type="button" onclick="document.location.href='/shop/member/login'" value="·Î±×ÀÎ">
+<c:if test="${sessionScope.member.member_id eq null}">
+<input type="button" onclick="document.location.href='/shop/member/login'" value="ë¡œê·¸ì¸">
 </c:if>
 </form>
 </body>
