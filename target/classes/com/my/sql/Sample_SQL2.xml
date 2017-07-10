@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="boardTwo">
+     
+    <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+      
+            SELECT bid, board_subject, board_hits, board_created FROM spoon_board
+   WHERE BOARD_DELYN='N'
+    </select>
+     
+     <insert id="insertBoard" parameterType="com.my.board2.BoardBean2">
+  
+        INSERT INTO spoon_board
+        (
+            board_subject,
+            board_contents,
+            board_hits
+          
+        )
+        VALUES
+        (
+            #{board_subject},
+            #{board_contents},
+            0
+           
+        )
+</insert>
+
+<update id="updateHitCnt" parameterType="com.my.board2.BoardBean2">
+   
+        UPDATE spoon_board
+        SET
+            board_hits = board_hits+ 1
+        WHERE
+            bid = #{bid}   
+    
+</update>
+ 
+<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+    
+        SELECT
+            bid,
+            board_hits,
+            board_created,
+            board_subject,
+            board_contents
+        FROM
+            spoon_board
+        WHERE
+            bid = #{bid}       
+    
+</select>
+
+<update id="updateBoard" parameterType="com.my.board2.BoardBean2">
+   
+        UPDATE spoon_board
+        SET
+            board_subject = #{board_subject},
+            board_contents = #{board_contents},
+            board_created = now()
+        WHERE
+            bid = #{bid}   
+    
+</update>
+
+<delete id="deleteBoard" parameterType="hashmap">
+   
+        UPDATE spoon_board
+        SET
+            BOARD_DELYN = 'Y'
+        WHERE
+            bid = #{bid}   
+    
+</delete>
+</mapper>
