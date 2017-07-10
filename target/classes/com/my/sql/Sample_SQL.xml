@@ -15,14 +15,17 @@
         (
             board_subject,
             board_contents,
-            board_hits
+            board_hits,
+            subway_name
+            
           
         )
         VALUES
         (
             #{board_subject},
             #{board_contents},
-            0
+            0,
+            #{subway_name}
            
         )
 </insert>

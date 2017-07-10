@@ -43,7 +43,7 @@ public class SampleController {
         BoardBean boardBean = new BoardBean();
         
         List<BoardBean> list = sampleService.selectSubway(subway_linenumber);
-        System.out.println(list);
+        
          mv.addObject("subList",list);
          mv.addObject("subway_linenumber",subway_linenumber);
         return mv;
@@ -52,7 +52,7 @@ public class SampleController {
     @RequestMapping(value="/sample/insertBoard.do")
     public ModelAndView insertBoard(BoardBean boardBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-        
+        System.out.println(boardBean.getSubway_name());
         sampleService.insertBoard(boardBean);
         System.out.println(boardBean.getBid());
         return mv;
