@@ -5,7 +5,7 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
-<input type="hidden" id="bid" name="bid" value="${map.bid }">
+<input type="hidden" id="qid" name="qid" value="${map.qid }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -17,23 +17,23 @@
         <tbody>
             <tr>
                 <th scope="row">글 번호</th>
-                <td>${map.bid }</td>
+                <td>${map.qid }</td>
                 
                 <th scope="row">조회수</th>
-                <td>${map.board_hits }</td>
+                <td>${map.qna_hits }</td>
             </tr>
             <tr>
             <th scope="row">작성자</th>
-                <td>***추가해야됨<%-- ${map.board_hits } --%></td>
+                <td>***추가해야됨<%-- ${map.qna_hits } --%></td>
                 <th scope="row">작성시간</th>
-                <td>${map.board_created }</td>
+                <td>${map.qna_created }</td>
             </tr>
             <tr>
                 <th scope="row">제목</th>
-                <td colspan="3">${map.board_subject }</td>
+                <td colspan="3">${map.qna_subject }</td>
             </tr>
             <tr>
-                <td colspan="4">${map.board_contents }</td>
+                <td colspan="4">${map.qna_contents }</td>
             </tr>
         </tbody>
     </table>
@@ -68,8 +68,8 @@
         }
          
         function fn_openBoardUpdate(obj){
-        	var B = ${map.bid};
-            document.location.href="/shop/boardTwo/openBoardUpdate.do?bid="+B;
+        	var B = ${map.qid};
+            document.location.href="/shop/boardTwo/openBoardUpdate.do?qid="+B;
             /*
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();
@@ -79,8 +79,8 @@
         }
         
         function fn_deleteBoard(){
-        	var B = ${map.bid};
-            document.location.href="/shop/boardTwo/deleteBoard.do?bid="+B;
+        	var B = ${map.qid};
+            document.location.href="/shop/boardTwo/deleteBoard.do?qid="+B;
             /*
         	var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");

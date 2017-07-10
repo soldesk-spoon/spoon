@@ -16,11 +16,11 @@
             <tbody>
                 <tr>
                     <th scope="row">제목</th>
-                    <td><input type="text" id="board_subject" name="board_subject" class="wdp_90"></input></td>
+                    <td><input type="text" id="qna_subject" name="qna_subject" class="wdp_90"></input></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="view_text">
-                        <textarea rows="20" cols="100" title="내용" id="board_contents" name="board_contents"></textarea>
+                        <textarea rows="20" cols="100" title="내용" id="qna_contents" name="qna_contents"></textarea>
                     </td>
                 </tr>
             </tbody>

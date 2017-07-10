@@ -33,13 +33,13 @@
             <c:when test="${fn:length(list) > 0}">
                 <c:forEach items="${list }" var="row">
                     <tr>
-                        <td>${row.bid }</td>
-                        <td class="board_subject">
-                                <a href="#this" name="board_subject">${row.board_subject }</a>
-                                <input type="hidden" id="bid" value="${row.bid }">
+                        <td>${row.qid }</td>
+                        <td class="qna_subject">
+                                <a href="#this" name="qna_subject">${row.qna_subject }</a>
+                                <input type="hidden" id="qid" value="${row.qid }">
                             </td>
-                        <td>${row.board_hits }</td>
-                        <td>${row.board_created }</td>
+                        <td>${row.qna_hits }</td>
+                        <td>${row.qna_created }</td>
                     </tr>
                 </c:forEach>
             </c:when>
@@ -65,7 +65,7 @@
                 fn_openBoardWrite();
             });
              
-            $("a[name='board_subject']").on("click", function(e){ //제목
+            $("a[name='qna_subject']").on("click", function(e){ //제목
                 e.preventDefault();
                 fn_openBoardDetail($(this));
             });
@@ -77,8 +77,8 @@
         }
          
         function fn_openBoardDetail(obj){
-            var B=obj.parent().find("#bid").val();
-            document.location.href="/shop/boardTwo/openBoardDetail.do?bid="+B;
+            var B=obj.parent().find("#qid").val();
+            document.location.href="/shop/boardTwo/openBoardDetail.do?qid="+B;
             
         }
     </script>

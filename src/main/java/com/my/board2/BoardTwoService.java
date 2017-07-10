@@ -8,9 +8,9 @@ public interface BoardTwoService {
 	
 	void insertBoard(BoardBean2 boardBean) throws Exception;
 	
-	Map<String, Object> selectBoardDetail(int fbid) throws Exception;
+	Map<String, Object> selectBoardDetail(int qid) throws Exception;
 
 	void updateBoard(BoardBean2 boardBean) throws Exception;
 	
-	void deleteBoard(int fbid) throws Exception;
+	void deleteBoard(int qid) throws Exception;
 }

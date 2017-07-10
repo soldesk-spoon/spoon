@@ -6,9 +6,9 @@
 </head>
 <body>
 <form name="update" method="post" action="/shop/boardTwo/updateBoard.do">
-	  <input type="hidden" id="bid" name="bid" value="${map.bid }">
+	  <input type="hidden" id="qid" name="qid" value="${map.qid }">
 <form id="frm"  action="/shop/boardTwo/updateBoard.do" method="post">
-<input type="hidden" id="bid" name="bid" value="${map.bid }">
+<input type="hidden" id="qid" name="qid" value="${map.qid }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -20,26 +20,26 @@
         <tbody>
             <tr>
                 <th scope="row">글 번호</th>
-                <td>${map.bid }</td>
+                <td>${map.qid }</td>
                 
                 <th scope="row">조회수</th>
-                <td>${map.board_hits }</td>
+                <td>${map.qna_hits }</td>
             </tr>
             <tr>
             <th scope="row">작성자</th>
-                <td>***추가해야됨<%-- ${map.board_hits } --%></td>
+                <td>***추가해야됨<%-- ${map.qna_hits } --%></td>
                 <th scope="row">작성시간</th>
-                <td>${map.board_created }</td>
+                <td>${map.qna_created }</td>
             </tr>
             <tr>
                 <th scope="row">제목</th>
-				<td colspan="3"><input type="text" id="board_subject"
-					name="board_subject" class="wdp_90" value="${map.board_subject }" />
+				<td colspan="3"><input type="text" id="qna_subject"
+					name="qna_subject" class="wdp_90" value="${map.qna_subject }" />
 				</td>
 			</tr>
             <tr>
 				<td colspan="4" class="view_text"><textarea rows="20"
-						cols="100" title="내용" id="board_contents" name="board_contents">${map.board_contents }</textarea>
+						cols="100" title="내용" id="qna_contents" name="qna_contents">${map.qna_contents }</textarea>
 				</td>
 			</tr>
         </tbody>
@@ -73,7 +73,7 @@
          
         function fn_updateBoard(){
 			
-        	var bid = "${map.bid}";
+        	var qid = "${map.qid}";
             var url = "/shop/boardTwo/updateBoard.do";
             document.update.submit();
            /*  comSubmit.setUrl("<c:url value='/shop/boardTwo/updateBoard.do?BID="+bid+"' />");
