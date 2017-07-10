@@ -8,7 +8,7 @@ public interface MemberDAO {
     public void updateMember(String name);
     public void deleteMember(String name);
     public int JoinIdCheck(String name);
-    public int LoginCheck(Member member);
+    public String LoginCheck(Member member);
 
 
 }

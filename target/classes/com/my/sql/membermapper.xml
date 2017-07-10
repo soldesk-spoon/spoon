@@ -9,10 +9,6 @@
         <result property="email" column="EMAIL" />
     </resultMap>
 
-
-
-
-
     <!-- id의 경우에는 Mapper.java에 동일하게 사용해야된다. -->
     <select id="getMembers" resultMap="MemberResultMap">
         SELECT * FROM shop_member
@@ -27,7 +23,7 @@
 	 VALUES (#{MEMBER_ID},#{MEMBER_EMAIL},#{MEMBER_PASSWORD},#{MEMBER_CREATED})
     
     </insert>
-    <select id="LoginCheck" resultType="int" parameterType="com.my.member.Member">
+    <select id="LoginCheck" resultType="java.lang.String" parameterType="com.my.member.Member">
 		SELECT mid FROM SPOON_MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_PASSWORD = #{MEMBER_PASSWORD}
    </select>
     <!-- update와 delete는 생략한다. -->
