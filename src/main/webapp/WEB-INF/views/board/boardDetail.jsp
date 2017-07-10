@@ -84,7 +84,16 @@
          
         function fn_openBoardUpdate(obj){
         	var B = ${map.bid};
-            document.location.href="/shop/sample/openBoardUpdate.do?bid="+B;
+            
+            
+        	var mid = document.getElementById('mid').value;
+       		var mid1 = document.getElementById('mid1').value;
+        	
+        	if(mid != mid1){
+        		alert("수정권한이 권한이 없습니다.");
+        		return false;
+        	}
+        	document.location.href="/shop/sample/openBoardUpdate.do?bid="+B;
             /*
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();

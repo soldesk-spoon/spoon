@@ -28,7 +28,7 @@
             </tr>
             <tr>
             <th scope="row">작성자</th>
-                <td>***추가해야됨<%-- ${map.board_hits } --%></td>
+                <td>${map.member_id}</td>
                 <th scope="row">작성시간</th>
                 <td>${map.board_created }</td>
             </tr>
