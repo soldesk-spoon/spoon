@@ -5,23 +5,23 @@
      
     <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
       
-            SELECT bid, board_subject, board_hits, board_created FROM spoon_board
-   WHERE BOARD_DELYN='N'
+            SELECT qid, qna_subject, qna_hits, qna_created FROM QNABOARD
+   WHERE qna_DELYN='N'
     </select>
      
      <insert id="insertBoard" parameterType="com.my.board2.BoardBean2">
   
-        INSERT INTO spoon_board
+        INSERT INTO QNABOARD
         (
-            board_subject,
-            board_contents,
-            board_hits
+            qna_subject,
+            qna_contents,
+            qna_hits
           
         )
         VALUES
         (
-            #{board_subject},
-            #{board_contents},
+            #{qna_subject},
+            #{qna_contents},
             0
            
         )

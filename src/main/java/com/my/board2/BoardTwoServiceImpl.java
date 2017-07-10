@@ -26,10 +26,10 @@ public class BoardTwoServiceImpl implements BoardTwoService{
     }
     
     @Override 
-    public Map<String, Object> selectBoardDetail(int bid) throws Exception {
+    public Map<String, Object> selectBoardDetail(int fbid) throws Exception {
        // boardTwoDAO.updateHitCnt(boardBean);
-    	boardTwoDAO.updateHitCnt(bid);
-        Map<String, Object> resultMap = (Map<String, Object>) boardTwoDAO.selectBoardDetail(bid);
+    	boardTwoDAO.updateHitCnt(fbid);
+        Map<String, Object> resultMap = (Map<String, Object>) boardTwoDAO.selectBoardDetail(fbid);
         return resultMap;
     }
     
@@ -39,7 +39,7 @@ public class BoardTwoServiceImpl implements BoardTwoService{
     }
     
     @Override
-    public void deleteBoard(int bid) throws Exception{
-    	boardTwoDAO.deleteBoard(bid);
+    public void deleteBoard(int fbid) throws Exception{
+    	boardTwoDAO.deleteBoard(fbid);
     }
 }

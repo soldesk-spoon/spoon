@@ -4,23 +4,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BoardBean2 {
-	int bid;
+	int qid;
 	int mid;
-	String board_subject;
-	String board_contents;
-	int board_like;
-	int board_hate;
+	String qna_subject;
+	String qna_contents;	
+	int qna_hits;
+	String qna_delyn;
+	String qna_created;
 	String member_id;
-	String board_created;
-	String board_updated;
-	String board_delyn;
-	int board_hits;
-	String board_address;
-	public int getBid() {
-		return bid;
+	
+	public int getQid() {
+		return qid;
 	}
-	public void setBid(int bid) {
-		this.bid = bid;
+	public void setQid(int qid) {
+		this.qid = qid;
 	}
 	public int getMid() {
 		return mid;
@@ -28,29 +25,35 @@ public class BoardBean2 {
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
-	public String getBoard_subject() {
-		return board_subject;
+	public String getQna_subject() {
+		return qna_subject;
 	}
-	public void setBoard_subject(String board_subject) {
-		this.board_subject = board_subject;
+	public void setQna_subject(String qna_subject) {
+		this.qna_subject = qna_subject;
 	}
-	public String getBoard_contents() {
-		return board_contents;
+	public String getQna_contents() {
+		return qna_contents;
 	}
-	public void setBoard_contents(String board_contents) {
-		this.board_contents = board_contents;
+	public void setQna_contents(String qna_contents) {
+		this.qna_contents = qna_contents;
 	}
-	public int getBoard_like() {
-		return board_like;
+	public int getQna_hits() {
+		return qna_hits;
 	}
-	public void setBoard_like(int board_like) {
-		this.board_like = board_like;
+	public void setQna_hits(int qna_hits) {
+		this.qna_hits = qna_hits;
 	}
-	public int getBoard_hate() {
-		return board_hate;
+	public String getQna_delyn() {
+		return qna_delyn;
 	}
-	public void setBoard_hate(int board_hate) {
-		this.board_hate = board_hate;
+	public void setQna_delyn(String qna_delyn) {
+		this.qna_delyn = qna_delyn;
+	}
+	public String getQna_created() {
+		return qna_created;
+	}
+	public void setQna_created(String qna_created) {
+		this.qna_created = qna_created;
 	}
 	public String getMember_id() {
 		return member_id;
@@ -58,36 +61,5 @@ public class BoardBean2 {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public String getBoard_created() {
-		return board_created;
-	}
-	public void setBoard_created(String board_created) {
-		this.board_created = board_created;
-	}
-	public String getBoard_updated() {
-		return board_updated;
-	}
-	public void setBoard_updated(String board_updated) {
-		this.board_updated = board_updated;
-	}
-	public String getBoard_delyn() {
-		return board_delyn;
-	}
-	public void setBoard_delyn(String board_delyn) {
-		this.board_delyn = board_delyn;
-	}
-	public int getBoard_hits() {
-		return board_hits;
-	}
-	public void setBoard_hits(int board_hits) {
-		this.board_hits = board_hits;
-	}
-	public String getBoard_address() {
-		return board_address;
-	}
-	public void setBoard_address(String board_address) {
-		this.board_address = board_address;
-	}
-	
 	
 }

@@ -18,19 +18,19 @@ public class BoardTwoDAO extends AbstractDAO{
     } 
     
     public void updateHitCnt(int bid) throws Exception{
-        update("boardTwo.updateHitCnt", bid);
+        update("boardTwo.updateHitCnt", fbid);
     }
      
     @SuppressWarnings("unchecked")
-    public Map<String, Object> selectBoardDetail(int bid) throws Exception{
-        return (Map<String, Object>) selectOne("boardTwo.selectBoardDetail", bid);
+    public Map<String, Object> selectBoardDetail(int fbid) throws Exception{
+        return (Map<String, Object>) selectOne("boardTwo.selectBoardDetail", fbid);
     }
     
     public void updateBoard(BoardBean2 boardBean) throws Exception{
         update("boardTwo.updateBoard", boardBean);
     }
     
-    public void deleteBoard(int bid) throws Exception{
-    	delete("boardTwo.deleteBoard", bid);
+    public void deleteBoard(int fbid) throws Exception{
+    	delete("boardTwo.deleteBoard", fbid);
     } 
 }

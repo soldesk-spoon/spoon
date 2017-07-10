@@ -45,24 +45,24 @@ public class BoardTwoController {
         ModelAndView mv = new ModelAndView("redirect:/boardTwo/openBoardList.do");
         
         boardTwoService.insertBoard(boardBean);
-        System.out.println(boardBean.getBid());
+        System.out.println(boardBean.getFbid());
         return mv;
     }
     
     @RequestMapping(value="/boardTwo/openBoardDetail.do", method=RequestMethod.GET)
-    public ModelAndView openBoardDetail(@RequestParam("bid")int bid) throws Exception{
+    public ModelAndView openBoardDetail(@RequestParam("fbid")int fbid) throws Exception{
         ModelAndView mv = new ModelAndView("/board2/boardDetail");
-        Map<String, Object> map = boardTwoService.selectBoardDetail(bid);
+        Map<String, Object> map = boardTwoService.selectBoardDetail(fbid);
         mv.addObject("map", map); 
          
         return mv;
     }
     
     @RequestMapping(value="/boardTwo/openBoardUpdate.do", method=RequestMethod.GET)
-    public ModelAndView openBoardUpdate(@RequestParam("bid")int bid) throws Exception{
+    public ModelAndView openBoardUpdate(@RequestParam("fbid")int fbid) throws Exception{
         ModelAndView mv = new ModelAndView("/board2/boardUpdate");
          
-        Map<String,Object> map = boardTwoService.selectBoardDetail(bid);
+        Map<String,Object> map = boardTwoService.selectBoardDetail(fbid);
         mv.addObject("map", map);
          
         return mv;
@@ -75,10 +75,10 @@ public class BoardTwoController {
   
         
         boardTwoService.updateBoard(boardBean);
-        System.out.println(boardBean.getBid());
-        System.out.println(boardBean.getBoard_subject());
-        System.out.println(boardBean.getBoard_contents());
-        mv.addObject("bid", boardBean.getBid());
+        System.out.println(boardBean.getFbid());
+        System.out.println(boardBean.getFree_subject());
+        System.out.println(boardBean.getFree_contents());
+        mv.addObject("fbid", boardBean.getFbid());
     
         return mv;
         
@@ -86,10 +86,10 @@ public class BoardTwoController {
     
     
     @RequestMapping(value="/boardTwo/deleteBoard.do")
-    public ModelAndView deleteBoard(int bid) throws Exception{
+    public ModelAndView deleteBoard(int fbid) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/boardTwo/openBoardList.do");
 
-        boardTwoService.deleteBoard(bid);
+        boardTwoService.deleteBoard(fbid);
         
         return mv;
     }    
