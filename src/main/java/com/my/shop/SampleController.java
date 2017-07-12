@@ -124,9 +124,9 @@ public class SampleController {
  
     }
     @RequestMapping(value="/sample/board/map2.do", method={RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView mapViewResult(@RequestParam("input_lat") double input_lat,@RequestParam("input_lng") double input_lng,@RequestParam("input_pos") String input_pos){
+    public ModelAndView mapViewResult(@RequestParam("input_lat") double input_lat,@RequestParam("input_lng") double input_lng,@RequestParam("rest") String rest){
     	ModelAndView mv = new ModelAndView("board/map2");
-    	
+    	mv.addObject("rest",rest);
     	mv.addObject("input_lng",input_lng);
     	mv.addObject("input_lat",input_lat);
     	return mv;

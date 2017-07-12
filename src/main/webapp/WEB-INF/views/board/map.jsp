@@ -49,6 +49,7 @@
 <input type="hidden" id="input_lat" name="input_lat" value="${input_lat}">
 <input type="hidden" id="input_lng" name="input_lng" value="${input_lng}"> 
 <input type="hidden" id="input_pos" name="input_pos" value="">
+<input type="hidden" id="rest" name="rest" value="">
 
 <div id="clickLatlng"></div>
 <div class="map_wrap">
@@ -72,7 +73,7 @@
     </div>
 </div>
 
-<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=bd9147f64bf7fcf1566b6385d0324866&libraries=services"></script>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=45aee8e672a2dfe509015315339dc5c3&libraries=services"></script>
 <!-- 8524663cb5d0a1412f368d10073818a3 -->
 <script>
 // 마커를 담을 배열입니다
@@ -261,6 +262,7 @@ function displayPlaces(places) {
                     	//lat="+lat+"&lng="+lng+"&opa="+opa
                     	
                     	displayInfowindow(marker, title);
+                    	document.getElementById('rest').value = title;
                     	//marker.setOpacity(1);
 
                         // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
@@ -444,7 +446,8 @@ function displayCenterInfo(status, result) {
 }
 
 function inputsub(){
-	document.location.href="/shop/sample/board/map2.do?input_lat="+input_lat.value+"&input_lng="+input_lng.value+"&input_pos="+input_pos.value;
+
+	document.location.href="/shop/sample/board/map2.do?input_lat="+input_lat.value+"&input_lng="+input_lng.value+"&rest="+rest.value;
 	
 }
 </script>
