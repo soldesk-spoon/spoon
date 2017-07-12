@@ -8,7 +8,11 @@
 
 <body>
 	 <%@ include file="../include/include-session.jsp" %>
-    <form id="frm" action="/shop/sample/insertBoard.do" method="post">
+    <form id="frm" action="/shop/sample/insertBoard.do" method="post" name="frm">
+    <input type="hidden" id="input_lat" name="input_lat" value="${input_lat}">
+	<input type="hidden" id="input_lng" name="input_lng" value="${input_lng}">
+	<input type="hidden" id="rest" name="rest" value="${rest}">
+	<input type="hidden" id="address" name="address" value="${address}">
    	<input type="hidden" name="session_mid" id="session_mid" value="">
    	<input type="hidden" name="session_member_id" id="session_member_id" value=""> 
     <input type="hidden" name="subway_linenumber1" id="subway_linenumber1" value="${subway_linenumber}">
@@ -68,7 +72,7 @@
                 </tr>
             </tbody>
         </table>
-         
+		<input type="button" value="지도 입력" id="mapview" name="mapview" onclick="mapviewOpen();">
         <a href="#this" class="btn" id="write" >작성하기</a>
         <a href="#this" class="btn" id="list" >목록으로</a>
     </form>
@@ -111,6 +115,14 @@
     		frm.action="/shop/sample/openBoardWrite.do?subway_linenumber="+subway_linenumber;
     		frm.submit();
     		
+    	}
+    	
+    	function mapviewOpen(){
+    		 window.open(
+    		    		"/shop/sample/board/map.do",
+    		    		"EventFrame",
+    		    		"menubar=no,width=900,height=550,toolbar=no"
+    		    		);
     	}
     
     </script>

@@ -46,10 +46,13 @@
 </style>
 </head>
 <body>
+<form action="/shop/sample/board/map2.do" method="post" name="input_form" id="input_form">
 <input type="hidden" id="input_lat" name="input_lat" value="${input_lat}">
 <input type="hidden" id="input_lng" name="input_lng" value="${input_lng}"> 
 <input type="hidden" id="input_pos" name="input_pos" value="">
 <input type="hidden" id="rest" name="rest" value="">
+<input type="hidden" id="address" name="address" value="">
+</form>
 
 <div id="clickLatlng"></div>
 <div class="map_wrap">
@@ -105,7 +108,7 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent) {
     var pos = mouseEvent.latLng; 
     
     // 마커 위치를 클릭한 위치로 옮깁니다
-    mainMarker.setPosition(pos);
+    //mainMarker.setPosition(pos);
     
     var message = '클릭한 위치의 위도는 ' + pos.getLat() + ' 이고, ';
     message += '경도는 ' + pos.getLng() + ' 입니다';
@@ -201,22 +204,6 @@ function displayPlaces(places) {
             }); */
 
             daum.maps.event.addListener(marker, 'click', function() {
-            	var pos=marker.getPosition();
-            	map.setCenter(pos);
-            	//map.setCenter(latlng.getLat(itemEl.removeEventListener;
-            	map.setLevel(3);
-            	
-            	displayInfowindow(marker, title);
-            });
-           /*  itemEl.onmouseover =  function () {
-                displayInfowindow(marker, title);
-            };
-
-            itemEl.onmouseout =  function () {
-                infowindow.close();
-            }; */
-            
-            itemEl.onclick = function (){
             	pos=marker.getPosition();
             	searchDetailAddrFromCoords(pos, function(status, result) {
                     if (status === daum.maps.services.Status.OK) {
@@ -227,15 +214,17 @@ function displayPlaces(places) {
                                         '<span class="title">법정동 주소정보</span>' + 
                                         detailAddr + 
                                     '</div>';
-
+						
                       //map.setCenter(latlng.getLat(),latlng.getLng());
                     	//pos=marker.getPosition();
                     	map.setCenter(pos);
                     	var lat = pos.getLat();
                     	var lng = pos.getLng();
+                    
+                    	
                     	document.getElementById('input_lat').value = lat;
                     	document.getElementById('input_lng').value = lng;
-                    	document.getElementById('input_pos').value = pos;
+                    	document.getElementById('address').value = detailAddr;
                     	
                     	 var message = '클릭한 위치의 위도는 ' + lat + ' 이고, ';
                     	    message += '경도는 ' + lng + ' 입니다';
@@ -262,6 +251,74 @@ function displayPlaces(places) {
                     	//lat="+lat+"&lng="+lng+"&opa="+opa
                     	
                     	displayInfowindow(marker, title);
+                    	document.getElementById('rest').value = title;
+                    	//marker.setOpacity(1);
+
+                        // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+                        infowindow.setContent(content);
+                        infowindow.open(map, marker);
+                    }   
+                });
+            });
+           /*  itemEl.onmouseover =  function () {
+                displayInfowindow(marker, title);
+            };
+
+            itemEl.onmouseout =  function () {
+                infowindow.close();
+            }; */
+            
+            itemEl.onclick = function (){
+            	pos=marker.getPosition();
+            	searchDetailAddrFromCoords(pos, function(status, result) {
+                    if (status === daum.maps.services.Status.OK) {
+                        var detailAddr = !!result[0].roadAddress.name ? '<div>도로명주소 : ' + result[0].roadAddress.name + '</div>' : '';
+                        detailAddr += '<div>지번 주소 : ' + result[0].jibunAddress.name + '</div>';
+                        
+                        var content = '<div class="bAddr">' +
+                                        '<span class="title">법정동 주소정보</span>' + 
+                                        detailAddr + 
+                                    '</div>';
+						
+                      //map.setCenter(latlng.getLat(),latlng.getLng());
+                    	//pos=marker.getPosition();
+                    	map.setCenter(pos);
+                    	var lat = pos.getLat();
+                    	var lng = pos.getLng();
+                    	
+                   
+                    	
+                    	document.getElementById('input_lat').value = lat;
+                    	document.getElementById('input_lng').value = lng;
+                    	document.getElementById('input_pos').value = pos;
+                    	document.getElementById('address').value = detailAddr;
+                    	
+                    	 var message = '클릭한 위치의 위도는 ' + lat + ' 이고, ';
+                    	    message += '경도는 ' + lng + ' 입니다';
+                    	   
+                    	    var resultDiv = document.getElementById('clickLatlng'); 
+                    	    resultDiv.innerHTML = message;
+                    	
+                    	if(newMarkers.length>0){
+                    		newMarkers[tmp].setMap(map);
+                    		tmp++;
+                    	}
+                    	for(var j = 0 ; j < markers.length ; j++){
+                    		if(markers[j].getPosition().equals(pos)){
+                    			newMarkers.push(markers[j]);
+                    			markers[j].setMap(null);            			
+                    			break;
+                    		}            		
+                    	} 
+                    	
+                    	//newMarkers[tmp-1].setMap(null);
+                    	mainMarker.setPosition(pos);   
+                    	
+                    	map.setLevel(3);
+                    	//lat="+lat+"&lng="+lng+"&opa="+opa
+                    	
+                    	displayInfowindow(marker, title);
+                    	
                     	document.getElementById('rest').value = title;
                     	//marker.setOpacity(1);
 
@@ -412,7 +469,7 @@ daum.maps.event.addListener(map, 'click', function(mouseEvent) {
                         '</div>';
 
             // 마커를 클릭한 위치에 표시합니다 
-            marker.setPosition(mouseEvent.latLng);
+           // marker.setPosition(mouseEvent.latLng);
             marker.setMap(map);
 
             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
@@ -447,8 +504,12 @@ function displayCenterInfo(status, result) {
 
 function inputsub(){
 
-	document.location.href="/shop/sample/board/map2.do?input_lat="+input_lat.value+"&input_lng="+input_lng.value+"&rest="+rest.value;
+ 	window.opener.document.frm.input_lat.value = document.getElementById('input_lat').value;
+	window.opener.document.frm.input_lng.value = document.getElementById('input_lng').value;
+	window.opener.document.frm.address.value = document.getElementById('address').value;
+	window.opener.document.frm.rest.value = document.getElementById('rest').value;
 	
+	window.close();
 }
 </script>
 <input type="button" id="inputButton" name="inputButton" value="확인" onclick="inputsub();">

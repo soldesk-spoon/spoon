@@ -19,8 +19,32 @@ public class BoardBean {
 	String subway_linenumber;
 	String subway_name;
 	
+	String board_shopname;
+	String board_lat;
+	String board_lng;
 	
 	
+	
+	
+	
+	public String getBoard_shopname() {
+		return board_shopname;
+	}
+	public void setBoard_shopname(String board_shopname) {
+		this.board_shopname = board_shopname;
+	}
+	public String getBoard_lat() {
+		return board_lat;
+	}
+	public void setBoard_lat(String board_lat) {
+		this.board_lat = board_lat;
+	}
+	public String getBoard_lng() {
+		return board_lng;
+	}
+	public void setBoard_lng(String board_lng) {
+		this.board_lng = board_lng;
+	}
 	public String getSubway_linenumber() {
 		return subway_linenumber;
 	}

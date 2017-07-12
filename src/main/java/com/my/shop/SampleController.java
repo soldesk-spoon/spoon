@@ -7,11 +7,13 @@ import javax.activation.CommandMap;
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,6 +63,16 @@ public class SampleController {
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
         int mid = Integer.parseInt(request.getParameter("session_mid"));
         String member_id = request.getParameter("session_member_id");
+        String rest = request.getParameter("rest");
+    	String input_lng =request.getParameter("input_lng");
+    	String input_lat = request.getParameter("input_lat");
+    	String address = request.getParameter("address"); 
+    	boardBean.setBoard_shopname(rest);
+    	boardBean.setBoard_lat(input_lat);
+    	boardBean.setBoard_lng(input_lng);
+    	boardBean.setBoard_address(address);
+    	System.out.println(address);
+    	
         boardBean.setMember_id(member_id);
         boardBean.setMid(mid);
         boardBean.setSubway_linenumber( request.getParameter("subway_linenumber1"));
@@ -124,9 +136,14 @@ public class SampleController {
  
     }
     @RequestMapping(value="/sample/board/map2.do", method={RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView mapViewResult(@RequestParam("input_lat") double input_lat,@RequestParam("input_lng") double input_lng,@RequestParam("rest") String rest){
+    public ModelAndView mapViewResult(HttpServletRequest request){
     	ModelAndView mv = new ModelAndView("board/map2");
+    	String rest = request.getParameter("rest");
+    	double input_lng = Double.parseDouble(request.getParameter("input_lng"));
+    	double input_lat = Double.parseDouble(request.getParameter("input_lat"));
+    	String address = request.getParameter("address"); 
     	mv.addObject("rest",rest);
+    	mv.addObject("address",address);
     	mv.addObject("input_lng",input_lng);
     	mv.addObject("input_lat",input_lat);
     	return mv;

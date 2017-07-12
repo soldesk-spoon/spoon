@@ -13,6 +13,7 @@
 <input type="hidden" id="input_lat" name="input_lat" value="${input_lat}">
 <input type="hidden" id="input_lng" name="input_lng" value="${input_lng}">
 <input type="hidden" id="rest" name="rest" value="${rest}">
+<input type="hidden" id="address" value="${address}">
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=45aee8e672a2dfe509015315339dc5c3&libraries=services"></script>
 <script>
 
@@ -42,5 +43,7 @@ var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지
 // 이미지 지도를 생성합니다
 var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 </script>
+주소 : ${address}
+
 </body>
 </html>

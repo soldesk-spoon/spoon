@@ -18,7 +18,11 @@
             board_hits,
             subway_name,
             mid,
-            member_id
+            member_id,
+            board_address,
+            board_lat,
+            board_lng,
+            board_shopname
             
           
         )
@@ -29,7 +33,11 @@
             0,
             #{subway_name},
             #{mid},
-            #{member_id}
+            #{member_id},
+            #{board_address},
+            #{board_lat},
+            #{board_lng},
+            #{board_shopname}
            
         )
 </insert>
