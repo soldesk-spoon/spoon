@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.activation.CommandMap;
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -114,5 +115,23 @@ public class SampleController {
         
         return mv;
     }
+    
+    @RequestMapping(value="/sample/board/map.do", method={RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView mapView(){
+    	ModelAndView mv = new ModelAndView("board/map");
+    
+    	return mv;
+ 
+    }
+    @RequestMapping(value="/sample/board/map2.do", method={RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView mapViewResult(@RequestParam("input_lat") double input_lat,@RequestParam("input_lng") double input_lng,@RequestParam("input_pos") String input_pos){
+    	ModelAndView mv = new ModelAndView("board/map2");
+    	
+    	mv.addObject("input_lng",input_lng);
+    	mv.addObject("input_lat",input_lat);
+    	return mv;
+ 
+    }
+    
     
 }
