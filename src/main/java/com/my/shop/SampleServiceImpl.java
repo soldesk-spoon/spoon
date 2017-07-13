@@ -48,4 +48,12 @@ public class SampleServiceImpl implements SampleService{
 		// TODO Auto-generated method stub
 		return sampleDAO.selectSubway(subway_line);
 	}
+
+	@Override
+	public List<CommentBean> selectComment(int bid) throws Exception {
+		// TODO Auto-generated method stub
+		return sampleDAO.selectComment(bid);
+	}
+	
+	
 }

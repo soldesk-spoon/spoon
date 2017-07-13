@@ -12,8 +12,9 @@ public interface SampleService {
 
 	void updateBoard(BoardBean boardBean) throws Exception;
 	
-	void deleteBoard(int bid) throws Exception;
-
+	void deleteBoard(int bid) throws Exception;	
 
 	List<BoardBean> selectSubway(String string) throws Exception;
+	
+	List<CommentBean> selectComment(int bid) throws Exception;
 }

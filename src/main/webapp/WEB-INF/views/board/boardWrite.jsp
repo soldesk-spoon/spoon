@@ -35,14 +35,14 @@
 							cols="100" title="내용" id="board_contents" name="board_contents">${board_contents}</textarea>
 					</td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td>파일명</td>
 					<td><input type="file" name="file1" size=20><br>
 						<input type="file" name="file2" size=20><br>
 						<input type="file" name="file3" size=20><br>
 						<input type="file" name="file4" size=20><br>
 						<input type="file" name="file5" size=20></td>
-				</tr>
+				</tr> -->
 			
 				<tr>
 					<td><select id="subway_linenumber" onChange="onsubSelect();">

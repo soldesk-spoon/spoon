@@ -40,4 +40,9 @@ public class SampleDAO extends AbstractDAO{
         return (List<BoardBean>)selectList("sample.selectSubway", subline);
     }
     
+    @SuppressWarnings("unchecked")
+    public List<CommentBean> selectComment(int bid) throws Exception{
+        return (List<CommentBean>)selectList("sample.selectBoardList", bid);
+    }
+    
 }

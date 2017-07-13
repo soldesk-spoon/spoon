@@ -61,7 +61,7 @@ public class SampleController {
     }
     
     @RequestMapping(value="/sample/insertBoard.do")
-    public ModelAndView insertBoard(BoardBean boardBean, HttpServletRequest request,@RequestParam("file1") MultipartFile report) throws Exception{
+    public ModelAndView insertBoard(BoardBean boardBean, HttpServletRequest request/*,@RequestParam("file1") MultipartFile report*/) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
         int mid = Integer.parseInt(request.getParameter("session_mid"));
         String member_id = request.getParameter("session_member_id");
@@ -69,14 +69,14 @@ public class SampleController {
     	String input_lng =request.getParameter("input_lng");
     	String input_lat = request.getParameter("input_lat");
     	String address = request.getParameter("address"); 
-    	System.out.println("report.getname : "+report.getName());
+    	/*System.out.println("report.getname : "+report.getName());
     	System.out.println("report.getoriginalfilename : "+ report.getOriginalFilename());
-    	boardBean.setBoard_shopname(rest);
+    	*/boardBean.setBoard_shopname(rest);
     	boardBean.setBoard_lat(input_lat);
     	boardBean.setBoard_lng(input_lng);
     	boardBean.setBoard_address(address);
     	System.out.println(address);
-    	boardBean.setFilename1(report.toString());
+    	//boardBean.setFilename1(report.toString());
         boardBean.setMember_id(member_id);
         boardBean.setMid(mid);
         boardBean.setSubway_linenumber( request.getParameter("subway_linenumber1"));
@@ -154,5 +154,60 @@ public class SampleController {
  
     }
     
+    //
+    //
+    //
+    //
+    //
     
+    
+    @RequestMapping(value="/sample/openComment.do", method=RequestMethod.GET)
+    public ModelAndView openComment(@RequestParam("bid")int bid) throws Exception{
+        ModelAndView mv = new ModelAndView("/board/comment");
+         
+       List<CommentBean> list = sampleService.selectComment(bid);
+       System.out.println(list);
+       mv.addObject("list", list);
+         
+       return mv;
+    }/*
+    
+    @RequestMapping(value="/sample/insertBoard.do")
+    public ModelAndView insertComment(BoardBean boardBean, HttpServletRequest request,@RequestParam("file1") MultipartFile report) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
+        int mid = Integer.parseInt(request.getParameter("session_mid"));
+        String member_id = request.getParameter("session_member_id");
+        String rest = request.getParameter("rest");
+    	String input_lng =request.getParameter("input_lng");
+    	String input_lat = request.getParameter("input_lat");
+    	String address = request.getParameter("address"); 
+    	System.out.println("report.getname : "+report.getName());
+    	System.out.println("report.getoriginalfilename : "+ report.getOriginalFilename());
+    	boardBean.setBoard_shopname(rest);
+    	boardBean.setBoard_lat(input_lat);
+    	boardBean.setBoard_lng(input_lng);
+    	boardBean.setBoard_address(address);
+    	//boardBean.setFilename1(report.toString());
+        boardBean.setMember_id(member_id);
+        boardBean.setMid(mid);
+        boardBean.setSubway_linenumber( request.getParameter("subway_linenumber1"));
+        sampleService.insertBoard(boardBean);
+        return mv;
+    }
+    
+    @RequestMapping(value="/sample/updateBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView sdf(BoardBean boardBean) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
+        System.out.println("updateBoa	rd!!!!!!!!!!!!!!1");
+  
+        
+        sampleService.updateBoard(boardBean);
+        System.out.println(boardBean.getBid());
+        System.out.println(boardBean.getBoard_subject());
+        System.out.println(boardBean.getBoard_contents());
+        mv.addObject("bid", boardBean.getBid());
+    
+        return mv;
+        
+    }*/
 }
