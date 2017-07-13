@@ -34,7 +34,11 @@
         <property name="dataSource" ref="dataSource" />
  
     </bean>
- 
+    <!-- 다중파일 업로드 -->
+ 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8"/>		
+	</bean>	
+
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- 아래부분은 매핑할 xml파일이 있는 패키지경로를 설정한다. -->

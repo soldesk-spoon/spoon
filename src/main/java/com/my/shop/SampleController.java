@@ -14,6 +14,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.my.shop.BoardBean;
+import org.springframework.web.multipart.MultipartFile;
 
  
 @Controller
@@ -59,7 +61,7 @@ public class SampleController {
     }
     
     @RequestMapping(value="/sample/insertBoard.do")
-    public ModelAndView insertBoard(BoardBean boardBean, HttpServletRequest request) throws Exception{
+    public ModelAndView insertBoard(BoardBean boardBean, HttpServletRequest request,@RequestParam("file1") MultipartFile report) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
         int mid = Integer.parseInt(request.getParameter("session_mid"));
         String member_id = request.getParameter("session_member_id");
@@ -67,12 +69,14 @@ public class SampleController {
     	String input_lng =request.getParameter("input_lng");
     	String input_lat = request.getParameter("input_lat");
     	String address = request.getParameter("address"); 
+    	System.out.println("report.getname : "+report.getName());
+    	System.out.println("report.getoriginalfilename : "+ report.getOriginalFilename());
     	boardBean.setBoard_shopname(rest);
     	boardBean.setBoard_lat(input_lat);
     	boardBean.setBoard_lng(input_lng);
     	boardBean.setBoard_address(address);
     	System.out.println(address);
-    	
+    	boardBean.setFilename1(report.toString());
         boardBean.setMember_id(member_id);
         boardBean.setMid(mid);
         boardBean.setSubway_linenumber( request.getParameter("subway_linenumber1"));

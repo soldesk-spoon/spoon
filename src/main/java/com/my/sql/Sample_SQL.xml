@@ -22,7 +22,8 @@
             board_address,
             board_lat,
             board_lng,
-            board_shopname
+            board_shopname,
+            filename1
             
           
         )
@@ -37,9 +38,11 @@
             #{board_address},
             #{board_lat},
             #{board_lng},
-            #{board_shopname}
+            #{board_shopname},
+            #{filepath1}
            
         )
+        
 </insert>
 
 <update id="updateHitCnt" parameterType="com.my.shop.BoardBean">
