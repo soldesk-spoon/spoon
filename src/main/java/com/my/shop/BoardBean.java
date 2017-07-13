@@ -18,7 +18,6 @@ public class BoardBean {
 	String board_address;
 	String subway_linenumber;
 	String subway_name;
-	
 	String board_shopname;
 	String board_lat;
 	String board_lng;

@@ -63,9 +63,9 @@ function checkValue()
 	
 	var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-	 var MEMBER_EMAIL = form.member
-	 if (!re.test(document.join.MEMBER_EMAIL.value)) {
-	 alert("올바른 이메일 주소를 입력하세요")
+	 var MEMBER_EMAIL = form.member;
+	 if (!re.test(form.MEMBER_EMAIL.value)) {
+	 alert("올바른 이메일 주소를 입력하세요");
 	 return false;
 	 }
 	
