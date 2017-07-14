@@ -42,7 +42,7 @@ public class SampleDAO extends AbstractDAO{
 
 	public void uploadFile(uploadFileVo uploadfilevo) {
 		// TODO Auto-generated method stub
-		insert("sample.uploadfile" , uploadfilevo);
+		insert("sample.uploadFile" , uploadfilevo);
 		
 	}
     
@@ -50,5 +50,18 @@ public class SampleDAO extends AbstractDAO{
     public List<CommentBean> selectComment(int bid) throws Exception{
         return (List<CommentBean>)selectList("sample.selectBoardList", bid);
     }
+
+	public int selectBID() {
+		// TODO Auto-generated method stub
+		String selectbidob = selectOne("sample.selectBID").toString();
+		
+		int selectbid = Integer.parseInt(selectbidob);
+		return selectbid;
+	}
+	@SuppressWarnings("unchecked")
+	public List<uploadFileVo> selectImage(int bid) {
+		// TODO Auto-generated method stub
+		return (List<uploadFileVo>)selectList("sample.selectImage",bid);
+	}
     
 }

@@ -18,14 +18,11 @@
             board_hits,
             subway_name,
             mid,
+            member_id,
             board_address,
             board_lat,
             board_lng,
             board_shopname
-<<<<<<< HEAD
-=======
-           <!--  filename1 -->
->>>>>>> da037f5dc34389ec2347fea5b31fa6ba71dd5c99
             
           
         )
@@ -36,14 +33,11 @@
             0,
             #{subway_name},
             #{mid},
+            #{member_id},
             #{board_address},
             #{board_lat},
             #{board_lng},
             #{board_shopname}
-<<<<<<< HEAD
-=======
-            <!-- #{filepath1} -->
->>>>>>> da037f5dc34389ec2347fea5b31fa6ba71dd5c99
            
         )
         
@@ -80,19 +74,13 @@
 
 <update id="updateBoard" parameterType="com.my.shop.BoardBean">
    
-      update spoon_board 
-      	set  
-    		board_subject = #{board_subject}, 
+        UPDATE spoon_board
+        SET
+            board_subject = #{board_subject},
             board_contents = #{board_contents},
-            board_hits = 0,
-            subway_name = #{subway_name},
-            mid =#{mid},
-            board_address =  #{board_address},
-            board_lat =     #{board_lat},
-            board_lng =  #{board_lng},
-            board_shopname #{board_shopname} 
-        where bid = #{bid}
-            
+            board_created = now()
+        WHERE
+            bid = #{bid}   
     
 </update>
 
@@ -112,12 +100,6 @@
 	ORDER BY SUBWAY_NAME ASC
 </select>
 
-<<<<<<< HEAD
-<insert id="uploadfile" parameterType="com.my.shop.uploadFileVo">
-	INSET INTO BOARD_UPLOAD (BID, FILE_NUM, O_NAME, FILE_NAME) VALUES (#{bid}, #{file_num}, #{o_name},#{file_name})
-</insert>
-	 
-=======
 
 
 
@@ -146,5 +128,19 @@
         )
 </insert>
 
->>>>>>> da037f5dc34389ec2347fea5b31fa6ba71dd5c99
+<insert id="uploadFile" parameterType="com.my.shop.uploadFileVo">
+INSERT INTO BOARD_UPLOAD
+ (BID, FILE_NUM, O_NAME, FILE_NAME) 
+ VALUES 
+ (#{bid}, #{file_num}, #{o_name}, #{file_name})
+</insert>
+
+<select id="selectBID" resultType="int">
+	SELECT ifnull (max(bid), 0 ) FROM SPOON_BOARD
+</select>
+
+<select id="selectImage" parameterType="com.my.shop.uploadFileVo" resultType="hashmap">
+	SELECT FILE_NAME FROM BOARD_UPLOAD WHERE BID = #{bid}
+</select>
+
 </mapper>

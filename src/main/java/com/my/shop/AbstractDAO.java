@@ -38,6 +38,9 @@ public class AbstractDAO {
         printQueryId(queryId);
         return sqlSession.selectOne(queryId);
     }
+    
+    
+    
      
     public Object selectOne(String queryId, Object params){
         printQueryId(queryId);
@@ -56,5 +59,6 @@ public class AbstractDAO {
         printQueryId(queryId);
         return sqlSession.selectList(queryId,params);
     }
+    
  
 }

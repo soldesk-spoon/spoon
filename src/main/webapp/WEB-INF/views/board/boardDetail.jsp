@@ -34,12 +34,20 @@
                 <th scope="row">제목</th>
                 <td colspan="3">${map.board_subject }</td>
             </tr>
+           <c:forEach items="${imgmap}" var="img">
+                    <tr>
+                    	<td><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" width="200" height="200" ></td>
+                        <td>${img.FILE_NAME}</td>
+                    </tr>
+                    
+           </c:forEach>
+            
             <tr>
                 <td colspan="4">${map.board_contents }</td>
             </tr>
+          
         </tbody>
     </table>
-     
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">수정하기</a>
      <a href="#this" class="btn" id="delete">삭제하기</a>

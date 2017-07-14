@@ -11,6 +11,13 @@
 	<%@ include file="../include/include-session.jsp"%>
 	<form id="frm" action="/shop/sample/insertBoard.do" method="post"
 		name="frm" enctype="multipart/form-data">
+		<c:if test="${bid eq null}">
+			<input type="hidden" id="bid" name="bid" value="1" >		
+		</c:if>
+		<c:if test="${bid ne null}">
+			<input type="hidden" id="bid" name="bid" value="${bid}">
+		</c:if>
+		
 		<input type="hidden" id="input_lat" name="input_lat"value="${input_lat}"> 
 		<input type="hidden" id="input_lng"name="input_lng" value="${input_lng}"> 
 		<input type="hidden" id="rest" name="rest" value="${rest}"> 
@@ -35,15 +42,15 @@
 							cols="100" title="내용" id="board_contents" name="board_contents">${board_contents}</textarea>
 					</td>
 				</tr>
-				<!-- <tr>
-					<td>파일명</td>
-					<td><input type="file" name="file1" size=20><br>
-						<input type="file" name="file2" size=20><br>
-						<input type="file" name="file3" size=20><br>
-						<input type="file" name="file4" size=20><br>
-						<input type="file" name="file5" size=20></td>
-				</tr> -->
-			
+				<tr>
+					<td>
+						<input type="file" name="file1" id="file1">
+						<input type="file" name="file1" id="file1">
+						<input type="file" name="file1" id="file1">
+						
+					</td>
+					
+				</tr>			
 				<tr>
 					<td><select id="subway_linenumber" onChange="onsubSelect();">
 							<option value="1" ${subway_linenumber eq  "1" ? "selected" :""}>1호선</option>
@@ -81,8 +88,8 @@
 			</tbody>
 		</table>
 		<input type="button" value="지도 입력" id="mapview" name="mapview"
-			onclick="mapviewOpen();"> <a href="#this" class="btn"
-			id="write">작성하기</a> <a href="#this" class="btn" id="list">목록으로</a>
+			onclick="mapviewOpen();">
+			 <a href="#this" class="btn" id="write">작성하기</a> <a href="#this" class="btn" id="list">목록으로</a>
 	</form>
 
 	<%@ include file="../include/include-body.jsp"%>
@@ -132,7 +139,9 @@
     		    		"menubar=no,width=900,height=550,toolbar=no"
     		    		);
     	}
-    
+    	
+    	
+  
     </script>
 </body>
 </html>

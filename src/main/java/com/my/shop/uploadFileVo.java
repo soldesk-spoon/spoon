@@ -6,7 +6,9 @@ public class uploadFileVo {
 	    private String o_name;
 	    private String file_name;
 	    private long file_size;
-		public int getBid() {
+		
+	    
+	    public int getBid() {
 			return bid;
 		}
 		public void setBid(int bid) {
