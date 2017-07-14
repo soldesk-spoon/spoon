@@ -22,6 +22,10 @@
             board_lat,
             board_lng,
             board_shopname
+<<<<<<< HEAD
+=======
+           <!--  filename1 -->
+>>>>>>> da037f5dc34389ec2347fea5b31fa6ba71dd5c99
             
           
         )
@@ -36,6 +40,10 @@
             #{board_lat},
             #{board_lng},
             #{board_shopname}
+<<<<<<< HEAD
+=======
+            <!-- #{filepath1} -->
+>>>>>>> da037f5dc34389ec2347fea5b31fa6ba71dd5c99
            
         )
         
@@ -104,8 +112,39 @@
 	ORDER BY SUBWAY_NAME ASC
 </select>
 
+<<<<<<< HEAD
 <insert id="uploadfile" parameterType="com.my.shop.uploadFileVo">
 	INSET INTO BOARD_UPLOAD (BID, FILE_NUM, O_NAME, FILE_NAME) VALUES (#{bid}, #{file_num}, #{o_name},#{file_name})
 </insert>
 	 
+=======
+
+
+
+
+<select id="selectComment" parameterType="com.my.shop.CommentBean" resultType="com.my.shop.CommentBean">
+      
+            SELECT member_id, comment_created, comment  FROM board_comment
+   WHERE BOARD_DELYN='N' and bid=#{bid}
+</select>
+
+<insert id="insertComment" parameterType="com.my.shop.CommentBean">
+  
+        INSERT INTO board_comment
+        (
+            bid,
+            comments,
+            member_id,
+            mid
+        )
+        VALUES
+        (
+            #{bid},
+            #{comments},
+            #{member_id},
+            #{mid}
+        )
+</insert>
+
+>>>>>>> da037f5dc34389ec2347fea5b31fa6ba71dd5c99
 </mapper>

@@ -12,10 +12,14 @@ public interface SampleService {
 
 	void updateBoard(BoardBean boardBean) throws Exception;
 	
-	void deleteBoard(int bid) throws Exception;
-
+	void deleteBoard(int bid) throws Exception;	
 
 	List<BoardBean> selectSubway(String string) throws Exception;
+<<<<<<< HEAD
 
 	void uploadFile(uploadFileVo uploadfilevo) throws Exception;
+=======
+	
+	List<CommentBean> selectComment(int bid) throws Exception;
+>>>>>>> da037f5dc34389ec2347fea5b31fa6ba71dd5c99
 }

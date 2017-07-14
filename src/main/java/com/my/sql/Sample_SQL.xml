@@ -22,8 +22,8 @@
             board_address,
             board_lat,
             board_lng,
-            board_shopname,
-            filename1
+            board_shopname
+           <!--  filename1 -->
             
           
         )
@@ -38,8 +38,8 @@
             #{board_address},
             #{board_lat},
             #{board_lng},
-            #{board_shopname},
-            #{filepath1}
+            #{board_shopname}
+            <!-- #{filepath1} -->
            
         )
         
@@ -101,5 +101,33 @@
 	WHERE SUBWAY_LINENUMBER = #{subway_linenumber}
 	ORDER BY SUBWAY_NAME ASC
 </select>
+
+
+
+
+
+<select id="selectComment" parameterType="com.my.shop.CommentBean" resultType="com.my.shop.CommentBean">
+      
+            SELECT member_id, comment_created, comment  FROM board_comment
+   WHERE BOARD_DELYN='N' and bid=#{bid}
+</select>
+
+<insert id="insertComment" parameterType="com.my.shop.CommentBean">
+  
+        INSERT INTO board_comment
+        (
+            bid,
+            comments,
+            member_id,
+            mid
+        )
+        VALUES
+        (
+            #{bid},
+            #{comments},
+            #{member_id},
+            #{mid}
+        )
+</insert>
 
 </mapper>

@@ -8,8 +8,6 @@
 <%@ include file="../include/include-session.jsp" %>
 <form name="update" method="post" action="/shop/sample/updateBoard.do">
 	  <input type="hidden" id="bid" name="bid" value="${map.bid }">
-<form id="frm"  action="/shop/sample/updateBoard.do" method="post">
-<input type="hidden" id="bid" name="bid" value="${map.bid }">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -96,6 +94,6 @@
             comSubmit.submit();
         } */
     </script>
-    </form>
+    
 </body>
 </html>
