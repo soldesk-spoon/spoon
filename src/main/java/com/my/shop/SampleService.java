@@ -16,4 +16,6 @@ public interface SampleService {
 
 
 	List<BoardBean> selectSubway(String string) throws Exception;
+
+	void uploadFile(uploadFileVo uploadfilevo) throws Exception;
 }

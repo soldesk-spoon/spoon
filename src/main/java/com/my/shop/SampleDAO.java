@@ -39,5 +39,11 @@ public class SampleDAO extends AbstractDAO{
 	public List<BoardBean> selectSubway(String subline) throws Exception{
         return (List<BoardBean>)selectList("sample.selectSubway", subline);
     }
+
+	public void uploadFile(uploadFileVo uploadfilevo) {
+		// TODO Auto-generated method stub
+		insert("sample.uploadfile" , uploadfilevo);
+		
+	}
     
 }

@@ -1,6 +1,7 @@
 package com.my.shop;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 @Repository
 public class BoardBean {
@@ -21,85 +22,9 @@ public class BoardBean {
 	String board_shopname;
 	String board_lat;
 	String board_lng;
-	
-	String filepath1;
-	String filename1;
-	String filepath2;
-	String filename2;
-	String filepath3;
-	String filename3;
-	String filepath4;
-	String filename4;
-	String filepath5;
-	String filename5;
+
 	
 	
-	
-	
-	
-	
-	
-	
-	public String getFilepath1() {
-		return filepath1;
-	}
-	public void setFilepath1(String filepath1) {
-		this.filepath1 = filepath1;
-	}
-	public String getFilename1() {
-		return filename1;
-	}
-	public void setFilename1(String filename1) {
-		this.filename1 = filename1;
-	}
-	public String getFilepath2() {
-		return filepath2;
-	}
-	public void setFilepath2(String filepath2) {
-		this.filepath2 = filepath2;
-	}
-	public String getFilename2() {
-		return filename2;
-	}
-	public void setFilename2(String filename2) {
-		this.filename2 = filename2;
-	}
-	public String getFilepath3() {
-		return filepath3;
-	}
-	public void setFilepath3(String filepath3) {
-		this.filepath3 = filepath3;
-	}
-	public String getFilename3() {
-		return filename3;
-	}
-	public void setFilename3(String filename3) {
-		this.filename3 = filename3;
-	}
-	public String getFilepath4() {
-		return filepath4;
-	}
-	public void setFilepath4(String filepath4) {
-		this.filepath4 = filepath4;
-	}
-	public String getFilename4() {
-		return filename4;
-	}
-	public void setFilename4(String filename4) {
-		this.filename4 = filename4;
-	}
-	public String getFilepath5() {
-		return filepath5;
-	}
-	public void setFilepath5(String filepath5) {
-		this.filepath5 = filepath5;
-	}
-	public String getFilename5() {
-		return filename5;
-	}
-	public void setFilename5(String filename5) {
-		this.filename5 = filename5;
-	}
 	public String getBoard_shopname() {
 		return board_shopname;
 	}

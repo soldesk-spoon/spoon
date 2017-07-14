@@ -48,4 +48,11 @@ public class SampleServiceImpl implements SampleService{
 		// TODO Auto-generated method stub
 		return sampleDAO.selectSubway(subway_line);
 	}
+
+	@Override
+	public void uploadFile(uploadFileVo uploadfilevo) throws Exception {
+		// TODO Auto-generated method stub
+		sampleDAO.uploadFile(uploadfilevo);
+		
+	}
 }

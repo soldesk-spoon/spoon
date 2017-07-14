@@ -18,12 +18,10 @@
             board_hits,
             subway_name,
             mid,
-            member_id,
             board_address,
             board_lat,
             board_lng,
-            board_shopname,
-            filename1
+            board_shopname
             
           
         )
@@ -34,12 +32,10 @@
             0,
             #{subway_name},
             #{mid},
-            #{member_id},
             #{board_address},
             #{board_lat},
             #{board_lng},
-            #{board_shopname},
-            #{filepath1}
+            #{board_shopname}
            
         )
         
@@ -76,13 +72,19 @@
 
 <update id="updateBoard" parameterType="com.my.shop.BoardBean">
    
-        UPDATE spoon_board
-        SET
-            board_subject = #{board_subject},
+      update spoon_board 
+      	set  
+    		board_subject = #{board_subject}, 
             board_contents = #{board_contents},
-            board_created = now()
-        WHERE
-            bid = #{bid}   
+            board_hits = 0,
+            subway_name = #{subway_name},
+            mid =#{mid},
+            board_address =  #{board_address},
+            board_lat =     #{board_lat},
+            board_lng =  #{board_lng},
+            board_shopname #{board_shopname} 
+        where bid = #{bid}
+            
     
 </update>
 
@@ -102,4 +104,8 @@
 	ORDER BY SUBWAY_NAME ASC
 </select>
 
+<insert id="uploadfile" parameterType="com.my.shop.uploadFileVo">
+	INSET INTO BOARD_UPLOAD (BID, FILE_NUM, O_NAME, FILE_NAME) VALUES (#{bid}, #{file_num}, #{o_name},#{file_name})
+</insert>
+	 
 </mapper>
