@@ -71,9 +71,9 @@
 				<c:forEach items="${list }" var="row">
 				<c:if test="${row.ref ne row.cid}">
 					<tr>
-					<td width="200"><font face="Arial Black">&nbsp;&nbsp;${row.member_id }</font></td>
-					<td>
-						<td width="150">&nbsp;&nbsp;${row.comment_created }</td>
+					<td width="300"><font face="Arial Black">&nbsp;&nbsp;${row.member_id }</font>&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">${row.comment_created }</font></td>
+					
+						<!-- <td width="150"></td> -->
 					</tr>
 					<tr>
 						<td colspan="2">&nbsp;&nbsp;${row.comment }						
@@ -82,9 +82,9 @@
 						<form id="writeC" name="writeC" method="post" action="/shop/sample/insertComment.do">
 							<c:if test="${row.ref eq row.cid}">
 							<tr>
-							<td width="200"><font face="Arial Black">${row.member_id }</font></td>
-					
-						<td width="150"><input type="button" id="bttn${row.cid}" name="${row.cid}" value="열기/닫기" onclick="cidGet(${row.cid});">${row.comment_created }</td>
+							<td width="200"><font face="Arial Black">${row.member_id }</font>&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">${row.comment_created }</font></td>
+			<!-- 		<td></td> -->
+						<td width="150"><input type="button" id="bttn${row.cid}" name="${row.cid}" value="답글" onclick="cidGet(${row.cid});"></td>
 					</tr>
 					<tr>
 						<td colspan="2">${row.comment}
@@ -101,7 +101,7 @@
 	<input type="hidden" id="bid" name="bid" value="${map.bid }">
 	<input type="hidden" id="btncid" value="">
 	
-	<input type="text" id="comment" name="comment"></td>
+	<textarea id="comment" name="comment" rows="2" cols="30"></textarea></td>
 	<td><input type="button" value="등록" onclick="fn_comment();"></td>
 	
 	
@@ -125,7 +125,7 @@
 	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
 	<input type="hidden" id="ref" name="ref" value="0">
 	<input type="hidden" id="bid" name="bid" value="${map.bid }">
-	<table><tr><td><input type="text" id="comment" name="comment"></td>
+	<table><tr><td><textarea id="comment" name="comment" rows="2" cols="30"></textarea></td>
 	<td><input type="button" value="등록" onclick="fn_comment2();"></td>
 	</tr>
 		
@@ -212,7 +212,7 @@
     	   function cidGet(i){
 				var numb = i;
 				var bttnNum = "tr"+i;
-    		   alert(bttnNum);
+    		   /* alert(bttnNum); */
     		   var DocubttnNum = document.getElementById(bttnNum);
        			if(DocubttnNum.style.display=='none'){
        				DocubttnNum.style.display='block';
