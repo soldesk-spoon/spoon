@@ -110,7 +110,7 @@
 <select id="selectComment" parameterType="com.my.shop.CommentBean" resultType="com.my.shop.CommentBean">
       
             SELECT cid, member_id, ref, comment_created, comment  FROM board_comment
-   WHERE COMMENT_DELYN='N' and bid=#{bid} order by ref desc
+   WHERE COMMENT_DELYN='N' and bid=#{bid} order by ref asc, cid asc
 </select>
 
 <insert id="insertComment" parameterType="com.my.shop.CommentBean">
@@ -129,9 +129,13 @@
 	#{comment},
 	#{member_id},
 	#{mid},
-	#{cid}
+	#{ref}
 	)
 </insert>
+
+<select id="selectCID" resultType="int">
+	SELECT ifnull (max(cid), 0) FROM board_comment
+</select>
 
 <delete id="deleteComment" parameterType="hashmap">
    
@@ -142,6 +146,9 @@
             cid = #{cid}   
     
 </delete>
+
+
+
 <insert id="uploadFile" parameterType="com.my.shop.uploadFileVo">
 INSERT INTO BOARD_UPLOAD
  (BID, FILE_NUM, O_NAME, FILE_NAME) 

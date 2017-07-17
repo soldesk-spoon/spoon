@@ -1,5 +1,7 @@
+SELECT cid, member_id, ref, comment_created, comment  FROM board_comment
+   WHERE COMMENT_DELYN='N' and bid=1 order by ref asc, cid asc
 
-
+  
 ½ºÇ¬ : 
 
 TABLE : MEMBER, BOARD, FREEBOARD, SUBWAY,
@@ -172,3 +174,7 @@ SELECT * FROM SPOON_MEMBER
 select count(member_id) from spoon_member where member_id = 'km94sm'
 SELECT COUNT(MEMBER_ID) FROM SPOON_MEMBER WHERE MEMBER_ID = 'km94sm' AND MEMBER_PASSWORD = 'qpalz09'
 SELECT COUNT(*) FROM SPOON_MEMBER WHERE MEMBER_ID = 'moonsong22' AND MEMBER_PASSWORD = '1111'
+
+
+SELECT cid, member_id, ref, comment_created, comment  FROM board_comment
+   WHERE COMMENT_DELYN='N' and bid=1 order by ref desc

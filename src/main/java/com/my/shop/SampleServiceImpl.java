@@ -65,6 +65,12 @@ public class SampleServiceImpl implements SampleService{
 		// TODO Auto-generated method stub
 		return (Integer) sampleDAO.selectBID();
 	}
+	
+	@Override
+	public int selectCID() throws Exception {
+		// TODO Auto-generated method stub
+		return (Integer) sampleDAO.selectCID();
+	}
 
 	@Override
 	public List<uploadFileVo> selectImage(int bid) throws Exception {

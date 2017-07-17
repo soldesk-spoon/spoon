@@ -220,15 +220,21 @@ public class SampleController {
     }
     
     @RequestMapping(value="/sample/insertComment.do", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView insertComment(CommentBean commentBean) throws Exception{
+    public ModelAndView insertComment(CommentBean commentBean,HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
-  
+        //int mid = Integer.parseInt(request.getParameter("mid"));
+        if(commentBean.getRef()==0){        	
+        	int cid=sampleService.selectCID();
+            commentBean.setRef(cid+1);
+        }  
+       // commentBean.setMid(mid);
+        System.out.println(commentBean.getMid());
+        System.out.println(commentBean.getRef());
         
         sampleService.insertComment(commentBean);
         mv.addObject("bid", commentBean.getBid());
     
-        return mv;
-        
+        return mv;        
     }
 }
     //

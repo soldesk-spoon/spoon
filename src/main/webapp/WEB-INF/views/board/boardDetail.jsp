@@ -69,7 +69,7 @@
 		<c:choose>
 			<c:when test="${fn:length(list) > 0}">
 				<c:forEach items="${list }" var="row">
-				<c:if test="${row.ref ne 0}">
+				<c:if test="${row.ref ne row.cid}">
 					<tr>
 					<td width="200"><font face="Arial Black">&nbsp;&nbsp;${row.member_id }</font></td>
 					<td>
@@ -80,11 +80,11 @@
 						</td></tr>
 						</c:if>
 						<form id="writeC" name="writeC" method="post" action="/shop/sample/insertComment.do">
-							<c:if test="${row.ref eq 0}">
+							<c:if test="${row.ref eq row.cid}">
 							<tr>
 							<td width="200"><font face="Arial Black">${row.member_id }</font></td>
 					
-						<td width="150"><input type="button" id="bttn${row.cid}" name="${row.cid}" value="열기/닫기" onclick="cidGet(${row.cid});"><${row.comment_created }</td>
+						<td width="150"><input type="button" id="bttn${row.cid}" name="${row.cid}" value="열기/닫기" onclick="cidGet(${row.cid});">${row.comment_created }</td>
 					</tr>
 					<tr>
 						<td colspan="2">${row.comment}
@@ -96,7 +96,7 @@
 						
 	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
 	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
-	<input type="hidden" id="ref" name="ref" value="0">
+	<input type="hidden" id="ref" name="ref" value="${row.cid}">
 	<input type="hidden" id="cid" value="${row.cid }">
 	<input type="hidden" id="bid" name="bid" value="${map.bid }">
 	<input type="hidden" id="btncid" value="">
@@ -207,15 +207,7 @@
         	document.writeC2.submit();
         }
         
-        $("#bttn").click(function () {
-        	var numb=$(this).attr('name');
-        	alert(numb);
-        	  if ( $( "#numb:first" ).is( ":hidden" ) ) {
-        	    $( "#numb" ).slideDown(0);
-        	  } else {
-        	    $( "#numb" ).hide();
-        	  } 
-       });
+        
          
     	   function cidGet(i){
 				var numb = i;

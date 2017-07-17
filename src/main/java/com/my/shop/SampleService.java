@@ -23,6 +23,7 @@ public interface SampleService {
 	void insertComment(CommentBean commentBean) throws Exception;
 
 	int selectBID() throws Exception;
+	int selectCID() throws Exception;
 
 	List<uploadFileVo> selectImage(int bid) throws Exception;
 }

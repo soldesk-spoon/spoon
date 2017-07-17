@@ -50,6 +50,14 @@ public class SampleDAO extends AbstractDAO{
     public List<CommentBean> selectComment(int bid) throws Exception{
         return (List<CommentBean>)selectList("sample.selectComment", bid);
     }
+    
+    public int selectCID() {
+		// TODO Auto-generated method stub
+		String selectcidob = selectOne("sample.selectCID").toString();
+		
+		int selectcid = Integer.parseInt(selectcidob);
+		return selectcid;
+	}
 
 	public int selectBID() {
 		// TODO Auto-generated method stub
