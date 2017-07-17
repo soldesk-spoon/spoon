@@ -79,26 +79,26 @@
 						<td colspan="2">&nbsp;&nbsp;${row.comment }						
 						</td></tr>
 						</c:if>
-						<form id="writeC2" name="writeC2" method="post" action="/shop/sample/insertComment.do">
+						<form id="writeC" name="writeC" method="post" action="/shop/sample/insertComment.do">
 							<c:if test="${row.ref eq 0}">
 							<tr>
 							<td width="200"><font face="Arial Black">${row.member_id }</font></td>
 					
-						<td width="150"><input type="button" id="bttn" name="${row.cid}" value="열기/닫기" onclick="cidGet();">${row.comment_created }</td>
+						<td width="150"><input type="button" id="bttn${row.cid}" name="${row.cid}" value="열기/닫기" onclick="cidGet(${row.cid});"><${row.comment_created }</td>
 					</tr>
 					<tr>
 						<td colspan="2">${row.comment}
 						
 						</td>
 						</tr>
-					<tr style="DISPLAY: none" id="${row.cid}"><!-- -->
+					<tr style="DISPLAY: none" id="tr${row.cid}"><!-- -->
 					<td>
 						
 	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
 	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
 	<input type="hidden" id="ref" name="ref" value="0">
-	<input type="hidden" id="bid" name="bid" value="${map.bid }">
 	<input type="hidden" id="cid" value="${row.cid }">
+	<input type="hidden" id="bid" name="bid" value="${map.bid }">
 	<input type="hidden" id="btncid" value="">
 	
 	<input type="text" id="comment" name="comment"></td>
@@ -120,7 +120,7 @@
 	</table>
 	
 	
-	<form id="writeC" name="writeC" method="post" action="/shop/sample/insertComment.do">
+	<form id="writeC2" name="writeC2" method="post" action="/shop/sample/insertComment.do">
 	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
 	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
 	<input type="hidden" id="ref" name="ref" value="0">
@@ -210,16 +210,24 @@
         $("#bttn").click(function () {
         	var numb=$(this).attr('name');
         	alert(numb);
-        	  if ( $( "#3:first" ).is( ":hidden" ) ) {
-        	    $( "#3" ).slideDown(0);
+        	  if ( $( "#numb:first" ).is( ":hidden" ) ) {
+        	    $( "#numb" ).slideDown(0);
         	  } else {
-        	    $( "#3" ).hide();
+        	    $( "#numb" ).hide();
         	  } 
        });
          
-       function cidGet(){
-    	  document.getElementById("btncid").value  = document.getElementById("bttn").getAttribute('name');
-       }
+    	   function cidGet(i){
+				var numb = i;
+				var bttnNum = "tr"+i;
+    		   alert(bttnNum);
+    		   var DocubttnNum = document.getElementById(bttnNum);
+       			if(DocubttnNum.style.display=='none'){
+       				DocubttnNum.style.display='block';
+       			}else{
+       				DocubttnNum.style.display='none';
+       			}
+          }
     </script>
     
    <!--  <section id="map2view">
@@ -265,14 +273,14 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 </script>
 
 <!-- jQuery library (served from Google) -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<!-- bxSlider Javascript file -->
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+bxSlider Javascript file
 <script src="/js/jquery.bxslider.min.js"></script>
-<!-- bxSlider CSS file -->
+bxSlider CSS file
 <link href="/lib/jquery.bxslider.css" rel="stylesheet" />
 <script>
 $(document).ready(function(){
   $('.bxslider').bxSlider();  
 });
-</script>
+</script> -->
 </html>

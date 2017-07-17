@@ -219,7 +219,6 @@ public class SampleController {
  
     }
     
-<<<<<<< HEAD
     @RequestMapping(value="/sample/insertComment.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView insertComment(CommentBean commentBean) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
@@ -231,15 +230,13 @@ public class SampleController {
         return mv;
         
     }
-    
+}
     //
     //
     //
     //
     //
     
-=======
->>>>>>> acae8ad440792ec4207e4cb72629adc1a381bd2a
     
     /*@RequestMapping(value="/sample/openComment.do", method=RequestMethod.GET)
     public ModelAndView openComment(@RequestParam("bid")int bid) throws Exception{
@@ -250,7 +247,6 @@ public class SampleController {
        mv.addObject("list", list);
          
        return mv;
-<<<<<<< HEAD
     }*/
     
     /*
@@ -276,9 +272,7 @@ public class SampleController {
         boardBean.setSubway_linenumber( request.getParameter("subway_linenumber1"));
         sampleService.insertBoard(boardBean);
         return mv;
-=======
->>>>>>> acae8ad440792ec4207e4cb72629adc1a381bd2a
     }
     
     
-}
+}*/

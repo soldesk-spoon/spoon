@@ -36,7 +36,7 @@ CREATE TABLE BOARD_COMMENT(
 insert into BOARD_COMMENT(
 bid,mid,ref,comment,member_id
 )values(
-1,1,1,'asdfasdf','aaa'
+18,1,1,'asdfasdf','aaa'
 )
 
 delete from BOARD_COMMENT where bid=0;
