@@ -64,7 +64,10 @@
             member_id,
             mid,
             subway_name,
-            subway_linenumber
+            board_address,
+            board_lat,
+            board_lng
+            
         FROM
             spoon_board
         WHERE

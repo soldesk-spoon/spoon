@@ -3,6 +3,9 @@
 <html lang="ko">
 <head>
 <%@ include file="../include/include-header.jsp" %>
+<!-- jQuery library (served from Google) -->
+
+
 </head>
 <body>
 <%@ include file="../include/include-session.jsp" %>
@@ -34,20 +37,24 @@
                 <th scope="row">제목</th>
                 <td colspan="3">${map.board_subject }</td>
             </tr>
-           <c:forEach items="${imgmap}" var="img">
-                    <tr>
-                    	<td><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" width="200" height="200" ></td>
-                        <td>${img.FILE_NAME}</td>
-                    </tr>
-                    
-           </c:forEach>
+         
+           	
             
             <tr>
                 <td colspan="4">${map.board_contents }</td>
             </tr>
-          
+         	<tr>
+           		<td>${map.subway_name}역</td>
+           	</tr>
         </tbody>
     </table>
+      <c:forEach items="${imgmap}" var="img">
+                    <ul class="bxslider">
+                    	<li><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" width="200" height="200" ></li>
+                    </ul>
+      </c:forEach>
+    
+    
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">수정하기</a>
      <a href="#this" class="btn" id="delete">삭제하기</a>
@@ -121,5 +128,58 @@
              */
         }
     </script>
+    
+   <!--  <section id="map2view">
+    	<tiles:insertAttribute name="map2view"/>
+    </section> -->
+    <!-- 이미지 지도를 표시할 div 입니다 -->
+<div id="staticMap" style="width:600px;height:350px;"></div>    
+<input type="hidden" id="input_lat" name="input_lat" value="${map.board_lat}">
+<input type="hidden" id="input_lng" name="input_lng" value="${map.board_lng}">
+<input type="hidden" id="rest" name="rest" value="${rest}">
+<input type="hidden" id="address" value="${map.address}">
+주소 : ${map.board_address}
+    
 </body>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=45aee8e672a2dfe509015315339dc5c3&libraries=services"></script>
+<script>
+
+var input_lat = document.getElementById('input_lat').value;
+var input_lng = document.getElementById('input_lng').value;
+var pos = "("+input_lat + ", " + input_lng+")";
+var rest = document.getElementById('rest').value;
+// 이미지 지도에서 마커가 표시될 위치입니다 
+var markerPosition  = new daum.maps.LatLng(input_lat, input_lng); 
+var content = rest;
+// 이미지 지도에 표시할 마커입니다
+// 이미지 지도에 표시할 마커는 Object 형태입니다
+var marker = [{
+    position: markerPosition,
+    text: content
+}];
+nfowindow = new daum.maps.InfoWindow({zindex:1});
+var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
+    staticMapOption = { 
+        center: new daum.maps.LatLng(input_lat, input_lng), // 이미지 지도의 중심좌표
+        level: 3, // 이미지 지도의 확대 레벨
+        marker: marker // 이미지 지도에 표시할 마커 
+    };    
+    
+
+
+// 이미지 지도를 생성합니다
+var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
+</script>
+
+<!-- jQuery library (served from Google) -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="/js/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/lib/jquery.bxslider.css" rel="stylesheet" />
+<script>
+$(document).ready(function(){
+  $('.bxslider').bxSlider();  
+});
+</script>
 </html>

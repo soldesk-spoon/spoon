@@ -46,7 +46,7 @@
 </style>
 </head>
 <body>
-<form action="/shop/sample/board/map2.do" method="post" name="input_form" id="input_form">
+<form action="/shop/sample/openBoardWrite.do" method="post" name="input_form" id="input_form">
 <input type="hidden" id="input_lat" name="input_lat" value="${input_lat}">
 <input type="hidden" id="input_lng" name="input_lng" value="${input_lng}"> 
 <input type="hidden" id="input_pos" name="input_pos" value="">

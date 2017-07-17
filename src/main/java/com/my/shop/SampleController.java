@@ -141,13 +141,15 @@ public class SampleController {
         return mv;
     }
     
-    @RequestMapping(value="/sample/openBoardDetail.do", method=RequestMethod.GET)
-    public ModelAndView openBoardDetail(@RequestParam("bid")int bid) throws Exception{
+    @RequestMapping(value="/sample/openBoardDetail.do", method={RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView openBoardDetail(@RequestParam("bid")int bid, HttpServletRequest request ) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardDetail");
         Map<String, Object> map = sampleService.selectBoardDetail(bid);
         List<uploadFileVo> imgMap = sampleService.selectImage(bid);
+      
         System.out.println(imgMap);
         String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\WEB-INF\\images\\";
+
         mv.addObject("imgPath", realFolder);
         mv.addObject("imgmap",imgMap);
         mv.addObject("map", map); 
