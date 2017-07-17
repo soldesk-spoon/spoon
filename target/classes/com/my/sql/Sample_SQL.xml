@@ -23,7 +23,6 @@
             board_lat,
             board_lng,
             board_shopname
-           <!--  filename1 -->
             
           
         )
@@ -39,7 +38,6 @@
             #{board_lat},
             #{board_lng},
             #{board_shopname}
-            <!-- #{filepath1} -->
            
         )
         
@@ -66,7 +64,10 @@
             member_id,
             mid,
             subway_name,
-            subway_linenumber
+            board_address,
+            board_lat,
+            board_lng
+            
         FROM
             spoon_board
         WHERE
@@ -132,6 +133,7 @@
 	)
 </insert>
 
+<<<<<<< HEAD
 <delete id="deleteComment" parameterType="hashmap">
    
         UPDATE board_comment
@@ -141,5 +143,21 @@
             cid = #{cid}   
     
 </delete>
+=======
+<insert id="uploadFile" parameterType="com.my.shop.uploadFileVo">
+INSERT INTO BOARD_UPLOAD
+ (BID, FILE_NUM, O_NAME, FILE_NAME) 
+ VALUES 
+ (#{bid}, #{file_num}, #{o_name}, #{file_name})
+</insert>
+
+<select id="selectBID" resultType="int">
+	SELECT ifnull (max(bid), 0 ) FROM SPOON_BOARD
+</select>
+
+<select id="selectImage" parameterType="com.my.shop.uploadFileVo" resultType="hashmap">
+	SELECT FILE_NAME FROM BOARD_UPLOAD WHERE BID = #{bid}
+</select>
+>>>>>>> acae8ad440792ec4207e4cb72629adc1a381bd2a
 
 </mapper>

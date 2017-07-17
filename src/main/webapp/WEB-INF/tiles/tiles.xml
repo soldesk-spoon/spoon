@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<tiles-definitions>
+	<defintion name="base-definition" template="/WEB-INF/views/board/boardDetail.jsp">
+		<put-attribute name="map2view" value="/WEB-INF/views/map/map2.jsp"></put-attribute>
+	</defintion>
+
+</tiles-definitions>

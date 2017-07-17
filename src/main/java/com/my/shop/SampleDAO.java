@@ -39,11 +39,30 @@ public class SampleDAO extends AbstractDAO{
 	public List<BoardBean> selectSubway(String subline) throws Exception{
         return (List<BoardBean>)selectList("sample.selectSubway", subline);
     }
+
+	public void uploadFile(uploadFileVo uploadfilevo) {
+		// TODO Auto-generated method stub
+		insert("sample.uploadFile" , uploadfilevo);
+		
+	}
     
     @SuppressWarnings("unchecked")
     public List<CommentBean> selectComment(int bid) throws Exception{
         return (List<CommentBean>)selectList("sample.selectComment", bid);
     }
+
+	public int selectBID() {
+		// TODO Auto-generated method stub
+		String selectbidob = selectOne("sample.selectBID").toString();
+		
+		int selectbid = Integer.parseInt(selectbidob);
+		return selectbid;
+	}
+	@SuppressWarnings("unchecked")
+	public List<uploadFileVo> selectImage(int bid) {
+		// TODO Auto-generated method stub
+		return (List<uploadFileVo>)selectList("sample.selectImage",bid);
+	}
     
     public void insertComment(CommentBean commentBean) throws Exception{
         insert("sample.insertComment", commentBean);

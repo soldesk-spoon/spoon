@@ -15,8 +15,17 @@ public interface SampleService {
 	void deleteBoard(int bid) throws Exception;	
 
 	List<BoardBean> selectSubway(String string) throws Exception;
+
+	void uploadFile(uploadFileVo uploadfilevo) throws Exception;
 	
 	List<CommentBean> selectComment(int bid) throws Exception;
+<<<<<<< HEAD
 	
 	void insertComment(CommentBean commentBean) throws Exception;
+=======
+
+	int selectBID() throws Exception;
+
+	List<uploadFileVo> selectImage(int bid) throws Exception;
+>>>>>>> acae8ad440792ec4207e4cb72629adc1a381bd2a
 }

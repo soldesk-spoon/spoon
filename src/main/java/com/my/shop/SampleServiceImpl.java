@@ -50,9 +50,26 @@ public class SampleServiceImpl implements SampleService{
 	}
 
 	@Override
+	public void uploadFile(uploadFileVo uploadfilevo) throws Exception {
+		// TODO Auto-generated method stub
+		sampleDAO.uploadFile(uploadfilevo);
+		
+	}
 	public List<CommentBean> selectComment(int bid) throws Exception {
 		// TODO Auto-generated method stub
 		return sampleDAO.selectComment(bid);
+	}
+
+	@Override
+	public int selectBID() throws Exception {
+		// TODO Auto-generated method stub
+		return (Integer) sampleDAO.selectBID();
+	}
+
+	@Override
+	public List<uploadFileVo> selectImage(int bid) throws Exception {
+		// TODO Auto-generated method stub
+		return sampleDAO.selectImage(bid);
 	}
 	
 	@Override
