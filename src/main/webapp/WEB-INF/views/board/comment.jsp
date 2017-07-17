@@ -9,15 +9,20 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 </head>
 <body>
-	<h6>댓글</h6>
+<input type="button" value="${map.bid}">
+	<h4>댓글</h4>
+	
+	
 	<table>
 		<c:choose>
 			<c:when test="${fn:length(list) > 0}">
 				<c:forEach items="${list }" var="row">
 				
-					<tr><td>에붸붸붸${row.ref}</td>
-					<c:if test="${row.ref eq null}"><!-- <img src="/board/level.gif" width="5" height="16"> --></c:if>
-						<td>${row.member_id }${row.comment_created }</td>
+					<tr>
+					<c:if test="${row.ref eq 1}"><td>&nbsp;&nbsp;</td></c:if>
+					<td>${row.member_id }</td>
+					
+						<td>${row.comment_created }</td>
 					</tr>
 					<tr>
 						<td>${row.comment }<input type="hidden" id="bid"

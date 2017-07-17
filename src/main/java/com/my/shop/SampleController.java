@@ -93,6 +93,10 @@ public class SampleController {
         Map<String, Object> map = sampleService.selectBoardDetail(bid);
         mv.addObject("map", map); 
          
+        List<CommentBean> list = sampleService.selectComment(bid);
+        System.out.println(list);
+        mv.addObject("list", list);
+        
         return mv;
     }
     
@@ -154,6 +158,18 @@ public class SampleController {
  
     }
     
+    @RequestMapping(value="/sample/insertComment.do", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView insertComment(CommentBean commentBean) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
+  
+        
+        sampleService.insertComment(commentBean);
+        mv.addObject("bid", commentBean.getBid());
+    
+        return mv;
+        
+    }
+    
     //
     //
     //
@@ -161,7 +177,7 @@ public class SampleController {
     //
     
     
-    @RequestMapping(value="/sample/openComment.do", method=RequestMethod.GET)
+    /*@RequestMapping(value="/sample/openComment.do", method=RequestMethod.GET)
     public ModelAndView openComment(@RequestParam("bid")int bid) throws Exception{
         ModelAndView mv = new ModelAndView("/board/comment");
          
@@ -170,7 +186,9 @@ public class SampleController {
        mv.addObject("list", list);
          
        return mv;
-    }/*
+    }*/
+    
+    /*
     
     @RequestMapping(value="/sample/insertBoard.do")
     public ModelAndView insertComment(BoardBean boardBean, HttpServletRequest request,@RequestParam("file1") MultipartFile report) throws Exception{

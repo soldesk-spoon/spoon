@@ -42,7 +42,11 @@ public class SampleDAO extends AbstractDAO{
     
     @SuppressWarnings("unchecked")
     public List<CommentBean> selectComment(int bid) throws Exception{
-        return (List<CommentBean>)selectList("sample.selectBoardList", bid);
+        return (List<CommentBean>)selectList("sample.selectComment", bid);
     }
+    
+    public void insertComment(CommentBean commentBean) throws Exception{
+        insert("sample.insertComment", commentBean);
+    } 
     
 }

@@ -108,26 +108,38 @@
 
 <select id="selectComment" parameterType="com.my.shop.CommentBean" resultType="com.my.shop.CommentBean">
       
-            SELECT member_id, comment_created, comment  FROM board_comment
-   WHERE BOARD_DELYN='N' and bid=#{bid}
+            SELECT cid, member_id, ref, comment_created, comment  FROM board_comment
+   WHERE COMMENT_DELYN='N' and bid=#{bid} order by ref desc
 </select>
 
 <insert id="insertComment" parameterType="com.my.shop.CommentBean">
-  
-        INSERT INTO board_comment
-        (
-            bid,
-            comments,
-            member_id,
-            mid
-        )
-        VALUES
-        (
-            #{bid},
-            #{comments},
-            #{member_id},
-            #{mid}
-        )
+
+	INSERT INTO board_comment
+	(
+	bid,
+	comment,
+	member_id,
+	mid,
+	ref
+	)
+	VALUES
+	(
+	#{bid},
+	#{comment},
+	#{member_id},
+	#{mid},
+	#{cid}
+	)
 </insert>
+
+<delete id="deleteComment" parameterType="hashmap">
+   
+        UPDATE board_comment
+        SET
+            BOARD_DELYN = 'Y'
+        WHERE
+            cid = #{cid}   
+    
+</delete>
 
 </mapper>

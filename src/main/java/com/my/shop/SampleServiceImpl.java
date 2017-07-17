@@ -55,5 +55,9 @@ public class SampleServiceImpl implements SampleService{
 		return sampleDAO.selectComment(bid);
 	}
 	
+	@Override
+    public void insertComment(CommentBean commentbean) throws Exception {
+        sampleDAO.insertComment(commentbean);
+    }
 	
 }

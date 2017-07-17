@@ -44,7 +44,7 @@
 
 </head>
 <body>
-	<form action="/shop//member/login_action" name="logForm" method="post" >
+	<form action="/shop/member/login_action" name="logForm" method="post" >
 		<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }"> 
 		<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
 		<c:if test="${sessionScope.member.mid  ne null}">

@@ -17,4 +17,6 @@ public interface SampleService {
 	List<BoardBean> selectSubway(String string) throws Exception;
 	
 	List<CommentBean> selectComment(int bid) throws Exception;
+	
+	void insertComment(CommentBean commentBean) throws Exception;
 }

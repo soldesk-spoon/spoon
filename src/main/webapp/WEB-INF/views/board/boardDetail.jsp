@@ -46,6 +46,77 @@
      
      
     <%@ include file="../include/include-body.jsp" %>
+    
+    <h4>댓글</h4>
+	
+	
+	<table>
+		<c:choose>
+			<c:when test="${fn:length(list) > 0}">
+				<c:forEach items="${list }" var="row">
+				<c:if test="${row.ref ne 0}">
+					<tr>
+					<td width="200"><font face="Arial Black">&nbsp;&nbsp;${row.member_id }</font></td>
+					<td>
+						<td width="150">&nbsp;&nbsp;${row.comment_created }</td>
+					</tr>
+					<tr>
+						<td colspan="2">&nbsp;&nbsp;${row.comment }						
+						</td></tr>
+						</c:if>
+						<form id="writeC2" name="writeC2" method="post" action="/shop/sample/insertComment.do">
+							<c:if test="${row.ref eq 0}">
+							<tr>
+							<td width="200"><font face="Arial Black">${row.member_id }</font></td>
+					
+						<td width="150"><input type="button" id="bttn" name="${row.cid}" value="열기/닫기" onclick="cidGet();">${row.comment_created }</td>
+					</tr>
+					<tr>
+						<td colspan="2">${row.comment}
+						
+						</td>
+						</tr>
+					<tr style="DISPLAY: none" id="${row.cid}"><!-- -->
+					<td>
+						
+	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
+	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
+	<input type="hidden" id="ref" name="ref" value="0">
+	<input type="hidden" id="bid" name="bid" value="${map.bid }">
+	<input type="hidden" id="cid" value="${row.cid }">
+	<input type="hidden" id="btncid" value="">
+	
+	<input type="text" id="comment" name="comment"></td>
+	<td><input type="button" value="등록" onclick="fn_comment();"></td>
+	
+	
+		</tr>
+							</c:if>
+					</form>	
+					
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<tr>
+					<td colspan="4">조회된 결과가 없습니다.</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
+	</table>
+	
+	
+	<form id="writeC" name="writeC" method="post" action="/shop/sample/insertComment.do">
+	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
+	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
+	<input type="hidden" id="ref" name="ref" value="0">
+	<input type="hidden" id="bid" name="bid" value="${map.bid }">
+	<table><tr><td><input type="text" id="comment" name="comment"></td>
+	<td><input type="button" value="등록" onclick="fn_comment2();"></td>
+	</tr>
+		
+		</table>
+	</form>
+    
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
@@ -112,6 +183,28 @@
             comSubmit.submit();
              */
         }
+        
+        function fn_comment(){
+        	document.writeC.submit();
+        }
+        
+        function fn_comment2(){
+        	document.writeC2.submit();
+        }
+        
+        $("#bttn").click(function () {
+        	var numb=$(this).attr('name');
+        	alert(numb);
+        	  if ( $( "#3:first" ).is( ":hidden" ) ) {
+        	    $( "#3" ).slideDown(0);
+        	  } else {
+        	    $( "#3" ).hide();
+        	  } 
+       });
+         
+       function cidGet(){
+    	  document.getElementById("btncid").value  = document.getElementById("bttn").getAttribute('name');
+       }
     </script>
 </body>
 </html>

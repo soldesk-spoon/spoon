@@ -20,6 +20,8 @@ SUBWAY : SUBWAY_CODE, SUBWAY_NAME, SUBWAY_LINENUMBER, SUBWAY_EXT
 
 BOARD_IMAGE 
 
+drop table board_comment;
+
 CREATE TABLE BOARD_COMMENT(
 	CID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,	
 	BID INT NOT NULL,	
@@ -37,6 +39,7 @@ bid,mid,ref,comment,member_id
 1,1,1,'asdfasdf','aaa'
 )
 
+delete from BOARD_COMMENT where bid=0;
 select * from BOARD_COMMENT
 
 CREATE TABLE SPOON_MEMBER(
@@ -51,6 +54,7 @@ CREATE TABLE SPOON_MEMBER(
 	 MEMBER_ADMINYN VARCHAR(10) DEFAULT 'N'
 )engine = innodb default charset=UTF8;
 
+select * from spoon_member
 
 MID INT NOT NULL,
 	FOREIGN KEY(MID) REFERENCES SPOON_MEMBER(MID),
