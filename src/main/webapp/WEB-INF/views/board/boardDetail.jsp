@@ -13,6 +13,7 @@
 </head>
 <body>
 <%@ include file="../include/include-session.jsp" %>
+<form method="post" name="LikeForm" id="LikeForm">
 <input type="hidden" id="bid" name="bid" value="${map.bid }">
 <input type="hidden" id="mid1" name="mid1" value="${map.mid}">
     <table class="board_view">
@@ -40,9 +41,12 @@
             <tr>
                 <th scope="row">제목</th>
                 <td colspan="3">${map.board_subject }</td>
-                <th scope="row">
-                	
-                </th>
+					<td colspan="2">
+						 <input type="button" value="좋아요 " onclick="insertLike();">
+						 <input type="button" value="싫어요" onclick="insertHate();">   
+						 <input type="hidden" value="${like}" name="like" id="like">
+						 <input type="hidden" value="0" name="hate" id="hate">            	
+                	</td>
             </tr>
          
            	
@@ -67,7 +71,7 @@
       		</tr>
         </tbody>
     </table>
-   
+   </form>
       
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">수정하기</a>
@@ -319,6 +323,30 @@ var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지
 
 // 이미지 지도를 생성합니다
 var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
+</script>
+
+<script type="text/javascript">
+	function insertLike() {
+		var bid = document.getElementById('bid').value;
+		var like = document.getElementById('like').value
+		var form = document.forms["LikeForm"];
+		if(like==''||like=='0'){
+			document.getElementById('like').value='1';
+			alert(document.getElementById('like').value);
+		}else{
+			alert(document.getElementById('like').value)
+		}
+		
+		document.LikeForm.action="/shop/sample/openBoardDetail.do?bid="+bid;
+		alert(document.LikeForm.action);
+		form.submit();
+		
+	}
+	
+	function insertHate() {
+		
+	}
+
 </script>
 
 </html>

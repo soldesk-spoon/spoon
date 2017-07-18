@@ -19,7 +19,7 @@
 		<input type="hidden" id="sel" name="sel" value="">
 	</form>
 	<select id="selectOption" name="selectOption" onChange="javascript:selectEvent(this)">
-		<option id="selectNo" value="selectNo" ${selectobj eq  "selectNo" ? "selected" :""} >최신순</option>
+		<option id="selectNo" value="selectNo" ${selectobj eq  "selectNo" ? "selected" :""}  >최신순</option>
 		<option id="selectHit" value="selectHit" ${selectobj eq  "selectHit" ? "selected" :""} >조회수</option>
 		<option id="selectLike" value="selectLike" ${selectobj eq  "selectLike" ? "selected" :""} >추천수</option>
 	</select>

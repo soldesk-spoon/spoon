@@ -40,16 +40,25 @@ public class SampleController {
     public ModelAndView openSampleBoardList(BoardBean boardBean,HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardList");
         String selectobj = request.getParameter("sel");
-        List<BoardBean> list = null;
-        if(selectobj.equals(null)||selectobj.equals("selectNo")){
-        	list = sampleService.selectBoardList(boardBean);
-        }else if(selectobj.equals("selectHit")){
-        	list = sampleService.selectBoardListByHit(boardBean);
-        }else if(selectobj.equals("selectLike")){
-        	list = sampleService.selectBoardListByLike(boardBean);
-        }
-        mv.addObject("selectobj",selectobj);
         System.out.println(selectobj);
+        List<BoardBean> list = sampleService.selectBoardList(boardBean);
+      
+        if(selectobj==null){
+        	list = sampleService.selectBoardList(boardBean);
+            mv.addObject("selectobj","selectNo");
+            System.out.println("selectNo");
+        }else{
+        	if(selectobj.equals("selectNo")){
+        		list = sampleService.selectBoardList(boardBean);
+        	}else if(selectobj.equals("selectHit")){
+        		list = sampleService.selectBoardListByHit(boardBean);
+        	}else if(selectobj.equals("selectLike")){
+        		list = sampleService.selectBoardListByLike(boardBean);
+        	}
+        	mv.addObject("selectobj",selectobj);
+        }
+        		
+        		
         
         mv.addObject("list", list);
          
@@ -156,7 +165,15 @@ public class SampleController {
         ModelAndView mv = new ModelAndView("/board/boardDetail");
         Map<String, Object> map = sampleService.selectBoardDetail(bid);
         List<uploadFileVo> imgMap = sampleService.selectImage(bid);
-      
+        int like = Integer.parseInt(request.getParameter("like"));
+        
+        if(like==1){
+        	mv.addObject("like","1");
+        }else if(like==0){
+        	mv.addObject("like","0");
+        }
+        		
+        System.out.println(like);
         System.out.println(imgMap);
         String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\WEB-INF\\images\\";
 
