@@ -36,11 +36,21 @@ public class SampleController {
     @Resource(name="sampleService")
     private SampleService sampleService;
      
-    @RequestMapping(value="/sample/openBoardList.do", method=RequestMethod.GET)
-    public ModelAndView openSampleBoardList(BoardBean boardBean) throws Exception{
+    @RequestMapping(value="/sample/openBoardList.do", method={RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView openSampleBoardList(BoardBean boardBean,HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardList");
-         
-        List<BoardBean> list = sampleService.selectBoardList(boardBean);
+        String selectobj = request.getParameter("sel");
+        List<BoardBean> list = null;
+        if(selectobj.equals(null)||selectobj.equals("selectNo")){
+        	list = sampleService.selectBoardList(boardBean);
+        }else if(selectobj.equals("selectHit")){
+        	list = sampleService.selectBoardListByHit(boardBean);
+        }else if(selectobj.equals("selectLike")){
+        	list = sampleService.selectBoardListByLike(boardBean);
+        }
+        mv.addObject("selectobj",selectobj);
+        System.out.println(selectobj);
+        
         mv.addObject("list", list);
          
         return mv;

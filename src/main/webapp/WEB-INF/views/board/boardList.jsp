@@ -13,6 +13,18 @@
 <body>
 <%@ include file="../include/include-session.jsp" %>
 <h2>게시판 목록</h2>
+<div>
+	정렬 선택
+	<form method="post" action="/shop/sample/openBoardList.do" name="selectedForm">
+		<input type="hidden" id="sel" name="sel" value="">
+	</form>
+	<select id="selectOption" name="selectOption" onChange="javascript:selectEvent(this)">
+		<option id="selectNo" value="selectNo" ${selectobj eq  "selectNo" ? "selected" :""} >최신순</option>
+		<option id="selectHit" value="selectHit" ${selectobj eq  "selectHit" ? "selected" :""} >조회수</option>
+		<option id="selectLike" value="selectLike" ${selectobj eq  "selectLike" ? "selected" :""} >추천수</option>
+	</select>
+	<br>
+</div>
 <table class="board_list">
     <colgroup>
         <col width="10%"/>
@@ -86,6 +98,13 @@
             document.location.href="/shop/sample/openBoardDetail.do?bid="+B;
             
         }
+		function selectEvent(selectObj){
+       		var val = selectObj.value;
+        	document.getElementById('sel').value = val;
+        	document.selectedForm.submit();
+      	  }
+		
+        
     </script>
 </body>
 </html>

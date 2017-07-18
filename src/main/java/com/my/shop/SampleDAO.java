@@ -74,6 +74,17 @@ public class SampleDAO extends AbstractDAO{
     
     public void insertComment(CommentBean commentBean) throws Exception{
         insert("sample.insertComment", commentBean);
-    } 
+    }
+    
+    @SuppressWarnings("unchecked")
+	public List<BoardBean> selectBoardLIstByHit(BoardBean boardBean) {
+		// TODO Auto-generated method stub
+		return (List<BoardBean>)selectList("sample.selectBoardListByHit", boardBean);
+	}
+    @SuppressWarnings("unchecked")
+	public List<BoardBean> selectBoardListByLike(BoardBean boardBean) {
+		// TODO Auto-generated method stub
+		return (List<BoardBean>)selectList("sample.selectBoardListByLike", boardBean);
+	} 
     
 }

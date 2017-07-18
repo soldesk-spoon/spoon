@@ -26,4 +26,9 @@ public interface SampleService {
 	int selectCID() throws Exception;
 
 	List<uploadFileVo> selectImage(int bid) throws Exception;
+
+	List<BoardBean> selectBoardListByHit(BoardBean boardBean);
+
+	List<BoardBean> selectBoardListByLike(BoardBean boardBean);
+	
 }

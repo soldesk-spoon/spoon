@@ -82,5 +82,17 @@ public class SampleServiceImpl implements SampleService{
     public void insertComment(CommentBean commentbean) throws Exception {
         sampleDAO.insertComment(commentbean);
     }
+
+	@Override
+	public List<BoardBean> selectBoardListByHit(BoardBean boardBean) {
+		// TODO Auto-generated method stub
+		return sampleDAO.selectBoardLIstByHit(boardBean);
+	}
+
+	@Override
+	public List<BoardBean> selectBoardListByLike(BoardBean boardBean) {
+		// TODO Auto-generated method stub
+		return sampleDAO.selectBoardListByLike(boardBean);
+	}
 	
 }

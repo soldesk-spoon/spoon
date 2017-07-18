@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
 <%@ include file="../include/include-header.jsp" %>
-<!-- jQuery library (served from Google) -->
 
+<style type="text/css">
+#slider {position:relative;margin:0 auto;padding:0;list-style:none;width:350px;height:350px;overflow-x:hidden}
+#slider li {display:none;position:absolute;left:0;top:0}
+#slider img {width:350px;height:350px}
+</style>
 
 </head>
 <body>
@@ -36,6 +40,9 @@
             <tr>
                 <th scope="row">제목</th>
                 <td colspan="3">${map.board_subject }</td>
+                <th scope="row">
+                	
+                </th>
             </tr>
          
            	
@@ -46,15 +53,22 @@
          	<tr>
            		<td>${map.subway_name}역</td>
            	</tr>
+           	
+			<tr>
+					<td><button type="button" id="prev_btn" class="btn">이전</button></td>
+				<td>
+					<ul id="slider">
+					<c:forEach items="${imgmap}" var="img">
+                    		<li><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" ></li>
+      				</c:forEach>
+      				</ul>
+      				</td>
+      					<td><button type="button" id="next_btn" class="btn">다음</button></td>
+      		</tr>
         </tbody>
     </table>
-      <c:forEach items="${imgmap}" var="img">
-                    <ul class="bxslider">
-                    	<li><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" width="200" height="200" ></li>
-                    </ul>
-      </c:forEach>
-    
-    
+   
+      
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">수정하기</a>
      <a href="#this" class="btn" id="delete">삭제하기</a>
@@ -134,11 +148,53 @@
     
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
+
+    $(function() {
+        var time = 500;
+        var idx = idx2 = 0;
+        var slide_width = $("#slider").width();
+        var slide_count = $("#slider li").size();
+        $("#slider li:first").css("display", "block");
+        if(slide_count > 1)
+            $(".btn").css("display", "inline");
+     
+        $("#prev_btn").click(function() {
+            if(slide_count > 1) {
+                idx2 = (idx - 1) % slide_count;
+                if(idx2 < 0)
+                    idx2 = slide_count - 1;
+                $("#slider li:hidden").css("left", "-"+slide_width+"px");
+                $("#slider li:eq("+idx+")").animate({ left: "+="+slide_width+"px" }, time, function() {
+                    $(this).css("display", "none").css("left", "-"+slide_width+"px");
+                });
+                $("#slider li:eq("+idx2+")").css("display", "block").animate({ left: "+="+slide_width+"px" }, time);
+                idx = idx2;
+            }
+        });
+     
+        $("#next_btn").click(function() {
+            if(slide_count > 1) {
+                idx2 = (idx + 1) % slide_count;
+                $("#slider li:hidden").css("left", slide_width+"px");
+                $("#slider li:eq("+idx+")").animate({ left: "-="+slide_width+"px" }, time, function() {
+                    $(this).css("display", "none").css("left", slide_width+"px");
+                });
+                $("#slider li:eq("+idx2+")").css("display", "block").animate({ left: "-="+slide_width+"px" }, time);
+                idx = idx2;
+            }
+        });
+    });
+    
+    
+    
+    
+    
         $(document).ready(function(){
             $("#list").on("click", function(e){ //목록으로 버튼
                 e.preventDefault();
                 fn_openBoardList();
             });
+            
              
             $("#update").on("click", function(e){
                 e.preventDefault();
@@ -234,6 +290,7 @@
 주소 : ${map.board_address}
     
 </body>
+
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=45aee8e672a2dfe509015315339dc5c3&libraries=services"></script>
 <script>
 
@@ -264,15 +321,4 @@ var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지
 var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 </script>
 
-<!-- jQuery library (served from Google) -->
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-bxSlider Javascript file
-<script src="/js/jquery.bxslider.min.js"></script>
-bxSlider CSS file
-<link href="/lib/jquery.bxslider.css" rel="stylesheet" />
-<script>
-$(document).ready(function(){
-  $('.bxslider').bxSlider();  
-});
-</script> -->
 </html>
