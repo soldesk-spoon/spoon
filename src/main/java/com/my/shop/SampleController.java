@@ -1,6 +1,7 @@
 package com.my.shop;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -23,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import com.my.shop.BoardBean;
 import org.springframework.web.multipart.MultipartFile;
@@ -187,6 +190,7 @@ public class SampleController {
         likehateBean.setMid(mid);
         Map<String, Object> lhmap = sampleService.selectLikeHate(likehateBean);
         int sumlike = sampleService.selectSumLike(bid);
+        int sumhate = sampleService.selectSumHate(bid);
         System.out.println(sumlike);
        
         //System.out.println(imgMap);
@@ -202,6 +206,7 @@ public class SampleController {
        // System.out.println(list);
         mv.addObject("list", list);
         mv.addObject("sumlike",sumlike);
+        mv.addObject("sumhate",sumhate);
         return mv;
     }
     
@@ -232,10 +237,12 @@ public class SampleController {
     }
     
     @RequestMapping(value="/sample/insertLikeHate.do", method={RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView insertLikeHate(@RequestParam("bid") int bid, HttpServletRequest request, HttpSession session) throws Exception{
+    public ModelAndView insertLikeHate(@RequestParam("bid") int bid, HttpServletRequest request, HttpSession session,RedirectAttributes redirectAttributes
+) throws Exception{
     	 ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
     	LikeHateBean likehateBean = new LikeHateBean();
     	likehateBean.setBid(bid);
+    	 Map<String, Object> map = new HashMap<String,Object>();
     	String smid = session.getAttribute("mid").toString();
     	int mid = Integer.parseInt(smid);
     	likehateBean.setMid(mid);
@@ -280,7 +287,9 @@ public class SampleController {
         	sampleService.insertHate(likehateBean);
         	System.out.println("01");
         }else if(like==1&&hate==1){
-        	mv.addObject("alert","<script> alert('둘중하나선택');</script>");
+        	
+        	    map.put("alert", "<script> alert('둘중하나선택');</script>");
+        	    redirectAttributes.addFlashAttribute("vo", map);
         	sampleService.deleteLike(likehateBean);
         	sampleService.deleteHate(likehateBean);
         	like=0;

@@ -122,6 +122,13 @@ public class SampleDAO extends AbstractDAO{
 		return selectsumlike;
 	}
 
+	public int selectSumHate(int bid) {
+		// TODO Auto-generated method stub
+		String select  = selectOne("sample.selectSumHate",bid).toString();
+		int selectsumhate = Integer.parseInt(select);
+		return selectsumhate;
+	}
+
 
     
 }

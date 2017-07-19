@@ -207,4 +207,8 @@ INSERT INTO BOARD_UPLOAD
 		SELECT ifnull (SUM(BOARD_LIKE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = #{bid};
 	</select>
 	
+	<select id="selectSumHate" resultType="int">
+		SELECT ifnull (SUM(BOARD_HATE),0) FROM BOARD_LIKE_HATE WHERE BID = #{bid};
+	</select>
+	
 </mapper>

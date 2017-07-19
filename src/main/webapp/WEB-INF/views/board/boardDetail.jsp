@@ -50,14 +50,24 @@
 						 <input type="hidden" value="${lhmap.board_like}" name="like" id="like">
 						 <input type="hidden" value="${lhmap.board_hate}" name="hate" id="hate">  
 			
-						 ${alert}
+						 ${vo.alert}
 						           	
                 	</td>
             </tr>
          	<tr>
          			<td>
-                		좋아요:${sumlike}
+                		좋아요:
                 	</td>
+                	<td>
+                		${sumlike}
+                	</td>
+                	<td>
+                		싫어요:
+                	</td>
+                	<td>
+                		${sumhate}
+                	</td>
+                	
            	</tr>
             
             <tr>

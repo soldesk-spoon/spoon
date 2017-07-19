@@ -42,5 +42,7 @@ public interface SampleService {
 	Map<String, Object> selectLikeHate(LikeHateBean likehateBean) throws Exception;
 
 	int selectSumLike(int bid) throws Exception;
+
+	int selectSumHate(int bid) throws Exception;
 	
 }
