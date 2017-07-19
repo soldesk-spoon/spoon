@@ -85,6 +85,29 @@ public class SampleDAO extends AbstractDAO{
 	public List<BoardBean> selectBoardListByLike(BoardBean boardBean) {
 		// TODO Auto-generated method stub
 		return (List<BoardBean>)selectList("sample.selectBoardListByLike", boardBean);
+	}
+
+	public void insertLike(LikeHateBean likehateBean) {
+		// TODO Auto-generated method stub
+		insert("sample.insertLike",likehateBean);
+		
+	}
+
+	public void deleteLike(LikeHateBean likehateBean) {
+		// TODO Auto-generated method stub
+		delete("sample.deleteLike",likehateBean);
+	}
+
+	public void insertHate(LikeHateBean likehateBean) {
+		// TODO Auto-generated method stub
+		insert("sample.insertHate",likehateBean);
+		
+	}
+
+	public void deleteHate(LikeHateBean likehateBean) {
+		// TODO Auto-generated method stub
+		delete("sample.deleteHate", likehateBean);
+		
 	} 
     
 }

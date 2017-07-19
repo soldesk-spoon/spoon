@@ -12,9 +12,11 @@
 
 </head>
 <body>
+
 <%@ include file="../include/include-session.jsp" %>
 <form method="post" name="LikeForm" id="LikeForm">
 <input type="hidden" id="bid" name="bid" value="${map.bid }">
+<input type="hidden" id="memberNo" name="memberNo" value="${sessionScope.member.mid }">
 <input type="hidden" id="mid1" name="mid1" value="${map.mid}">
     <table class="board_view">
         <colgroup>
@@ -45,7 +47,11 @@
 						 <input type="button" value="좋아요 " onclick="insertLike();">
 						 <input type="button" value="싫어요" onclick="insertHate();">   
 						 <input type="hidden" value="${like}" name="like" id="like">
-						 <input type="hidden" value="0" name="hate" id="hate">            	
+						 <input type="hidden" value="${hate}" name="hate" id="hate">  
+						 <input type="hidden" name="like1" id="like1" value="">
+						 <input type="hidden" name="hate1" id="hate1" value="">
+						 ${alert}
+						           	
                 	</td>
             </tr>
          
@@ -328,22 +334,35 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 <script type="text/javascript">
 	function insertLike() {
 		var bid = document.getElementById('bid').value;
-		var like = document.getElementById('like').value
+		var mid = document.getElementById('mid').value;
+		var like = document.getElementById('like').value;
 		var form = document.forms["LikeForm"];
 		if(like==''||like=='0'){
 			document.getElementById('like').value='1';
 			alert(document.getElementById('like').value);
 		}else{
-			alert(document.getElementById('like').value)
+			document.getElementById('like').value='0'
+			alert(document.getElementById('like').value);
 		}
 		
 		document.LikeForm.action="/shop/sample/openBoardDetail.do?bid="+bid;
-		alert(document.LikeForm.action);
 		form.submit();
 		
 	}
 	
 	function insertHate() {
+		var bid = document.getElementById('bid').value;
+		var mid = document.getElementById('mid').value;
+		var hate = document.getElementById('hate').value;
+		var form = document.forms["LikeForm"];
+		if(hate==''||hate=='0'){
+			document.getElementById('hate').value='1';
+		}else{
+			document.getElementById('hate').value='0'
+		}
+		
+		document.LikeForm.action="/shop/sample/openBoardDetail.do?bid="+bid+"&mid="+mid;
+		form.submit();
 		
 	}
 

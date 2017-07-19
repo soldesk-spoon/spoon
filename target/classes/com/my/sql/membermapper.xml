@@ -31,7 +31,8 @@
     
     <delete id="deleteMember" parameterType="com.my.member.Member">
     </delete>
- 
+ 	
+
 </mapper>
 
 

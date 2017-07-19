@@ -130,17 +130,24 @@ CREATE TABLE QNABOARD(
 	MEMBER_ID VARCHAR(50)
 )ENGINE = innodb DEFAULT CHARSET=UTF8
 
+
+select * from spoon_member
 select * from qnaboard
 
 DROP TABLE SPOON_FREEBOARD
 
-CREATE TABLE BOARD_LIKE(
+CREATE TABLE BOARD_LIKE_HATE(
 	BID INT NOT NULL,
 	MID INT,
 	BOARD_LIKE INT,
 	BOARD_HATE INT
 )
 
+
+select * from board_like_hate;
+
+
+delete from board_like_hate
 
 CREATE TABLE SPOON_SUBWAY (
 	SUBWAY_CODE VARCHAR(30), 

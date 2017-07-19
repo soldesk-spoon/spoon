@@ -11,6 +11,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </head>
 <body>
+
 <%@ include file="../include/include-session.jsp" %>
 <h2>게시판 목록</h2>
 <div>
@@ -95,6 +96,7 @@
         		return false;
         	}
             var B=obj.parent().find("#bid").val();
+            
             document.location.href="/shop/sample/openBoardDetail.do?bid="+B;
             
         }

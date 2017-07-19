@@ -181,4 +181,21 @@ INSERT INTO BOARD_UPLOAD
 	SELECT FILE_NAME FROM BOARD_UPLOAD WHERE BID = #{bid}
 </select>
 
+
+ 	<insert id="insertLike" parameterType="com.my.shop.LikeHateBean">
+ 	 	INSERT INTO BOARD_LIKE_HATE (BID,MID,BOARD_LIKE) VALUES (#{bid},#{mid},#{like})
+ 	</insert>
+ 	
+ 	<delete id="deleteLike" parameterType="com.my.shop.LikeHateBean">
+ 		DELETE FROM BOARD_LIKE_HATE WHERE MID=#{mid} AND BOARD_LIKE=1; 
+ 	</delete>
+
+	<insert id="insertHate" parameterType="com.my.shop.LikeHateBean">
+		INSERT INTO BOARD_LIKE_HATE (BID,MID,BOARD_HATE) VALUES (#{bid},#{mid},#{hate})
+	</insert>
+	
+	<delete id="deleteHate" parameterType="com.my.shop.LikeHateBean">
+		DELETE FROM BOARD_LIKE_HATE WHERE MID=#{mid} AND BOARD_HATE=1;
+	</delete>
+	
 </mapper>

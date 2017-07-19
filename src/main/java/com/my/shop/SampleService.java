@@ -30,5 +30,13 @@ public interface SampleService {
 	List<BoardBean> selectBoardListByHit(BoardBean boardBean);
 
 	List<BoardBean> selectBoardListByLike(BoardBean boardBean);
+
+	void insertLike(LikeHateBean likehateBean)throws Exception;
+
+	void deleteLike(LikeHateBean likehateBean) throws Exception;
+
+	void insertHate(LikeHateBean likehateBean) throws Exception;
+
+	void deleteHate(LikeHateBean likehateBean) throws Exception;
 	
 }

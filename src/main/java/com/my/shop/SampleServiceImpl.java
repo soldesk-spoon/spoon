@@ -94,5 +94,31 @@ public class SampleServiceImpl implements SampleService{
 		// TODO Auto-generated method stub
 		return sampleDAO.selectBoardListByLike(boardBean);
 	}
+
+	@Override
+	public void insertLike(LikeHateBean likehateBean) throws Exception {
+		// TODO Auto-generated method stub
+		sampleDAO.insertLike(likehateBean);
+	}
+
+	@Override
+	public void deleteLike(LikeHateBean likehateBean) throws Exception {
+		// TODO Auto-generated method stub
+		sampleDAO.deleteLike(likehateBean);
+		
+	}
+
+	@Override
+	public void insertHate(LikeHateBean likehateBean) throws Exception {
+		// TODO Auto-generated method stub
+		sampleDAO.insertHate(likehateBean);
+		
+	}
+
+	@Override
+	public void deleteHate(LikeHateBean likehateBean) throws Exception {
+		// TODO Auto-generated method stub
+		sampleDAO.deleteHate(likehateBean);
+	}
 	
 }
