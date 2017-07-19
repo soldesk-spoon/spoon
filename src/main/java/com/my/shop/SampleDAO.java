@@ -115,6 +115,13 @@ public class SampleDAO extends AbstractDAO{
 		return (Map<String, Object>)selectOne("sample.selectLikeHate",likehateBean);
 	}
 
+	public int selectSumLike(int bid) {
+		// TODO Auto-generated method stub
+		String select = selectOne("sample.selectSumLike",bid).toString();
+		int selectsumlike = Integer.parseInt(select);
+		return selectsumlike;
+	}
+
 
     
 }

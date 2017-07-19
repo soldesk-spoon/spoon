@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpRequest;
@@ -37,7 +38,7 @@ public class SampleController {
     private SampleService sampleService;
      
     @RequestMapping(value="/sample/openBoardList.do", method={RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView openSampleBoardList(BoardBean boardBean,HttpServletRequest request) throws Exception{
+    public ModelAndView openSampleBoardList(BoardBean boardBean,HttpServletRequest request,HttpSession session) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardList");
         String selectobj = request.getParameter("sel");
         System.out.println(selectobj);
@@ -57,8 +58,15 @@ public class SampleController {
         	}
         	mv.addObject("selectobj",selectobj);
         }
-        		
-        		
+        if(session.getAttribute("mid")==null){
+        	
+        }else{
+        	String mid = session.getAttribute("mid").toString();
+            session.setAttribute("mid", mid);
+        }
+        
+      
+                
         
         mv.addObject("list", list);
          
@@ -160,71 +168,26 @@ public class SampleController {
         return mv;
     }
     
+    
     @RequestMapping(value="/sample/openBoardDetail.do", method={RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView openBoardDetail(@RequestParam("bid")int bid, HttpServletRequest request ) throws Exception{
+    public ModelAndView openBoardDetail(@RequestParam("bid")int bid, HttpServletRequest request, HttpSession session ) throws Exception{
         ModelAndView mv = new ModelAndView("/board/boardDetail");
         LikeHateBean likehateBean = new LikeHateBean();
         Map<String, Object> map = sampleService.selectBoardDetail(bid);
         List<uploadFileVo> imgMap = sampleService.selectImage(bid);
        // int mid = Integer.parseInt(request.getParameter("memberNo"));
         //likehateBean.setMid(mid);
-        int mid;
         likehateBean.setBid(bid);
-        
-        
-        if(request.getParameter("memberNo")==null){
-        	
-        }else{
-        mid = Integer.parseInt(request.getParameter("memberNo"));
+       
+        String smid =session.getAttribute("mid").toString();
+        session.setAttribute("mid", session.getAttribute("mid"));
+        int mid = Integer.parseInt(smid);
+
+        System.out.println("session oo");
         likehateBean.setMid(mid);
         Map<String, Object> lhmap = sampleService.selectLikeHate(likehateBean);
-        
-        int like=111;
-        int hate=111;
-        System.out.println("like:" + request.getParameter("like"));
-        if(request.getParameter("like").equals("0")||request.getParameter("like")==null){
-        	like=0;
-        }else if(request.getParameter("like").equals("1")){
-        	like=1;
-        } 
-        
-        if(request.getParameter("hate").equals("0")||request.getParameter("hate")==null){
-        	hate=0;
-        }else if(request.getParameter("hate").equals("1")){
-        	hate=1;
-        }
-
-        likehateBean.setBoard_like(like);
-        likehateBean.setBoard_hate(hate);
-        if(like==0&&hate==0){
-        	
-        	likehateBean.setMid(mid);
-        	sampleService.deleteLike(likehateBean);
-        	sampleService.deleteHate(likehateBean);
-        	System.out.println("00");
-        }else if(like==1&&hate==0){
-        	likehateBean.setMid(mid);
-        	sampleService.insertLike(likehateBean);
-        	sampleService.deleteHate(likehateBean);
-        	System.out.println("10");
-        }else if(like==0&&hate==1){
-        	likehateBean.setMid(mid);
-        	sampleService.deleteLike(likehateBean);
-        	sampleService.insertHate(likehateBean);
-        	System.out.println("01");
-        }else if(like==1&&hate==1){
-        	mv.addObject("alert","<script> alert('둘중하나선택');</script>");
-        	like=0;
-        	hate=0;
-        	System.out.println("11");
-        }
-        System.out.println("like : "+like);
-        System.out.println("hate : "+hate);
-        mv.addObject("lhmap",lhmap);
-        System.out.println("lhmap"+lhmap);
-        
-        }
-        
+        int sumlike = sampleService.selectSumLike(bid);
+        System.out.println(sumlike);
        
         //System.out.println(imgMap);
         String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\WEB-INF\\images\\";
@@ -232,11 +195,13 @@ public class SampleController {
         mv.addObject("imgPath", realFolder);
         mv.addObject("imgmap",imgMap);
         mv.addObject("map", map); 
+        mv.addObject("lhmap",lhmap);
+        System.out.println("lhmap"+lhmap);
          
         List<CommentBean> list = sampleService.selectComment(bid);
        // System.out.println(list);
         mv.addObject("list", list);
-        
+        mv.addObject("sumlike",sumlike);
         return mv;
     }
     
@@ -266,7 +231,68 @@ public class SampleController {
         
     }
     
-    
+    @RequestMapping(value="/sample/insertLikeHate.do", method={RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView insertLikeHate(@RequestParam("bid") int bid, HttpServletRequest request, HttpSession session) throws Exception{
+    	 ModelAndView mv = new ModelAndView("redirect:/sample/openBoardDetail.do");
+    	LikeHateBean likehateBean = new LikeHateBean();
+    	likehateBean.setBid(bid);
+    	String smid = session.getAttribute("mid").toString();
+    	int mid = Integer.parseInt(smid);
+    	likehateBean.setMid(mid);
+    	mv.addObject("bid", bid);
+        int like=111;
+        int hate=111;
+        System.out.println("like:" + request.getParameter("like"));
+        if(request.getParameter("like")==null||request.getParameter("like").equals("0")){
+        	like=0;
+        	System.out.println("like=0");
+        }else if(request.getParameter("like").equals("1")){
+        	like=1;
+        	System.out.println("like=1");
+        }else{
+        	like=0;
+        }
+        System.out.println("request  hate : "+request.getParameter("hate"));
+        if(request.getParameter("hate")==null||request.getParameter("hate").equals("0")){
+        	hate=0;
+        	System.out.println("hate=0");
+        }else if(request.getParameter("hate").equals("1")){
+        	hate=1;
+        	System.out.println("hate=1");
+        }else{
+        	hate = 0;
+        }
+
+        likehateBean.setBoard_like(like);
+        likehateBean.setBoard_hate(hate);
+        if(like==0&&hate==0){
+        	sampleService.deleteLike(likehateBean);
+        	sampleService.deleteHate(likehateBean);
+        	System.out.println("00");
+        }else if(like==1&&hate==0){
+        	likehateBean.setMid(mid);
+        	sampleService.insertLike(likehateBean);
+        	sampleService.deleteHate(likehateBean);
+        	System.out.println("10");
+        }else if(like==0&&hate==1){
+        	likehateBean.setMid(mid);
+        	sampleService.deleteLike(likehateBean);
+        	sampleService.insertHate(likehateBean);
+        	System.out.println("01");
+        }else if(like==1&&hate==1){
+        	mv.addObject("alert","<script> alert('둘중하나선택');</script>");
+        	sampleService.deleteLike(likehateBean);
+        	sampleService.deleteHate(likehateBean);
+        	like=0;
+        	hate=0;
+        	System.out.println("11");
+        }
+        System.out.println("like : "+like);
+        System.out.println("hate : "+hate);
+        
+        return mv;
+       
+    }
     @RequestMapping(value="/sample/deleteBoard.do")
     public ModelAndView deleteBoard(int bid) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");

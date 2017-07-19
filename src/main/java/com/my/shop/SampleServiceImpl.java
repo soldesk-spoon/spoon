@@ -128,6 +128,12 @@ public class SampleServiceImpl implements SampleService{
 		return likehatemap;
 	}
 
+	@Override
+	public int selectSumLike(int bid) throws Exception {
+		// TODO Auto-generated method stub
+		return (Integer) sampleDAO.selectSumLike(bid);
+	}
+
 	
 	
 }

@@ -183,7 +183,7 @@ INSERT INTO BOARD_UPLOAD
 
 
  	<insert id="insertLike" parameterType="com.my.shop.LikeHateBean">
- 	 	INSERT INTO BOARD_LIKE_HATE (BID,MID,BOARD_LIKE) VALUES (#{bid},#{mid},#{like})
+ 	 	INSERT INTO BOARD_LIKE_HATE (BID,MID,BOARD_LIKE) VALUES (#{bid},#{mid},#{board_like})
  	</insert>
  	
  	<delete id="deleteLike" parameterType="com.my.shop.LikeHateBean">
@@ -191,7 +191,7 @@ INSERT INTO BOARD_UPLOAD
  	</delete>
 
 	<insert id="insertHate" parameterType="com.my.shop.LikeHateBean">
-		INSERT INTO BOARD_LIKE_HATE (BID,MID,BOARD_HATE) VALUES (#{bid},#{mid},#{hate})
+		INSERT INTO BOARD_LIKE_HATE (BID,MID,BOARD_HATE) VALUES (#{bid},#{mid},#{board_hate})
 	</insert>
 	
 	<delete id="deleteHate" parameterType="com.my.shop.LikeHateBean">
@@ -199,8 +199,12 @@ INSERT INTO BOARD_UPLOAD
 	</delete>
 	
 	<select id="selectLikeHate" parameterType="hashmap" resultType="hashmap">
-		SELECT BOARD_LIKE, BOARD_HATE FROM BOARD_LIKE_HATE WHERE BID = #{bid} AND MID = #{mid}
+		SELECT board_like, board_hate FROM BOARD_LIKE_HATE WHERE BID = #{bid} AND MID = #{mid}
 	
+	</select>
+	
+	<select id="selectSumLike" resultType="int">
+		SELECT ifnull (SUM(BOARD_LIKE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = #{bid};
 	</select>
 	
 </mapper>

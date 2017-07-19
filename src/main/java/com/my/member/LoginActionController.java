@@ -53,11 +53,13 @@ public class LoginActionController {
 	     }else {
 	    	 System.out.println("로그인 성공");
 	    	 session.setAttribute("member_id", MEMBER_ID);
+	    	 session.setAttribute("mid", result);
 	    	 map.put("log", 0);
 	    	 map.put("mid", result);
 	    	 map.put("member_id", member.getMEMBER_ID());
 	    	 request.getSession().setAttribute("member", map);
-	    	 System.out.println("session.get : " + session.getAttribute("member_id"));
+	    	 System.out.println("session.get : " + session.getAttribute("mid"));
+	    	 view.addObject("mid",result);
 	    	 view.addObject("member_id",session.getAttribute("member_id"));
 	    	 view.setViewName("redirect:/sample/openBoardList.do");
 	     }

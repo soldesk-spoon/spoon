@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%@ page session="true" %>
 <%@ include file="../include/include-header.jsp" %>
 
 <style type="text/css">
@@ -44,17 +45,20 @@
                 <th scope="row">제목</th>
                 <td colspan="3">${map.board_subject }</td>
 					<td colspan="2">
-						 <input type="button" value="좋아요 " onclick="insertLike();">
-						 <input type="button" value="싫어요" onclick="insertHate();">
-						 <input type="hidden" value="${lhmap.BOARD_LIKE}" name="like" id="like">
-						 <input type="hidden" value="${lhmap.BOARD_HATE}" name="hate" id="hate">  
+						 <input type="button" value="" onclick="insertLike();" id="Likebtn" name="Likebtn">
+						 <input type="button" value="" onclick="insertHate();" id="Hatebtn" name="Hatebtn">
+						 <input type="hidden" value="${lhmap.board_like}" name="like" id="like">
+						 <input type="hidden" value="${lhmap.board_hate}" name="hate" id="hate">  
 			
 						 ${alert}
 						           	
                 	</td>
             </tr>
-         
-           	
+         	<tr>
+         			<td>
+                		좋아요:${sumlike}
+                	</td>
+           	</tr>
             
             <tr>
                 <td colspan="4">${map.board_contents }</td>
@@ -331,20 +335,41 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 </script>
 
 <script type="text/javascript">
+	window.onload = function(){
+	var like = document.getElementById('like').value;
+	var hate = document.getElementById('hate').value;
+	
+	if(like=='1'){
+		document.getElementById('Likebtn').value = "취소"
+	}else{
+		document.getElementById('Likebtn').value = "좋아요"
+	}
+	
+	if(hate=='1'){
+		document.getElementById('Hatebtn').value = "취소"
+	}else{
+		document.getElementById('Hatebtn').value = "싫어요"
+	}
+	
+	}
+
 	function insertLike() {
+		var hatebtn = document.getElementById('Hatebtn').value;
 		var bid = document.getElementById('bid').value;
 		var mid = document.getElementById('mid').value;
 		var like = document.getElementById('like').value;
 		var form = document.forms["LikeForm"];
-		if(like==''||like=='0'){
+		
+		if(!like||like=='0'){
 			document.getElementById('like').value='1';
 			alert(document.getElementById('like').value);
 		}else{
 			document.getElementById('like').value='0'
 			alert(document.getElementById('like').value);
+			
 		}
 		
-		document.LikeForm.action="/shop/sample/openBoardDetail.do?bid="+bid;
+		document.LikeForm.action="/shop/sample/insertLikeHate.do?bid="+bid;
 		form.submit();
 		
 	}
@@ -354,13 +379,13 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 		var mid = document.getElementById('mid').value;
 		var hate = document.getElementById('hate').value;
 		var form = document.forms["LikeForm"];
-		if(hate==''||hate=='0'){
+		if(!hate||hate=='0'){
 			document.getElementById('hate').value='1';
 		}else{
 			document.getElementById('hate').value='0'
 		}
 		
-		document.LikeForm.action="/shop/sample/openBoardDetail.do?bid="+bid+"&mid="+mid;
+		document.LikeForm.action="/shop/sample/insertLikeHate.do?bid="+bid;
 		form.submit();
 		
 	}
