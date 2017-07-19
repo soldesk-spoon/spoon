@@ -170,10 +170,14 @@ public class SampleController {
         //likehateBean.setMid(mid);
         int mid;
         likehateBean.setBid(bid);
+        
+        
         if(request.getParameter("memberNo")==null){
         	
         }else{
-        	
+        mid = Integer.parseInt(request.getParameter("memberNo"));
+        likehateBean.setMid(mid);
+        Map<String, Object> lhmap = sampleService.selectLikeHate(likehateBean);
         
         int like=111;
         int hate=111;
@@ -186,40 +190,43 @@ public class SampleController {
         
         if(request.getParameter("hate").equals("0")||request.getParameter("hate")==null){
         	hate=0;
-        }else if(request.getParameter("like").equals("1")){
+        }else if(request.getParameter("hate").equals("1")){
         	hate=1;
         }
-        likehateBean.setHate(hate);
-        likehateBean.setLike(like);
+
+        likehateBean.setBoard_like(like);
+        likehateBean.setBoard_hate(hate);
         if(like==0&&hate==0){
-        	mid = Integer.parseInt(request.getParameter("memberNo"));
+        	
         	likehateBean.setMid(mid);
         	sampleService.deleteLike(likehateBean);
         	sampleService.deleteHate(likehateBean);
+        	System.out.println("00");
         }else if(like==1&&hate==0){
-        	mid = Integer.parseInt(request.getParameter("memberNo"));
         	likehateBean.setMid(mid);
         	sampleService.insertLike(likehateBean);
-        	sampleService.deleteLike(likehateBean);
-        	
+        	sampleService.deleteHate(likehateBean);
+        	System.out.println("10");
         }else if(like==0&&hate==1){
-        	mid = Integer.parseInt(request.getParameter("memberNo"));
         	likehateBean.setMid(mid);
         	sampleService.deleteLike(likehateBean);
         	sampleService.insertHate(likehateBean);
+        	System.out.println("01");
         }else if(like==1&&hate==1){
         	mv.addObject("alert","<script> alert('둘중하나선택');</script>");
         	like=0;
         	hate=0;
+        	System.out.println("11");
         }
         System.out.println("like : "+like);
         System.out.println("hate : "+hate);
-        mv.addObject("hate",hate);
-        mv.addObject("like",like);
+        mv.addObject("lhmap",lhmap);
+        System.out.println("lhmap"+lhmap);
+        
         }
         
-        
-        System.out.println(imgMap);
+       
+        //System.out.println(imgMap);
         String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\WEB-INF\\images\\";
        
         mv.addObject("imgPath", realFolder);
@@ -227,7 +234,7 @@ public class SampleController {
         mv.addObject("map", map); 
          
         List<CommentBean> list = sampleService.selectComment(bid);
-        System.out.println(list);
+       // System.out.println(list);
         mv.addObject("list", list);
         
         return mv;

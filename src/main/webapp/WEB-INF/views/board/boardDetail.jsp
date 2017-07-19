@@ -45,11 +45,10 @@
                 <td colspan="3">${map.board_subject }</td>
 					<td colspan="2">
 						 <input type="button" value="좋아요 " onclick="insertLike();">
-						 <input type="button" value="싫어요" onclick="insertHate();">   
-						 <input type="hidden" value="${like}" name="like" id="like">
-						 <input type="hidden" value="${hate}" name="hate" id="hate">  
-						 <input type="hidden" name="like1" id="like1" value="">
-						 <input type="hidden" name="hate1" id="hate1" value="">
+						 <input type="button" value="싫어요" onclick="insertHate();">
+						 <input type="hidden" value="${lhmap.BOARD_LIKE}" name="like" id="like">
+						 <input type="hidden" value="${lhmap.BOARD_HATE}" name="hate" id="hate">  
+			
 						 ${alert}
 						           	
                 	</td>

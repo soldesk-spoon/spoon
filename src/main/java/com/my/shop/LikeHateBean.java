@@ -3,8 +3,8 @@ package com.my.shop;
 public class LikeHateBean {
 	private int bid;
 	private int mid;
-	private int like;
-	private int hate;
+	private int board_like;
+	private int board_hate;
 	public int getBid() {
 		return bid;
 	}
@@ -17,18 +17,18 @@ public class LikeHateBean {
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
-	public int getLike() {
-		return like;
+	public int getBoard_like() {
+		return board_like;
 	}
-	public void setLike(int like) {
-		this.like = like;
+	public void setBoard_like(int board_like) {
+		this.board_like = board_like;
 	}
-	public int getHate() {
-		return hate;
+	public int getBoard_hate() {
+		return board_hate;
 	}
-	public void setHate(int hate) {
-		this.hate = hate;
+	public void setBoard_hate(int board_hate) {
+		this.board_hate = board_hate;
 	}
-	
+
 	
 }

@@ -198,4 +198,9 @@ INSERT INTO BOARD_UPLOAD
 		DELETE FROM BOARD_LIKE_HATE WHERE MID=#{mid} AND BOARD_HATE=1;
 	</delete>
 	
+	<select id="selectLikeHate" parameterType="hashmap" resultType="hashmap">
+		SELECT BOARD_LIKE, BOARD_HATE FROM BOARD_LIKE_HATE WHERE BID = #{bid} AND MID = #{mid}
+	
+	</select>
+	
 </mapper>

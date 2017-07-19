@@ -120,5 +120,14 @@ public class SampleServiceImpl implements SampleService{
 		// TODO Auto-generated method stub
 		sampleDAO.deleteHate(likehateBean);
 	}
+
+	@Override
+	public Map<String, Object> selectLikeHate(LikeHateBean likehateBean) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> likehatemap = (Map<String, Object>) sampleDAO.selectLikeHate(likehateBean);
+		return likehatemap;
+	}
+
+	
 	
 }

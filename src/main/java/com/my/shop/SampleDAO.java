@@ -108,6 +108,13 @@ public class SampleDAO extends AbstractDAO{
 		// TODO Auto-generated method stub
 		delete("sample.deleteHate", likehateBean);
 		
-	} 
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectLikeHate(LikeHateBean likehateBean) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>)selectOne("sample.selectLikeHate",likehateBean);
+	}
+
+
     
 }
