@@ -5,22 +5,24 @@
      
     <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
       
-            SELECT bid, board_subject,member_id, board_hits, board_created FROM spoon_board
+            SELECT bid, board_subject,member_id, board_hits, board_created, board_like FROM spoon_board
    WHERE BOARD_DELYN='N' ORDER BY bid DESC;
     </select>
      
     <select id="selectBoardListByHit" parameterType="hashmap" resultType="hashmap">
       
-            SELECT bid, board_subject,member_id, board_hits, board_created FROM spoon_board
+            SELECT bid, board_subject,member_id, board_hits, board_created,board_like FROM spoon_board
    WHERE BOARD_DELYN='N' ORDER BY board_hits DESC;
     </select>
      
      
      <select id="selectBoardListByLike" parameterType="hashmap" resultType="hashmap">
       
-            SELECT bid, board_subject,member_id, board_hits, board_created FROM spoon_board
+            SELECT bid, board_subject,member_id, board_hits, board_created , board_like FROM spoon_board
    WHERE BOARD_DELYN='N' ORDER BY board_like DESC;
     </select>
+    
+    
      
       
      
@@ -210,5 +212,13 @@ INSERT INTO BOARD_UPLOAD
 	<select id="selectSumHate" resultType="int">
 		SELECT ifnull (SUM(BOARD_HATE),0) FROM BOARD_LIKE_HATE WHERE BID = #{bid};
 	</select>
+	
+	
+	<update id="updateSumlike">
+		UPDATE SPOON_BOARD SET BOARD_LIKE=(SELECT ifnull (SUM(BOARD_LIKE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = #{bid}),
+						BOARD_HATE = (SELECT ifnull (SUM(BOARD_HATE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = #{bid})
+					WHERE BID = #{bid}
+		
+	</update>
 	
 </mapper>

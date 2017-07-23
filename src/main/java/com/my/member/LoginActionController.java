@@ -25,8 +25,8 @@ public class LoginActionController {
 	
 	
 	 /*
-	  * ·Î±×ÀÎ À¯È¿¼º È®ÀÎ ÆäÀÌÁö
-	  * session »ý¼º ÈÄ login_session ÆäÀÌÁö¿¡ mid°ª°ú member_id °ª ³Ñ±è
+	  * ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	  * session ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ login_session ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ midï¿½ï¿½ï¿½ï¿½ member_id ï¿½ï¿½ ï¿½Ñ±ï¿½
 	  * */
 	 @RequestMapping(value="/member/login_action", method=RequestMethod.POST)
 	    public ModelAndView loginform (@RequestParam("MEMBER_ID") String MEMBER_ID,@RequestParam("MEMBER_PASSWORD") String MEMBER_PASSWORD, Model model,HttpSession session, HttpServletRequest request) {
@@ -44,14 +44,14 @@ public class LoginActionController {
 	    
 	     System.out.println("result : " + result);
 	     if(result==null){
-	    	 System.out.println("´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä");
+	    	 System.out.println("ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 	    	 map.put("log", 0);
 	    	 map.put("mid", result);
-	    	 map.put("alert", "<script type='text/javascript'>window.onload=function(){alert('¾ÆÀÌµð ºñ¹Ð¹øÈ£¸¦ ´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä'); return false; }</script>");
+	    	 map.put("alert", "<script type='text/javascript'>window.onload=function(){alert('ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½'); return false; }</script>");
 	    	 request.getSession().setAttribute("member", map);
 	    	 view.setViewName("redirect:/sample/openBoardList.do");
 	     }else {
-	    	 System.out.println("·Î±×ÀÎ ¼º°ø");
+	    	 System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 	    	 session.setAttribute("member_id", MEMBER_ID);
 	    	 session.setAttribute("mid", result);
 	    	 map.put("log", 0);
@@ -97,14 +97,14 @@ public class LoginActionController {
 	     System.out.println("result : " + result);
 	     if(result==null){
 	    	 
-	    	 System.out.println("´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä");
+	    	 System.out.println("ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 	    	 view.addObject("alert","<script type='text/javascript'>"
-	    	 		+ "alert('¾ÆÀÌµð ºñ¹Ð¹øÈ£¸¦ È®ÀÎÇØÁÖ¼¼¿ä.')"
+	    	 		+ "alert('ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½.')"
 	    	 		+ " </script>");
 	    	 view.addObject("log", "0");
 	    	 view.setViewName("/member/login");
 	     }else {
-	    	 System.out.println("·Î±×ÀÎ ¼º°ø");
+	    	 System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 	    	 view.addObject("log", "1");
 	    	 String member_id = member.getMEMBER_ID();
 	  
@@ -140,13 +140,13 @@ public class LoginActionController {
 	       int result = memberDAOService.JoinIdCheck(member.getMEMBER_ID());
 	       
 	       if(result==0){
-	    	   view.addObject("MEMBER_INFO", "»ç¿ëÇÒ ¼ö ÀÖ´Â ¾ÆÀÌµð ÀÔ´Ï´Ù. ");
-	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();' name='useCheck' id='useCheck' value='»ç¿ëÇÏ±â'>");
+	    	   view.addObject("MEMBER_INFO", "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½. ");
+	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();' name='useCheck' id='useCheck' value='ï¿½ï¿½ï¿½ï¿½Ï±ï¿½'>");
 	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam1' name ='CheckParam1' value='1'>");
 	    	   
 	       }else {
-	    	   view.addObject("MEMBER_INFO", "»ç¿ëÇÒ ¼ö ¾ø´Â ¾ÆÀÌµðÀÔ´Ï´Ù.");
-	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();'  name='useCheck' id='useCheck' value='´Ù½Ã¾²±â'>");
+	    	   view.addObject("MEMBER_INFO", "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½Ô´Ï´ï¿½.");
+	    	   view.addObject("pop_button","<input type='button' onclick='Idcheckparam();'  name='useCheck' id='useCheck' value='ï¿½Ù½Ã¾ï¿½ï¿½ï¿½'>");
 	    	   view.addObject("CheckParam","<input type='hidden' id='CheckParam1' name ='CheckParam1' value='0'>");
 	       }
 	       view.setViewName("/member/joinIdCheckResult");

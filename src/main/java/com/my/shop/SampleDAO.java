@@ -129,6 +129,11 @@ public class SampleDAO extends AbstractDAO{
 		return selectsumhate;
 	}
 
+	public void updateSumlike(int bid) {
+		// TODO Auto-generated method stub
+		update("sample.updateSumlike", bid);
+	}
+
 
     
 }

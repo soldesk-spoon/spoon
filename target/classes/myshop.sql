@@ -2,7 +2,7 @@ SELECT cid, member_id, ref, comment_created, comment  FROM board_comment
    WHERE COMMENT_DELYN='N' and bid=1 order by ref asc, cid asc
 
   
-½ºÇ¬ : 
+ï¿½ï¿½Ç¬ : 
 
 TABLE : MEMBER, BOARD, FREEBOARD, SUBWAY,
 
@@ -94,6 +94,13 @@ SELECT MAX(BID) FROM SPOON_BOARD
 
 SELECT * FROM SPOON_BOARD
 delete from spoon_board
+
+select * from spoon_member
+
+UPDATE SPOON_BOARD SET BOARD_LIKE=(SELECT ifnull (SUM(BOARD_LIKE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = 2),
+						BOARD_HATE = (SELECT ifnull (SUM(BOARD_HATE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = 2)
+					WHERE BID = 2
+
 
 UPDATE spoon_board
         SET
@@ -194,6 +201,9 @@ select count(member_id) from spoon_member where member_id = 'km94sm'
 SELECT COUNT(MEMBER_ID) FROM SPOON_MEMBER WHERE MEMBER_ID = 'km94sm' AND MEMBER_PASSWORD = 'qpalz09'
 SELECT COUNT(*) FROM SPOON_MEMBER WHERE MEMBER_ID = 'moonsong22' AND MEMBER_PASSWORD = '1111'
 
+INSERT INTO SPOON_BOARD (BOARD_LIKE) VALUES (SELECT BOARD_LIKE FROM BOARD_LIKE_HATE where bid = 2) WHERE BID = 2 
+
+select * from board_like_hate
 
 SELECT cid, member_id, ref, comment_created, comment  FROM board_comment
    WHERE COMMENT_DELYN='N' and bid=1 order by ref desc

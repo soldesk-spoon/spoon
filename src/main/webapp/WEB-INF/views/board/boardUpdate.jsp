@@ -6,7 +6,7 @@
 </head>
 <body>
 <%@ include file="../include/include-session.jsp" %>
-<form name="update" method="post" action="/shop/sample/updateBoard.do">
+<form name="update" method="post" action="/spoon/sample/updateBoard.do">
 	  <input type="hidden" id="bid" name="bid" value="${map.bid }">
     <table class="board_view">
         <colgroup>
@@ -67,15 +67,15 @@
         });
          
         function fn_openBoardList(){
-        	document.location.href="/shop/sample/openBoardList.do";
+        	document.location.href="/spoon/sample/openBoardList.do";
         }
          
         function fn_updateBoard(){
 			
         	var bid = "${map.bid}";
-            var url = "/shop/sample/updateBoard.do";
+            var url = "/spoon/sample/updateBoard.do";
             document.update.submit();
-           /*  comSubmit.setUrl("<c:url value='/shop/sample/updateBoard.do?BID="+bid+"' />");
+           /*  comSubmit.setUrl("<c:url value='/spoon/sample/updateBoard.do?BID="+bid+"' />");
             comSubmit.submit(); */
         /* 	var frm = document.getElementById("frm");
         	frm.submit(); */

@@ -16,7 +16,7 @@
 <h2>게시판 목록</h2>
 <div>
 	정렬 선택
-	<form method="post" action="/shop/sample/openBoardList.do" name="selectedForm">
+	<form method="post" action="/spoon/sample/openBoardList.do" name="selectedForm">
 		<input type="hidden" id="sel" name="sel" value="">
 	</form>
 	<select id="selectOption" name="selectOption" onChange="javascript:selectEvent(this)">
@@ -31,6 +31,7 @@
         <col width="10%"/>
         <col width="*"/>
         <col width="15%"/>
+        <col width="15%"/>
         <col width="20%"/>
     </colgroup>
     <thead>
@@ -38,6 +39,7 @@
             <th scope="col">글번호</th>
             <th scope="col">제목</th>
             <th scope="col">조회수</th>
+            <th scope="col">추천수</th>
             <th scope="col">작성일</th>
         </tr>
     </thead>
@@ -52,6 +54,7 @@
                                 <input type="hidden" id="bid" value="${row.bid }">
                             </td>
                         <td>${row.board_hits }</td>
+                        <td>${row.board_like }</td>
                         <td>${row.board_created }</td>
                     </tr>
                 </c:forEach>
@@ -86,7 +89,7 @@
          
          
         function fn_openBoardWrite(){
-        	document.location.href="/shop/sample/openBoardWrite.do?subway_linenumber=1";
+        	document.location.href="/spoon/sample/openBoardWrite.do?subway_linenumber=1";
         }
          
         function fn_openBoardDetail(obj){
@@ -97,7 +100,7 @@
         	}
             var B=obj.parent().find("#bid").val();
             
-            document.location.href="/shop/sample/openBoardDetail.do?bid="+B;
+            document.location.href="/spoon/sample/openBoardDetail.do?bid="+B;
             
         }
 		function selectEvent(selectObj){

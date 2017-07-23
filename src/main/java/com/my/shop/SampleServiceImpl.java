@@ -140,6 +140,14 @@ public class SampleServiceImpl implements SampleService{
 		return (Integer) sampleDAO.selectSumHate(bid);
 	}
 
+	@Override
+	public void updateSumlike(int bid) throws Exception {
+		// TODO Auto-generated method stub
+		sampleDAO.updateSumlike(bid);
+		
+		
+	}
+
 	
 	
 }

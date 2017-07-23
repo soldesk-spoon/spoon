@@ -116,7 +116,7 @@
 						<td colspan="2">&nbsp;&nbsp;${row.comment }						
 						</td></tr>
 						</c:if>
-						<form id="writeC" name="writeC" method="post" action="/shop/sample/insertComment.do">
+						<form id="writeC" name="writeC" method="post" action="/spoon/sample/insertComment.do">
 							<c:if test="${row.ref eq row.cid}">
 							<tr>
 							<td width="200"><font face="Arial Black">${row.member_id }</font>&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">${row.comment_created }</font></td>
@@ -157,7 +157,7 @@
 	</table>
 	
 	
-	<form id="writeC2" name="writeC2" method="post" action="/shop/sample/insertComment.do">
+	<form id="writeC2" name="writeC2" method="post" action="/spoon/sample/insertComment.do">
 	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
 	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
 	<input type="hidden" id="ref" name="ref" value="0">
@@ -244,7 +244,7 @@
         });
          
         function fn_openBoardList(){
-        	document.location.href="/shop/sample/openBoardList.do";
+        	document.location.href="/spoon/sample/openBoardList.do";
         }
          
         function fn_openBoardUpdate(obj){
@@ -258,7 +258,7 @@
         		alert("수정권한이 권한이 없습니다.");
         		return false;
         	}
-        	document.location.href="/shop/sample/openBoardUpdate.do?bid="+B;
+        	document.location.href="/spoon/sample/openBoardUpdate.do?bid="+B;
             /*
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();
@@ -269,7 +269,7 @@
         
         function fn_deleteBoard(){
         	var B = ${map.bid};
-            document.location.href="/shop/sample/deleteBoard.do?bid="+B;
+            document.location.href="/spoon/sample/deleteBoard.do?bid="+B;
             /*
         	var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");
@@ -379,7 +379,7 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 			
 		}
 		
-		document.LikeForm.action="/shop/sample/insertLikeHate.do?bid="+bid;
+		document.LikeForm.action="/spoon/sample/insertLikeHate.do?bid="+bid;
 		form.submit();
 		
 	}
@@ -395,7 +395,7 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 			document.getElementById('hate').value='0'
 		}
 		
-		document.LikeForm.action="/shop/sample/insertLikeHate.do?bid="+bid;
+		document.LikeForm.action="/spoon/sample/insertLikeHate.do?bid="+bid;
 		form.submit();
 		
 	}

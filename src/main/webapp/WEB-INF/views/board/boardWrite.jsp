@@ -9,7 +9,7 @@
 
 <body>
 	<%@ include file="../include/include-session.jsp"%>
-	<form id="frm" action="/shop/sample/insertBoard.do" method="post"
+	<form id="frm" action="/spoon/sample/insertBoard.do" method="post"
 		name="frm" enctype="multipart/form-data">
 		<c:if test="${bid eq null}">
 			<input type="hidden" id="bid" name="bid" value="1" >		
@@ -110,9 +110,9 @@
     });
      
     function fn_openBoardList(){
-    	document.location.href="/shop/sample/openBoardList.do";/*
+    	document.location.href="/spoon/sample/openBoardList.do";/*
         var comSubmit = new ComSubmit();
-        comSubmit.setUrl("<c:url value='/shop/sample/openBoardList.do' />");
+        comSubmit.setUrl("<c:url value='/spoon/sample/openBoardList.do' />");
         comSubmit.submit();*/
     }
      
@@ -127,14 +127,14 @@
     	function onsubSelect(){
     		var frm = document.getElementById('frm');
     		var subway_linenumber = document.getElementById('subway_linenumber').value;
-    		frm.action="/shop/sample/openBoardWrite.do?subway_linenumber="+subway_linenumber;
+    		frm.action="/spoon/sample/openBoardWrite.do?subway_linenumber="+subway_linenumber;
     		frm.submit();
     		
     	}
     	
     	function mapviewOpen(){
     		 window.open(
-    		    		"/shop/sample/board/map.do",
+    		    		"/spoon/sample/board/map.do",
     		    		"EventFrame",
     		    		"menubar=no,width=900,height=550,toolbar=no"
     		    		);

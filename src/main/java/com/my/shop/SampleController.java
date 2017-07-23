@@ -46,6 +46,7 @@ public class SampleController {
         String selectobj = request.getParameter("sel");
         System.out.println(selectobj);
         List<BoardBean> list = sampleService.selectBoardList(boardBean);
+        
       
         if(selectobj==null){
         	list = sampleService.selectBoardList(boardBean);
@@ -67,8 +68,6 @@ public class SampleController {
         	String mid = session.getAttribute("mid").toString();
             session.setAttribute("mid", mid);
         }
-        
-      
                 
         
         mv.addObject("list", list);
@@ -140,19 +139,19 @@ public class SampleController {
              
         } else {
             
-                // ÆÄÀÏ Áßº¹¸í Ã³¸®
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
                 String genId = UUID.randomUUID().toString();
-                // º»·¡ ÆÄÀÏ¸í
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½
                 String originalfileName = mf.get(i).getOriginalFilename();
                  
                 String saveFileName = genId + "." + originalfileName;
-                // ÀúÀåµÇ´Â ÆÄÀÏ ÀÌ¸§
+                // ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
  
-                String savePath = realFolder + saveFileName; // ÀúÀå µÉ ÆÄÀÏ °æ·Î
+                String savePath = realFolder + saveFileName; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
  
-                long fileSize = mf.get(i).getSize(); // ÆÄÀÏ »çÀÌÁî
+                long fileSize = mf.get(i).getSize(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  
-                mf.get(i).transferTo(new File(savePath)); // ÆÄÀÏ ÀúÀå
+                mf.get(i).transferTo(new File(savePath)); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 
                 uploadfilevo.setBid(bid);
                 uploadfilevo.setFile_size(fileSize);
@@ -192,7 +191,7 @@ public class SampleController {
         int sumlike = sampleService.selectSumLike(bid);
         int sumhate = sampleService.selectSumHate(bid);
         System.out.println(sumlike);
-       
+        sampleService.updateSumlike(bid); 
         //System.out.println(imgMap);
         String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\WEB-INF\\images\\";
        
@@ -288,7 +287,7 @@ public class SampleController {
         	System.out.println("01");
         }else if(like==1&&hate==1){
         	
-        	    map.put("alert", "<script> alert('µÑÁßÇÏ³ª¼±ÅÃ');</script>");
+        	    map.put("alert", "<script> alert('ë‘˜ ì¤‘ í•˜ë‚˜ë§Œ ì„ íƒí•´ì£¼ì„¸ìš”.');</script>");
         	    redirectAttributes.addFlashAttribute("vo", map);
         	sampleService.deleteLike(likehateBean);
         	sampleService.deleteHate(likehateBean);
@@ -351,48 +350,4 @@ public class SampleController {
         return mv;        
     }
 }
-    //
-    //
-    //
-    //
-    //
-    
-    
-    /*@RequestMapping(value="/sample/openComment.do", method=RequestMethod.GET)
-    public ModelAndView openComment(@RequestParam("bid")int bid) throws Exception{
-        ModelAndView mv = new ModelAndView("/board/comment");
-         
-       List<CommentBean> list = sampleService.selectComment(bid);
-       System.out.println(list);
-       mv.addObject("list", list);
-         
-       return mv;
-    }*/
-    
-    /*
-    
-    @RequestMapping(value="/sample/insertBoard.do")
-    public ModelAndView insertComment(BoardBean boardBean, HttpServletRequest request,@RequestParam("file1") MultipartFile report) throws Exception{
-        ModelAndView mv = new ModelAndView("redirect:/sample/openBoardList.do");
-        int mid = Integer.parseInt(request.getParameter("session_mid"));
-        String member_id = request.getParameter("session_member_id");
-        String rest = request.getParameter("rest");
-    	String input_lng =request.getParameter("input_lng");
-    	String input_lat = request.getParameter("input_lat");
-    	String address = request.getParameter("address"); 
-    	System.out.println("report.getname : "+report.getName());
-    	System.out.println("report.getoriginalfilename : "+ report.getOriginalFilename());
-    	boardBean.setBoard_shopname(rest);
-    	boardBean.setBoard_lat(input_lat);
-    	boardBean.setBoard_lng(input_lng);
-    	boardBean.setBoard_address(address);
-    	//boardBean.setFilename1(report.toString());
-        boardBean.setMember_id(member_id);
-        boardBean.setMid(mid);
-        boardBean.setSubway_linenumber( request.getParameter("subway_linenumber1"));
-        sampleService.insertBoard(boardBean);
-        return mv;
-    }
-    
-    
-}*/
+   
