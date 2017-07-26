@@ -2,6 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ page session="true" %>
 <%@ include file="../include/include-header.jsp" %>
 
@@ -10,9 +13,14 @@
 #slider li {display:none;position:absolute;left:0;top:0}
 #slider img {width:350px;height:350px}
 </style>
-
+<link href="/spoon/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="/spoon/js/jquery-1.11.3.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="/spoon/js/bootstrap.js"></script>
 
 <%@ include file="../include/include-session.jsp" %>
 <form method="post" name="LikeForm" id="LikeForm">
@@ -78,15 +86,26 @@
            	</tr>
            	
 			<tr>
-					<td><button type="button" id="prev_btn" class="btn">이전</button></td>
-				<td>
-					<ul id="slider">
+					<!-- <td><button type="button" id="prev_btn" class="btn">이전</button></td> -->
+				<td colspan="3" align="center">
+<div id="carousel1" class="carousel slide" data-ride="carousel">
+	<ol class="carousel-indicators">
+	    <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+	    <li data-target="#carousel1" data-slide-to="1"></li>
+	    <li data-target="#carousel1" data-slide-to="2"></li>
+    </ol>
+	  <div class="carousel-inner" role="listbox">
 					<c:forEach items="${imgmap}" var="img">
-                    		<li><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" ></li>
+					<div class="item active"><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" class="center-block">
+	      <div class="carousel-caption">
+          </div>
+        </div>                    		
       				</c:forEach>
-      				</ul>
+      				</div>
+	  <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel1" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>
+  
       				</td>
-      					<td><button type="button" id="next_btn" class="btn">다음</button></td>
+      					<!-- <td><button type="button" id="next_btn" class="btn">다음</button></td> -->
       		</tr>
         </tbody>
     </table>
@@ -350,15 +369,15 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 	var hate = document.getElementById('hate').value;
 	
 	if(like=='1'){
-		document.getElementById('Likebtn').value = "취소"
+		document.getElementById('Likebtn').value = "취소";
 	}else{
-		document.getElementById('Likebtn').value = "좋아요"
+		document.getElementById('Likebtn').value = "좋아요";
 	}
 	
 	if(hate=='1'){
-		document.getElementById('Hatebtn').value = "취소"
+		document.getElementById('Hatebtn').value = "취소";
 	}else{
-		document.getElementById('Hatebtn').value = "싫어요"
+		document.getElementById('Hatebtn').value = "싫어요";
 	}
 	
 	}
