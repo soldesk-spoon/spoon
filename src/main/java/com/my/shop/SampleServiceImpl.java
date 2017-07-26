@@ -148,6 +148,12 @@ public class SampleServiceImpl implements SampleService{
 		
 	}
 
+	@Override
+	public int selectminImgNum(int bid) throws Exception {
+		// TODO Auto-generated method stub
+		return (Integer) sampleDAO.selectminImgNum(bid);
+	}
+
 	
 	
 }

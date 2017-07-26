@@ -109,6 +109,10 @@ delete from spoon_board
 
 select * from spoon_member
 
+select min(file_num) from board_upload where bid = 3
+
+select * from board_upload
+
 UPDATE SPOON_BOARD SET BOARD_LIKE=(SELECT ifnull (SUM(BOARD_LIKE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = 2),
 						BOARD_HATE = (SELECT ifnull (SUM(BOARD_HATE), 0 ) FROM BOARD_LIKE_HATE WHERE BID = 2)
 					WHERE BID = 2

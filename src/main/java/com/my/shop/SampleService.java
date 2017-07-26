@@ -46,5 +46,7 @@ public interface SampleService {
 	int selectSumHate(int bid) throws Exception;
 
 	void updateSumlike(int bid) throws Exception;
+
+	int selectminImgNum(int bid) throws Exception;
 	
 }

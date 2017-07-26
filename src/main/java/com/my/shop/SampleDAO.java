@@ -134,6 +134,13 @@ public class SampleDAO extends AbstractDAO{
 		update("sample.updateSumlike", bid);
 	}
 
+	public Integer selectminImgNum(int bid) {
+		// TODO Auto-generated method stub
+		String select = selectOne("sample.selectminImgNum",bid).toString();
+		int selectminImgNum = Integer.parseInt(select);
+		return selectminImgNum;
+	}
+
 
     
 }

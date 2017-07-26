@@ -101,7 +101,12 @@ img {
     </ol>
 	  <div class="carousel-inner" role="listbox">
 					<c:forEach items="${imgmap}" var="img">
+					<c:if test="${img.FILE_NUM eq minImgNum }">
 					<div class="item active"><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" class="center-block">
+					</c:if>
+					<c:if test="${img.FILE_NUM ne minImgNum }">
+					<div class="item"><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" class="center-block">
+					</c:if>
 	      <div class="carousel-caption">
           </div>
         </div>                    		

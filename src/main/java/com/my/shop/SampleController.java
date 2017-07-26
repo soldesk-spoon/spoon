@@ -202,11 +202,18 @@ public class SampleController {
         System.out.println("lhmap"+lhmap);
          
         List<CommentBean> list = sampleService.selectComment(bid);
+        int minImgNum = sampleService.selectminImgNum(bid);
+        System.out.println(minImgNum);
+        mv.addObject("minImgNum",minImgNum);
        // System.out.println(list);
         mv.addObject("list", list);
         mv.addObject("sumlike",sumlike);
         mv.addObject("sumhate",sumhate);
         return mv;
+        
+        
+        
+        
     }
     
     @RequestMapping(value="/sample/openBoardUpdate.do", method=RequestMethod.GET)

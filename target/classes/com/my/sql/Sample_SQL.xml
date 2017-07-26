@@ -174,7 +174,7 @@ INSERT INTO BOARD_UPLOAD
 </select>
 
 <select id="selectImage" parameterType="com.my.shop.uploadFileVo" resultType="hashmap">
-	SELECT FILE_NAME FROM BOARD_UPLOAD WHERE BID = #{bid}
+	SELECT FILE_NAME, FILE_NUM FROM BOARD_UPLOAD WHERE BID = #{bid}
 </select>
 
 
@@ -214,5 +214,10 @@ INSERT INTO BOARD_UPLOAD
 					WHERE BID = #{bid}
 		
 	</update>
+	
+	<select id="selectminImgNum" resultType="int">
+		SELECT MIN(FILE_NUM) FROM BOARD_UPLOAD WHERE BID = #{bid}
+	</select>
+	
 	
 </mapper>
