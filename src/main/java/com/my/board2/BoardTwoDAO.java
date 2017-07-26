@@ -32,5 +32,17 @@ public class BoardTwoDAO extends AbstractDAO{
     
     public void deleteBoard(int qid) throws Exception{
     	delete("boardTwo.deleteBoard", qid);
-    } 
+    }
+
+	public String selectAdmin(int mid) {
+		// TODO Auto-generated method stub
+		 String admin = (String) selectOne("boardTwo.selectAdmin",mid);
+		return admin;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<BoardBean2> selectBoardListForAdmin(BoardBean2 boardBean) {
+		// TODO Auto-generated method stub
+		 return (List<BoardBean2>)selectList("boardTwo.selectBoardListForAdmin", boardBean);
+	} 
 }

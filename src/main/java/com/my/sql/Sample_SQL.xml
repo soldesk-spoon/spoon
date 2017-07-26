@@ -21,12 +21,6 @@
             SELECT bid, board_subject,member_id, board_hits, board_created , board_like FROM spoon_board
    WHERE BOARD_DELYN='N' ORDER BY board_like DESC;
     </select>
-    
-    
-     
-      
-     
-     
      
      <insert id="insertBoard" parameterType="com.my.shop.BoardBean">
   

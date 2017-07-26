@@ -12,7 +12,10 @@
 </head>
 <body>
 
+<%@ include file="../include/include_logo.jsp" %>
+
 <%@ include file="../include/include-session.jsp" %>
+
 <h2>게시판 목록</h2>
 <div>
 	정렬 선택
@@ -26,7 +29,7 @@
 	</select>
 	<br>
 </div>
-<table class="board_list">
+<table width="751" height="95" class="board_list">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>

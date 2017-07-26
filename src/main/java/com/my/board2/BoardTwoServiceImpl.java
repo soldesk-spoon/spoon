@@ -42,4 +42,17 @@ public class BoardTwoServiceImpl implements BoardTwoService{
     public void deleteBoard(int qid) throws Exception{
     	boardTwoDAO.deleteBoard(qid);
     }
+
+	@Override
+	public String selectAdmin(int mid) throws Exception {
+		// TODO Auto-generated method stub
+		String admin = boardTwoDAO.selectAdmin(mid);
+		return admin;
+	}
+
+	@Override
+	public List<BoardBean2> selectBoardListForAdmin(BoardBean2 boardBean) throws Exception {
+		// TODO Auto-generated method stub
+		 return boardTwoDAO.selectBoardListForAdmin(boardBean);
+	}
 }

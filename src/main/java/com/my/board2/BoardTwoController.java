@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.activation.CommandMap;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -23,44 +25,57 @@ public class BoardTwoController {
     @Resource(name="boardTwoService")
     private BoardTwoService boardTwoService;
      
-    @RequestMapping(value="/boardTwo/openBoardList.do")
-    public ModelAndView openSampleBoardList(BoardBean2 boardBean) throws Exception{
-        ModelAndView mv = new ModelAndView("/board2/boardList");
-         
-        List<BoardBean2> list = boardTwoService.selectBoardList(boardBean);
+    @RequestMapping(value="/QnA_board/openBoardList.do")
+    public ModelAndView openSampleBoardList(BoardBean2 boardBean, HttpServletRequest request, HttpSession session) throws Exception{
+        ModelAndView mv = new ModelAndView("/QnA_board/QnA_boardList");
+        int mid = Integer.parseInt((String) session.getAttribute("mid"));
+        List<BoardBean2> list = null;
+        String admin = boardTwoService.selectAdmin(mid);
+        if(admin.equals("N")){
+        	list = boardTwoService.selectBoardList(boardBean);
+        }else if(admin.equals("Y")){
+        	list = boardTwoService.selectBoardListForAdmin(boardBean);
+        }else {
+        	System.out.println(admin);
+        	System.out.println("error : admin");
+        }
+        System.out.println(mid);
+         boardBean.setMid(mid);
         mv.addObject("list", list);
         
         return mv;
     }
     
-    @RequestMapping(value="/boardTwo/openBoardWrite.do")
+    @RequestMapping(value="/QnA_board/openBoardWrite.do")
     public ModelAndView openBoardWrite(BoardBean2 boardBean) throws Exception{
-        ModelAndView mv = new ModelAndView("/board2/boardWrite");
+        ModelAndView mv = new ModelAndView("/QnA_board/QnA_boardWrite");
          
         return mv;
     }
     
-    @RequestMapping(value="/boardTwo/insertBoard.do")
-    public ModelAndView insertBoard(BoardBean2 boardBean) throws Exception{
-        ModelAndView mv = new ModelAndView("redirect:/boardTwo/openBoardList.do");
-        
+    @RequestMapping(value="/QnA_board/insertBoard.do")
+    public ModelAndView insertBoard(BoardBean2 boardBean,HttpSession session) throws Exception{
+        ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardList.do");
+        int mid = Integer.parseInt((String) session.getAttribute("mid"));
+        System.out.println(mid);
+         boardBean.setMid(mid);
         boardTwoService.insertBoard(boardBean);
         System.out.println(boardBean.getQid());
         return mv;
     }
     
-    @RequestMapping(value="/boardTwo/openBoardDetail.do", method=RequestMethod.GET)
+    @RequestMapping(value="/QnA_board/openBoardDetail.do", method=RequestMethod.GET)
     public ModelAndView openBoardDetail(@RequestParam("qid")int qid) throws Exception{
-        ModelAndView mv = new ModelAndView("/board2/boardDetail");
+        ModelAndView mv = new ModelAndView("/QnA_board/QnA_boardDetail");
         Map<String, Object> map = boardTwoService.selectBoardDetail(qid);
         mv.addObject("map", map); 
          
         return mv;
     }
     
-    @RequestMapping(value="/boardTwo/openBoardUpdate.do", method=RequestMethod.GET)
+    @RequestMapping(value="/QnA_board/openBoardUpdate.do", method=RequestMethod.GET)
     public ModelAndView openBoardUpdate(@RequestParam("qid")int qid) throws Exception{
-        ModelAndView mv = new ModelAndView("/board2/boardUpdate");
+        ModelAndView mv = new ModelAndView("/QnA_board/QnA_boardUpdate");
          
         Map<String,Object> map = boardTwoService.selectBoardDetail(qid);
         mv.addObject("map", map);
@@ -68,9 +83,9 @@ public class BoardTwoController {
         return mv;
     }
 
-    @RequestMapping(value="/boardTwo/updateBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value="/QnA_board/updateBoard.do", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView updateBoard(BoardBean2 boardBean) throws Exception{
-        ModelAndView mv = new ModelAndView("redirect:/boardTwo/openBoardDetail.do");
+        ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardDetail.do");
         System.out.println("updateBoard!!!!!!!!!!!!!!1");
   
         
@@ -85,9 +100,9 @@ public class BoardTwoController {
     }
     
     
-    @RequestMapping(value="/boardTwo/deleteBoard.do")
+    @RequestMapping(value="/QnA_board/deleteBoard.do")
     public ModelAndView deleteBoard(int qid) throws Exception{
-        ModelAndView mv = new ModelAndView("redirect:/boardTwo/openBoardList.do");
+        ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardList.do");
 
         boardTwoService.deleteBoard(qid);
         

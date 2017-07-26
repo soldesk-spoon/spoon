@@ -13,4 +13,8 @@ public interface BoardTwoService {
 	void updateBoard(BoardBean2 boardBean) throws Exception;
 	
 	void deleteBoard(int qid) throws Exception;
+
+	String selectAdmin(int mid) throws Exception;
+
+	List<BoardBean2> selectBoardListForAdmin(BoardBean2 boardBean) throws Exception;
 }

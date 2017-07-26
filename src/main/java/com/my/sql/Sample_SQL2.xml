@@ -5,21 +5,26 @@
      
     <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
       
-            SELECT qid, qna_subject, qna_hits, qna_created FROM QNABOARD
-   WHERE qna_DELYN='N'
+            SELECT qid, qna_subject, qna_commentny, qna_created FROM QNABOARD
+   WHERE qna_DELYN='N' AND mid = #{mid}
+    </select>
+    
+    <select id="selectBoardListForAdmin" parameterType="hashmap" resultType="hashmap">
+   		 SELECT qid, qna_subject, qna_commentny, qna_created FROM QNABOARD
+  			 WHERE qna_DELYN='N'
     </select>
      
      <insert id="insertBoard" parameterType="com.my.board2.BoardBean2">
   
         INSERT INTO QNABOARD
-        (
+        (	mid,
             qna_subject,
             qna_contents,
             qna_hits
           
         )
         VALUES
-        (
+        (	#{mid},
             #{qna_subject},
             #{qna_contents},
             0
@@ -73,4 +78,8 @@
             qid = #{qid}   
     
 </delete>
+
+<select id="selectAdmin" resultType="java.lang.String" >
+	SELECT MEMBER_ADMINYN FROM SPOON_MEMBER WHERE MID = #{mid}
+</select>
 </mapper>

@@ -5,9 +5,9 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
-<form name="update" method="post" action="/shop/boardTwo/updateBoard.do">
+<form name="update" method="post" action="/spoon/QnA_board/updateBoard.do">
 	  <input type="hidden" id="qid" name="qid" value="${map.qid }">
-<form id="frm"  action="/shop/boardTwo/updateBoard.do" method="post">
+<form id="frm"  action="/spoon/QnA_board/updateBoard.do" method="post">
 <input type="hidden" id="qid" name="qid" value="${map.qid }">
     <table class="board_view">
         <colgroup>
@@ -68,20 +68,20 @@
         });
          
         function fn_openBoardList(){
-        	document.location.href="/shop/boardTwo/openBoardList.do";
+        	document.location.href="/spoon/QnA_board/openBoardList.do";
         }
          
         function fn_updateBoard(){
 			
         	var qid = "${map.qid}";
-            var url = "/shop/boardTwo/updateBoard.do";
+            var url = "/spoon/QnA_board/updateBoard.do";
             document.update.submit();
-           /*  comSubmit.setUrl("<c:url value='/shop/boardTwo/updateBoard.do?BID="+bid+"' />");
+           /*  comSubmit.setUrl("<c:url value='/spoon/QnA_board/updateBoard.do?BID="+bid+"' />");
             comSubmit.submit(); */
         /* 	var frm = document.getElementById("frm");
         	frm.submit(); */
            /* var comSubmit = new ComSubmit("frm");
-            comSubmit.setUrl("<c:url value='/boardTwo/updateBoard.do' />");
+            comSubmit.setUrl("<c:url value='/QnA_board/updateBoard.do' />");
             comSubmit.submit();*/
         }
         
@@ -90,7 +90,7 @@
         /* function fn_openBoardUpdate(){
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();
-            comSubmit.setUrl("<c:url value='/boardTwo/openBoardUpdate.do' />");
+            comSubmit.setUrl("<c:url value='/QnA_board/openBoardUpdate.do' />");
             comSubmit.addParam("BID", bid);
             comSubmit.submit();
         } */

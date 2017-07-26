@@ -6,7 +6,7 @@
 </head>
 
 <body>
-    <form id="frm" action="/shop/boardTwo/insertBoard.do" method="post">
+    <form id="frm" action="/spoon/QnA_board/insertBoard.do" method="post">
         <table class="board_view">
             <colgroup>
                 <col width="15%">
@@ -46,9 +46,9 @@
     });
      
     function fn_openBoardList(){
-    	document.location.href="/shop/boardTwo/openBoardList.do";/*
+    	document.location.href="/spoon/QnA_board/openBoardList.do";/*
         var comSubmit = new ComSubmit();
-        comSubmit.setUrl("<c:url value='/shop/boardTwo/openBoardList.do' />");
+        comSubmit.setUrl("<c:url value='/spoon/QnA_board/openBoardList.do' />");
         comSubmit.submit();*/
     }
      

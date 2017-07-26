@@ -1,18 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <%@ include file="../include/include-header.jsp" %>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>게시판 목록</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 </head>
 <body>
+
+<%@ include file="../include/include_logo.jsp" %>
 <%@ include file="../include/include-session.jsp" %>
-<h2>게시판 목록</h2>
+<h2>내가 쓴 질문</h2>
 <table class="board_list">
     <colgroup>
         <col width="10%"/>
@@ -24,7 +26,7 @@
         <tr>
             <th scope="col">글번호</th>
             <th scope="col">제목</th>
-            <th scope="col">조회수</th>
+            <th scope="col">답변 여부</th>
             <th scope="col">작성일</th>
         </tr>
     </thead>
@@ -38,7 +40,7 @@
                                 <a href="#this" name="qna_subject">${row.qna_subject }</a>
                                 <input type="hidden" id="qid" value="${row.qid }">
                             </td>
-                        <td>${row.qna_hits }</td>
+                        <td>${row.qna_commentny }</td>
                         <td>${row.qna_created }</td>
                     </tr>
                 </c:forEach>
@@ -73,12 +75,12 @@
          
          
         function fn_openBoardWrite(){
-        	document.location.href="/shop/boardTwo/openBoardWrite.do";
+        	document.location.href="/spoon/QnA_board/openBoardWrite.do";
         }
          
         function fn_openBoardDetail(obj){
             var B=obj.parent().find("#qid").val();
-            document.location.href="/shop/boardTwo/openBoardDetail.do?qid="+B;
+            document.location.href="/spoon/QnA_board/openBoardDetail.do?qid="+B;
             
         }
     </script>

@@ -9,6 +9,11 @@
 #slider {position:relative;margin:0 auto;padding:0;list-style:none;width:350px;height:350px;overflow-x:hidden}
 #slider li {display:none;position:absolute;left:0;top:0}
 #slider img {width:350px;height:350px}
+img {
+	height: 350px;
+	width: 350px;
+	position: relative;
+}
 </style>
 
 </head>

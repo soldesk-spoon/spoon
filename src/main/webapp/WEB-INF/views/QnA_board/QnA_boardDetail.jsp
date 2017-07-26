@@ -64,12 +64,12 @@
         });
          
         function fn_openBoardList(){
-        	document.location.href="/shop/boardTwo/openBoardList.do";
+        	document.location.href="/shop/QnA_board/openBoardList.do";
         }
          
         function fn_openBoardUpdate(obj){
         	var B = ${map.qid};
-            document.location.href="/shop/boardTwo/openBoardUpdate.do?qid="+B;
+            document.location.href="/shop/QnA_board/openBoardUpdate.do?qid="+B;
             /*
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();
@@ -80,7 +80,7 @@
         
         function fn_deleteBoard(){
         	var B = ${map.qid};
-            document.location.href="/shop/boardTwo/deleteBoard.do?qid="+B;
+            document.location.href="/shop/QnA_board/deleteBoard.do?qid="+B;
             /*
         	var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");
