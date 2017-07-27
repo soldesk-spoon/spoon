@@ -114,5 +114,10 @@
 		
         
     </script>
+    <form method="post" action="/spoon/sample/openBoardList.do" name="search">
+    <input type="text" id="sub" name="sub">
+    <input type="submit" value="send">
+    </form>
+    
 </body>
 </html>

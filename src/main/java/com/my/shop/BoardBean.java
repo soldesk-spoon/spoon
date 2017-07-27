@@ -22,6 +22,7 @@ public class BoardBean {
 	String board_shopname;
 	String board_lat;
 	String board_lng;
+	String sub;
 
 	
 	
@@ -127,6 +128,12 @@ public class BoardBean {
 	}
 	public void setBoard_address(String board_address) {
 		this.board_address = board_address;
+	}
+	public String getSub() {
+		return sub;
+	}
+	public void setSub(String sub) {
+		this.sub = sub;
 	}
 	
 	
