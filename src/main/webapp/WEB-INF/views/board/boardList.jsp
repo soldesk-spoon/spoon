@@ -115,8 +115,19 @@
         
     </script>
     <form method="post" action="/spoon/sample/openBoardList.do" name="search">
-    <input type="text" id="sub" name="sub">
-    <input type="submit" value="send">
+<!--     <input type="hidden" id="searchType" name="searchType"> -->
+    <table><tr><td><select id="selectSearch" name="selectSearch">
+		<option id="selectTi" value="selectTi" ${searchType eq  "selectTi" ? "selected" :""}  >제목</option>
+		<option id="selectCont" value="selectCont" ${searchType eq  "selectCont" ? "selected" :""} >내용</option>
+		<option id="selectMem" value="selectMem" ${searchType eq  "selectMem" ? "selected" :""} >작성자</option>
+		<option id="selectSub" value="selectSub" ${searchType eq  "selectSub" ? "selected" :""} >주변역</option>
+	</select></td>
+	<td><input type="text" id="searchName" name="searchName"></td>
+	<td><input type="submit" value="send"></td>
+	</tr></table>
+    	
+    
+    
     </form>
     
 </body>

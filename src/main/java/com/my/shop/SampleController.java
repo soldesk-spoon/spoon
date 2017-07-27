@@ -45,9 +45,25 @@ public class SampleController {
         ModelAndView mv = new ModelAndView("/board/boardList");
         String selectobj = request.getParameter("sel");
         System.out.println(selectobj);
-        String sub = request.getParameter("sub");
-        boardBean.setSub(sub);
-        mv.addObject("sub", sub);
+        
+        String searchType=request.getParameter("selectSearch");
+        String searchName=request.getParameter("searchName");
+        System.out.println("searchType : "+searchType);
+     /*   
+        if(searchType.equals("selectTi")){
+        	
+        }else if(searchType.equals("selectCont")){
+        	
+        }else if(searchType.equals("selectMem")){
+        	
+        }else if(searchType.equals("selectSub")){
+        	
+        }*/
+        
+        boardBean.setSearchT(searchType);
+        boardBean.setSearchName(searchName);
+        
+        mv.addObject("searchType", searchType);
         List<BoardBean> list = sampleService.selectBoardList(boardBean);
         
       
