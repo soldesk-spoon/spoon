@@ -49,6 +49,7 @@ public class SampleController {
         String searchType=request.getParameter("selectSearch");
         String searchName=request.getParameter("searchName");
         System.out.println("searchType : "+searchType);
+        System.out.println("searchName : "+searchName);
      /*   
         if(searchType.equals("selectTi")){
         	
@@ -64,6 +65,7 @@ public class SampleController {
         boardBean.setSearchName(searchName);
         
         mv.addObject("searchType", searchType);
+        mv.addObject("searchName", searchName);
         List<BoardBean> list = sampleService.selectBoardList(boardBean);
         
       

@@ -122,7 +122,7 @@
 		<option id="selectMem" value="selectMem" ${searchType eq  "selectMem" ? "selected" :""} >작성자</option>
 		<option id="selectSub" value="selectSub" ${searchType eq  "selectSub" ? "selected" :""} >주변역</option>
 	</select></td>
-	<td><input type="text" id="searchName" name="searchName"></td>
+	<td><input type="text" id="searchName" name="searchName" value="${searchName }"></td>
 	<td><input type="submit" value="send"></td>
 	</tr></table>
     	
