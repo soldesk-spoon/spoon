@@ -68,6 +68,14 @@ public class BoardTwoController {
     public ModelAndView openBoardDetail(@RequestParam("qid")int qid) throws Exception{
         ModelAndView mv = new ModelAndView("/QnA_board/QnA_boardDetail");
         Map<String, Object> map = boardTwoService.selectBoardDetail(qid);
+        Map<String, Object> answerMap = boardTwoService.selectAnswerBoard(qid);
+        if(answerMap==null){
+        	String result = "조회된 답변이 없습니다.";
+        	mv.addObject("resultString", result);
+        }else{
+        	mv.addObject("answerMap",answerMap);
+        }
+        
         mv.addObject("map", map); 
          
         return mv;
@@ -108,4 +116,19 @@ public class BoardTwoController {
         
         return mv;
     }    
+    
+    @RequestMapping(value="/QnA_board/insertAnswer.do")
+    public ModelAndView insertAnswer(HttpServletRequest request) throws Exception {
+    	ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardDetail.do");
+    	AnswerBean answerBean = new AnswerBean();
+    	String qid_s = request.getParameter("qid");
+    	String answer = request.getParameter("answer");
+    	int qid = Integer.parseInt(qid_s);
+    	
+    	answerBean.setAnswer(answer);
+    	answerBean.setQid(qid);
+    	boardTwoService.insertAnswer(answerBean);
+    	return mv;
+    }
+    
 }

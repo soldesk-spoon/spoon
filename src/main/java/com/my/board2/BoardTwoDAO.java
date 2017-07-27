@@ -44,5 +44,15 @@ public class BoardTwoDAO extends AbstractDAO{
 	public List<BoardBean2> selectBoardListForAdmin(BoardBean2 boardBean) {
 		// TODO Auto-generated method stub
 		 return (List<BoardBean2>)selectList("boardTwo.selectBoardListForAdmin", boardBean);
+	}
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectAnswerBoard(int qid) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("boardTwo.selectAnswerBoard", qid);
+	}
+
+	public void insertAnswer(AnswerBean answerBean) {
+		// TODO Auto-generated method stub
+		insert("boardTwo.insertAnswer", answerBean);
 	} 
 }

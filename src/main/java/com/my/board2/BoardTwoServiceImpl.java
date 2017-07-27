@@ -55,4 +55,17 @@ public class BoardTwoServiceImpl implements BoardTwoService{
 		// TODO Auto-generated method stub
 		 return boardTwoDAO.selectBoardListForAdmin(boardBean);
 	}
+
+	@Override
+	public Map<String, Object> selectAnswerBoard(int qid) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> resultMap = (Map<String, Object>) boardTwoDAO.selectAnswerBoard(qid);
+		 return resultMap;
+	}
+
+	@Override
+	public void insertAnswer(AnswerBean answerBean) throws Exception {
+		// TODO Auto-generated method stub
+		boardTwoDAO.insertAnswer(answerBean);
+	}
 }

@@ -17,4 +17,8 @@ public interface BoardTwoService {
 	String selectAdmin(int mid) throws Exception;
 
 	List<BoardBean2> selectBoardListForAdmin(BoardBean2 boardBean) throws Exception;
+
+	Map<String, Object> selectAnswerBoard(int qid) throws Exception;
+
+	void insertAnswer(AnswerBean answerBean) throws Exception;
 }
