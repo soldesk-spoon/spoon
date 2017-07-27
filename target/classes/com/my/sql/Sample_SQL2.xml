@@ -49,7 +49,8 @@
             qna_hits,
             qna_created,
             qna_subject,
-            qna_contents
+            qna_contents,
+            qna_
         FROM
             QNABOARD
         WHERE
@@ -82,4 +83,15 @@
 <select id="selectAdmin" resultType="java.lang.String" >
 	SELECT MEMBER_ADMINYN FROM SPOON_MEMBER WHERE MID = #{mid}
 </select>
+
+<select id="selectAnswerBoard" parameterType="hashmap">
+	select * from QnA_answer where qid = #{qid}
+</select>
+
+<insert id="insertAnswer" parameterType="com.my.board2.AnswerBean">
+	insert into QnA_answer (qid, answer) values (#{qid}, #{answer})
+</insert>
+
 </mapper>
+
+

@@ -42,7 +42,22 @@
     <a href="#this" class="btn" id="update">수정하기</a>
      <a href="#this" class="btn" id="delete">삭제하기</a>
      
-     
+     <table>
+     	<tr>
+     		<td>답변 : </td>
+     		<c:if test="${resultString eq null}">
+     			${resultString}
+     			<form name="answerForm" id="answerForm" method="post" action="/spoon/QnA_board/insertAnswer.do">
+     			<input type="hidden" id="qid" name="qid" value="${map.qid }">
+     			<textarea cols="2" rows="10" id="answer" name="answer" ></textarea>
+     			<input type="button" id="answerbtn" name="answerbtn" value="답변 작성 " onclick="insertAnswer();">
+     			</form>
+     		</c:if>
+     		<c:if test="${resultString ne null}">
+     			${answerMap.answer}
+     		</c:if>
+     	</tr>
+     </table>
     <%@ include file="../include/include-body.jsp" %>
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script type="text/javascript">
@@ -64,12 +79,12 @@
         });
          
         function fn_openBoardList(){
-        	document.location.href="/shop/QnA_board/openBoardList.do";
+        	document.location.href="/spoon/QnA_board/openBoardList.do";
         }
          
         function fn_openBoardUpdate(obj){
         	var B = ${map.qid};
-            document.location.href="/shop/QnA_board/openBoardUpdate.do?qid="+B;
+            document.location.href="/spoon/QnA_board/openBoardUpdate.do?qid="+B;
             /*
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();
@@ -88,6 +103,11 @@
             comSubmit.submit();
              */
         }
+        
+        function insertAnswer() {
+        	
+        }
+        
     </script>
 </body>
 </html>

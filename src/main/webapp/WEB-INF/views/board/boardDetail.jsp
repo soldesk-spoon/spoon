@@ -9,18 +9,12 @@
 <%@ include file="../include/include-header.jsp" %>
 
 <style type="text/css">
-#slider {position:relative;margin:0 auto;padding:0;list-style:none;width:350px;height:350px;overflow-x:hidden}
-#slider li {display:none;position:absolute;left:0;top:0}
-#slider img {width:350px;height:350px}
-img {
-	height: 350px;
-	width: 350px;
-	position: relative;
-}
+
 </style>
 <link href="/spoon/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<%@ include file="../include/include_logo.jsp" %>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="/spoon/js/jquery-1.11.3.min.js"></script>
 
@@ -102,10 +96,10 @@ img {
 	  <div class="carousel-inner" role="listbox">
 					<c:forEach items="${imgmap}" var="img">
 					<c:if test="${img.FILE_NUM eq minImgNum }">
-					<div class="item active"><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" class="center-block">
+					<div class="item active"><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" style="width:300px; height:300px;" class="center-block">
 					</c:if>
 					<c:if test="${img.FILE_NUM ne minImgNum }">
-					<div class="item"><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" class="center-block">
+					<div class="item"><img src="${pageContext.request.contextPath}/resources/data/${img.FILE_NAME}" style="width:300px; height:300px;"class="center-block">
 					</c:if>
 	      <div class="carousel-caption">
           </div>
