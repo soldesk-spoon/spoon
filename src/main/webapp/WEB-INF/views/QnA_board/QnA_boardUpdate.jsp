@@ -5,6 +5,8 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/include_logo.jsp" %>
+<%@ include file="../include/include-session.jsp" %>
 <form name="update" method="post" action="/spoon/QnA_board/updateBoard.do">
 	  <input type="hidden" id="qid" name="qid" value="${map.qid }">
 <form id="frm"  action="/spoon/QnA_board/updateBoard.do" method="post">

@@ -20,14 +20,16 @@
         (	mid,
             qna_subject,
             qna_contents,
-            qna_hits
+            qna_hits,
+            member_id
           
         )
         VALUES
         (	#{mid},
             #{qna_subject},
             #{qna_contents},
-            0
+            0,
+            #{member_id}
            
         )
 </insert>
@@ -50,7 +52,9 @@
             qna_created,
             qna_subject,
             qna_contents,
-            qna_
+            qna_comment,
+            mid,
+            member_id
         FROM
             QNABOARD
         WHERE
@@ -88,9 +92,24 @@
 	select * from QnA_answer where qid = #{qid}
 </select>
 
-<insert id="insertAnswer" parameterType="com.my.board2.AnswerBean">
-	insert into QnA_answer (qid, answer) values (#{qid}, #{answer})
+
+
+<insert id="insertComment" parameterType="com.my.board2.BoardBean2">
+	UPDATE QNABOARD 
+		SET QNA_COMMENTNY = 'Y',
+			QNA_COMMENT = #{qna_comment}
+		WHERE 
+			QID = #{qid}
 </insert>
+
+<update id="updateCommentNY" parameterType="com.my.board2.BoardBean2">
+	UPDATE QNABOARD
+		SET 
+			QNA_COMMENTNY = 'N',
+			QNA_COMMENT = NULL
+		WHERE 
+			QID = #{qid};
+</update>
 
 </mapper>
 

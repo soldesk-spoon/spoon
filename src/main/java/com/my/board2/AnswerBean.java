@@ -20,6 +20,7 @@ public class AnswerBean {
 		this.mid = mid;
 	}
 	public String getAnswer() {
+		return answer;
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;

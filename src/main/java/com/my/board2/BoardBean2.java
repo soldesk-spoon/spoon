@@ -13,6 +13,8 @@ public class BoardBean2 {
 	String qna_delyn;
 	String qna_created;
 	String member_id;
+	String qna_comment;
+	
 	
 	public int getQid() {
 		return qid;
@@ -68,6 +70,13 @@ public class BoardBean2 {
 	public void setQna_commentny(String qna_commentny) {
 		this.qna_commentny = qna_commentny;
 	}
+	public String getQna_comment() {
+		return qna_comment;
+	}
+	public void setQna_comment(String qna_comment) {
+		this.qna_comment = qna_comment;
+	}
+	
 	
 	
 	

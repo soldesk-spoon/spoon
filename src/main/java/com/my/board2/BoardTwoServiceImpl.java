@@ -63,9 +63,16 @@ public class BoardTwoServiceImpl implements BoardTwoService{
 		 return resultMap;
 	}
 
+	
 	@Override
-	public void insertAnswer(AnswerBean answerBean) throws Exception {
+	public void insertComment(BoardBean2 boardBean2) throws Exception {
 		// TODO Auto-generated method stub
-		boardTwoDAO.insertAnswer(answerBean);
+		boardTwoDAO.insertComment(boardBean2);
+	}
+
+	@Override
+	public void updateCommentNY(int qid) throws Exception {
+		// TODO Auto-generated method stub
+		boardTwoDAO.updateCommentNY(qid);
 	}
 }

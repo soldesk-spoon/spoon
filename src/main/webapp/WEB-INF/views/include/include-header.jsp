@@ -11,7 +11,7 @@
 <style type="text/css">
 @CHARSET "UTF-8";
 
-a:link, a:visited {
+a:link {
 	text-decoration: none;
 	color: #656565;
 }
@@ -24,6 +24,11 @@ input[type=file] {
 	border: 1px solid #56819d;
 	vertical-align: middle;
 }
+ a:visited {
+ text-decoration: none;
+ 
+ }
+
 
 input[type=button] {
 	border-radius: 3px;
@@ -34,6 +39,18 @@ input[type=button] {
 	border: 1px solid #e1eef6;
 	vertical-align: middle;
 }
+
+
+input[type=submit] {
+	border-radius: 3px;
+	padding: 5px 11px;
+	color: #fff !important;
+	display: inline-block;
+	background-color: #004e66;
+	border: 1px solid #e1eef6;
+	vertical-align: middle;
+}
+
 
 .board_list {
 	width: 100%;
@@ -51,14 +68,26 @@ input[type=button] {
 	color: #3b3a3a;
 	vertical-align: middle
 }
+.board_subject {
+	font-size: 20px;
+	}
+.board_subway {
+	text-align: right;
+}
+.session_view{
+padding-left: 50px;
 
+}
 .board_list tbody td {
 	border-top: 1px solid #ccc;
 	padding: 10px 0;
 	text-align: center;
-	vertical-align: middle
+	vertical-align: middle 
 }
-
+.board_contents {
+	text-align: top;
+	vertical-align: top;
+}
 
 .board_list tbody tr:first-child td {
 	border: none
@@ -74,8 +103,8 @@ input[type=button] {
 }
 
 .board_view {
-	margin-left: 260px;
-	width: 850px;
+	margin-left: 150px;
+	width: 1000px;
 	border-top: 2px solid #252525;
 	border-bottom: 1px solid #ccc
 }
@@ -85,6 +114,7 @@ input[type=button] {
 	background: #f7f7f7;
 	color: #3b3a3a
 }
+
 
 .board_view tbody th.list_tit {
 	font-size: 13px;

@@ -14,6 +14,9 @@
 <link href="/spoon/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<input type="hidden" id="bid" name="bid" value="${map.bid }">
+<input type="hidden" id="memberNo" name="memberNo" value="${sessionScope.member.mid }">
+<input type="hidden" id="mid1" name="mid1" value="${map.mid}">
 <%@ include file="../include/include_logo.jsp" %>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 	<script src="/spoon/js/jquery-1.11.3.min.js"></script>
@@ -22,10 +25,7 @@
 	<script src="/spoon/js/bootstrap.js"></script>
 
 <%@ include file="../include/include-session.jsp" %>
-<form method="post" name="LikeForm" id="LikeForm">
-<input type="hidden" id="bid" name="bid" value="${map.bid }">
-<input type="hidden" id="memberNo" name="memberNo" value="${sessionScope.member.mid }">
-<input type="hidden" id="mid1" name="mid1" value="${map.mid}">
+
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -50,26 +50,31 @@
             </tr>
             <tr>
                 <th scope="row">제목</th>
-                <td colspan="3">${map.board_subject }</td>
-					<td colspan="2">
+                <td colspan="2" class="board_subject">${map.board_subject }</td>
+					<td>
+					<form method="post" name="LikeForm" id="LikeForm">
+					<input type="hidden" id="bid" name="bid" value="${map.bid }">
+					<input type="hidden" id="memberNo" name="memberNo" value="${sessionScope.member.mid }">
+					<input type="hidden" id="mid1" name="mid1" value="${map.mid}">
 						 <input type="button" value="" onclick="insertLike();" id="Likebtn" name="Likebtn">
 						 <input type="button" value="" onclick="insertHate();" id="Hatebtn" name="Hatebtn">
 						 <input type="hidden" value="${lhmap.board_like}" name="like" id="like">
 						 <input type="hidden" value="${lhmap.board_hate}" name="hate" id="hate">  
 			
 						 ${vo.alert}
-						           	
+						</form>           	
                 	</td>
             </tr>
+              
          	<tr>
          			<td>
-                		좋아요:
+                		추천:
                 	</td>
                 	<td>
                 		${sumlike}
                 	</td>
                 	<td>
-                		싫어요:
+                		비추천:
                 	</td>
                 	<td>
                 		${sumhate}
@@ -77,18 +82,12 @@
                 	
            	</tr>
             
-            <tr>
-                <td colspan="4">${map.board_contents }</td>
-            </tr>
-         	<tr>
-           		<td>${map.subway_name}역</td>
-           	</tr>
-           	
+         	
 			<tr>
 					<!-- <td><button type="button" id="prev_btn" class="btn">이전</button></td> -->
-				<td colspan="3" align="center">
-<div id="carousel1" class="carousel slide" data-ride="carousel">
-	<ol class="carousel-indicators">
+			<td colspan="2" align="center">
+		<div id="carousel1" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
 	    <li data-target="#carousel1" data-slide-to="0" class="active"></li>
 	    <li data-target="#carousel1" data-slide-to="1"></li>
 	    <li data-target="#carousel1" data-slide-to="2"></li>
@@ -108,35 +107,47 @@
       				</div>
 	  <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel1" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>
   
-      				</td>
-      					<!-- <td><button type="button" id="next_btn" class="btn">다음</button></td> -->
+      		</td>
+                <td colspan="2" class="board_contents">${map.board_contents }</td>
       		</tr>
+      		
+           	<tr>
+           	<td colspan="4">
+           		<div id="staticMap" style="width:850px;height:350px;"></div>    
+<input type="hidden" id="input_lat" name="input_lat" value="${map.board_lat}">
+<input type="hidden" id="input_lng" name="input_lng" value="${map.board_lng}">
+<input type="hidden" id="rest" name="rest" value="${rest}">
+<input type="hidden" id="address" value="${map.address}">
+${map.board_address}
+
+     </td>
+     <tr>
+     <tr>
+         <td colspan="4" class="board_subway"> 주변역 : ${map.subway_name}역</td>
+      	</tr>   
         </tbody>
     </table>
-   </form>
-      
-    <a href="#this" class="btn" id="list">목록으로</a>
-    <a href="#this" class="btn" id="update">수정하기</a>
-     <a href="#this" class="btn" id="delete">삭제하기</a>
-     
+   	<br>
+   	<br>
+   	<br>
      
     <%@ include file="../include/include-body.jsp" %>
     
-    <h4>댓글</h4>
+    
 	
 	
-	<table>
+	<table class="board_view">
 		<c:choose>
 			<c:when test="${fn:length(list) > 0}">
 				<c:forEach items="${list }" var="row">
 				<c:if test="${row.ref ne row.cid}">
 					<tr>
-					<td width="300"><font face="Arial Black">&nbsp;&nbsp;${row.member_id }</font>&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">${row.comment_created }</font></td>
+					<td width="300" style="padding-left: 50px;"><font face="Arial Black">&nbsp;&nbsp;${row.member_id }</font>&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">${row.comment_created }</font></td>
 					
 						<!-- <td width="150"></td> -->
 					</tr>
-					<tr>
-						<td colspan="2">&nbsp;&nbsp;${row.comment }						
+					<tr style="padding-top: 10px;">
+						<td colspan="2" style="padding-left: 50px; ">&nbsp;&nbsp;${row.comment }						
 						</td></tr>
 						</c:if>
 						<form id="writeC" name="writeC" method="post" action="/spoon/sample/insertComment.do">
@@ -144,14 +155,14 @@
 							<tr>
 							<td width="200"><font face="Arial Black">${row.member_id }</font>&nbsp;&nbsp;&nbsp;&nbsp;<font size="2">${row.comment_created }</font></td>
 			<!-- 		<td></td> -->
-						<td width="150"><input type="button" id="bttn${row.cid}" name="${row.cid}" value="답글" onclick="cidGet(${row.cid});"></td>
+						<td width="150" style="text-align: right;"><input type="button" id="bttn${row.cid}" name="${row.cid}" value="답글" onclick="cidGet(${row.cid});"></td>
 					</tr>
 					<tr>
 						<td colspan="2">${row.comment}
 						
 						</td>
 						</tr>
-					<tr style="DISPLAY: none" id="tr${row.cid}"><!-- -->
+					<tr style="DISPLAY: none;" id="tr${row.cid}"><!-- -->
 					<td>
 						
 	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
@@ -161,8 +172,8 @@
 	<input type="hidden" id="bid" name="bid" value="${map.bid }">
 	<input type="hidden" id="btncid" value="">
 	
-	<textarea id="comment" name="comment" rows="2" cols="30"></textarea></td>
-	<td><input type="button" value="등록" onclick="fn_comment();"></td>
+	<textarea id="comment" name="comment" rows="2" cols="100"></textarea></td>
+	<td style="text-align: right;"><input type="button" value="등록" onclick="fn_comment();"></td>
 	
 	
 		</tr>
@@ -173,20 +184,19 @@
 			</c:when>
 			<c:otherwise>
 				<tr>
-					<td colspan="4">조회된 결과가 없습니다.</td>
+					<td colspan="4">조회된 댓글이 없습니다.</td>
 				</tr>
 			</c:otherwise>
 		</c:choose>
 	</table>
-	
-	
 	<form id="writeC2" name="writeC2" method="post" action="/spoon/sample/insertComment.do">
 	<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
 	<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }">
 	<input type="hidden" id="ref" name="ref" value="0">
 	<input type="hidden" id="bid" name="bid" value="${map.bid }">
-	<table><tr><td><textarea id="comment" name="comment" rows="2" cols="30"></textarea></td>
-	<td><input type="button" value="등록" onclick="fn_comment2();"></td>
+	<table class="board_view">
+	<tr><td><textarea id="comment" name="comment" rows="2" cols="100"></textarea></td>
+	<td style="text-align: right;"><input type="button" value="등록" onclick="fn_comment2();"></td>
 	</tr>
 		
 		</table>
@@ -314,6 +324,8 @@
     	   function cidGet(i){
 				var numb = i;
 				var bttnNum = "tr"+i;
+				var bttn = "bttn"+i;
+				var bttnval = document.getElementById(bttn).value;
     		   /* alert(bttnNum); */
     		   var DocubttnNum = document.getElementById(bttnNum);
        			if(DocubttnNum.style.display=='none'){
@@ -321,20 +333,23 @@
        			}else{
        				DocubttnNum.style.display='none';
        			}
+       			if(bttnval=='답글'){
+       				document.getElementById(bttn).value = '닫기';
+       			}else{
+       				document.getElementById(bttn).value = '답글';
+       			}
           }
     </script>
+    <br>
+    <br>
+    <br>
+    <br>
+      <div class="board_view">
+    	<a href="#this" class="btn" id="list">목록으로</a>
+    	<a href="#this" class="btn" id="update">수정하기</a>
+    	<a href="#this" class="btn" id="delete">삭제하기</a>
     
-   <!--  <section id="map2view">
-    	<tiles:insertAttribute name="map2view"/>
-    </section> -->
-    <!-- 이미지 지도를 표시할 div 입니다 -->
-<div id="staticMap" style="width:600px;height:350px;"></div>    
-<input type="hidden" id="input_lat" name="input_lat" value="${map.board_lat}">
-<input type="hidden" id="input_lng" name="input_lng" value="${map.board_lng}">
-<input type="hidden" id="rest" name="rest" value="${rest}">
-<input type="hidden" id="address" value="${map.address}">
-주소 : ${map.board_address}
-    
+     </div>
 </body>
 
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=45aee8e672a2dfe509015315339dc5c3&libraries=services"></script>
@@ -375,13 +390,13 @@ var staticMap = new daum.maps.StaticMap(staticMapContainer, staticMapOption);
 	if(like=='1'){
 		document.getElementById('Likebtn').value = "취소";
 	}else{
-		document.getElementById('Likebtn').value = "좋아요";
+		document.getElementById('Likebtn').value = "추천";
 	}
 	
 	if(hate=='1'){
 		document.getElementById('Hatebtn').value = "취소";
 	}else{
-		document.getElementById('Hatebtn').value = "싫어요";
+		document.getElementById('Hatebtn').value = "비추천";
 	}
 	
 	}

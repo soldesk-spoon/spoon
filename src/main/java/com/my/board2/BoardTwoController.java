@@ -32,6 +32,7 @@ public class BoardTwoController {
         List<BoardBean2> list = null;
         String admin = boardTwoService.selectAdmin(mid);
         if(admin.equals("N")){
+        	boardBean.setMid(mid);
         	list = boardTwoService.selectBoardList(boardBean);
         }else if(admin.equals("Y")){
         	list = boardTwoService.selectBoardListForAdmin(boardBean);
@@ -39,6 +40,7 @@ public class BoardTwoController {
         	System.out.println(admin);
         	System.out.println("error : admin");
         }
+        
         System.out.println(mid);
          boardBean.setMid(mid);
         mv.addObject("list", list);
@@ -54,28 +56,26 @@ public class BoardTwoController {
     }
     
     @RequestMapping(value="/QnA_board/insertBoard.do")
-    public ModelAndView insertBoard(BoardBean2 boardBean,HttpSession session) throws Exception{
+    public ModelAndView insertBoard(BoardBean2 boardBean,HttpSession session, HttpServletRequest request) throws Exception{
         ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardList.do");
         int mid = Integer.parseInt((String) session.getAttribute("mid"));
+        String member_id = request.getParameter("session_member_id");
         System.out.println(mid);
          boardBean.setMid(mid);
+         boardBean.setMember_id(member_id);
+         
         boardTwoService.insertBoard(boardBean);
         System.out.println(boardBean.getQid());
         return mv;
     }
     
     @RequestMapping(value="/QnA_board/openBoardDetail.do", method=RequestMethod.GET)
-    public ModelAndView openBoardDetail(@RequestParam("qid")int qid) throws Exception{
+    public ModelAndView openBoardDetail(@RequestParam("qid")int qid,HttpSession session) throws Exception{
         ModelAndView mv = new ModelAndView("/QnA_board/QnA_boardDetail");
         Map<String, Object> map = boardTwoService.selectBoardDetail(qid);
-        Map<String, Object> answerMap = boardTwoService.selectAnswerBoard(qid);
-        if(answerMap==null){
-        	String result = "조회된 답변이 없습니다.";
-        	mv.addObject("resultString", result);
-        }else{
-        	mv.addObject("answerMap",answerMap);
-        }
-        
+        int mid = Integer.parseInt((String) session.getAttribute("mid"));
+        String adminNY = boardTwoService.selectAdmin(mid);
+        mv.addObject("adminNY",adminNY);
         mv.addObject("map", map); 
          
         return mv;
@@ -117,18 +117,30 @@ public class BoardTwoController {
         return mv;
     }    
     
-    @RequestMapping(value="/QnA_board/insertAnswer.do")
-    public ModelAndView insertAnswer(HttpServletRequest request) throws Exception {
-    	ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardDetail.do");
-    	AnswerBean answerBean = new AnswerBean();
-    	String qid_s = request.getParameter("qid");
-    	String answer = request.getParameter("answer");
-    	int qid = Integer.parseInt(qid_s);
+    @RequestMapping(value="/QnA_board/insertComment.do")
+    public ModelAndView insertComment(HttpServletRequest request) throws Exception {
+    	String requestqid = request.getParameter("qid");
+    	String requestComment = request.getParameter("comment");
     	
-    	answerBean.setAnswer(answer);
-    	answerBean.setQid(qid);
-    	boardTwoService.insertAnswer(answerBean);
+    	ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardDetail.do?qid="+requestqid);
+    	BoardBean2 boardBean2 = new BoardBean2();
+    	
+    	boardBean2.setQid(Integer.parseInt(requestqid));
+    	boardBean2.setQna_comment(requestComment);
+    	
+    	boardTwoService.insertComment(boardBean2);
+    	
+    	
     	return mv;
     }
-    
+    @RequestMapping(value="/QnA_board/deleteComment.do")
+    public ModelAndView deleteComment(@RequestParam("qid") int qid) throws Exception {
+    	ModelAndView mv = new ModelAndView("redirect:/QnA_board/openBoardDetail.do?qid="+qid);
+    	BoardBean2 boardBean2 = new BoardBean2();
+    	boardBean2.setQid(qid);
+    	boardTwoService.updateCommentNY(boardBean2.getQid());
+    	
+    	
+    	return mv;
+    }
 }

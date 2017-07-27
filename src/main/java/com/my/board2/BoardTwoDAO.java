@@ -51,8 +51,16 @@ public class BoardTwoDAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("boardTwo.selectAnswerBoard", qid);
 	}
 
-	public void insertAnswer(AnswerBean answerBean) {
+	
+
+	public void insertComment(BoardBean2 boardBean2) {
 		// TODO Auto-generated method stub
-		insert("boardTwo.insertAnswer", answerBean);
+		insert("boardTwo.insertComment",boardBean2);
+	}
+
+
+	public void updateCommentNY(int qid) {
+		// TODO Auto-generated method stub
+		update("boardTwo.updateCommentNY",qid);
 	} 
 }

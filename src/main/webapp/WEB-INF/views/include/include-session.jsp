@@ -8,9 +8,13 @@
 <head>
 <style type="text/css">
 	.menu {
-		padding-left: 80%
+		padding-left: 900px;
 	}
-
+	
+	.bar {
+		padding-top: 10px;
+		border-bottom: 1px solid #ccc
+	}
 </style>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -43,7 +47,7 @@
 	}
 	
 	function getList() {
-		document.location.href="/shop/sample/openBoardList.do";
+		document.location.href="/spoon/sample/openBoardList.do";
 	}
 </script>
 
@@ -55,15 +59,16 @@
 	<form action="/spoon/member/login_action" name="logForm" method="post" >
 		<input type="hidden" id="mid" name="mid" value="${sessionScope.member.mid }"> 
 		<input type="hidden" id="member_id" name="member_id" value="${sessionScope.member.member_id}">
+		<table class="session_view">
 		<c:if test="${sessionScope.member.mid  ne null}">
 			${sessionScope.member.member_id} 환영합니다. 
 			<input type="button" value="로그아웃" onclick="logout();">
 			<input type="button" value="목록보기" onclick="getList();">
 		</c:if>
-		
+		</table>
 		<c:if test="${sessionScope.member.mid eq null}">
 		${sessionScope.member.alert}
-		<table>
+		<table class="session_view">
 			<tr>
 				<td>아이디 : </td>
 				<td><input type="text" name="MEMBER_ID" id="MEMBER_ID"></td>
@@ -83,12 +88,12 @@
 	<div class="menu" id="menu" >
 		<form id="menuForm" name="menuForm">
 			<!-- qna, 자유게시판, 내정보 -->
-			<input type="button" id="QnA" name="QnA" value="Q&A" onclick="QnA_page()">
-			<input type="button" id="free" name="free" value="자유게시판" onclick="free_page()" >
-			<input type="button" id="my" name="my" value="내정보" onclick="my_page()">
+			<input type="button" id="QnA" name="QnA" value="Q&A" onclick="QnA_page();">
+			<input type="button" id="free" name="free" value="자유게시판" onclick="free_page();" >
+			<input type="button" id="my" name="my" value="내정보" onclick="my_page();">
 		</form>
 	</div>
-	
+	<div class="bar"></div>
 </body>
 
 <script type="text/javascript">

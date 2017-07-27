@@ -6,7 +6,10 @@
 </head>
 
 <body>
+<%@ include file="../include/include_logo.jsp" %>
+<%@ include file="../include/include-session.jsp" %>
     <form id="frm" action="/spoon/QnA_board/insertBoard.do" method="post">
+    <input	type="hidden" name="session_member_id" id="session_member_id" value=""> 
         <table class="board_view">
             <colgroup>
                 <col width="15%">
@@ -53,6 +56,10 @@
     }
      
     function fn_insertBoard(){
+    	
+    	document.getElementById('session_member_id').value = document.getElementById('member_id').value;
+    	alert(document.getElementById('session_member_id').value);
+    	
 		var frm = document.getElementById("frm");
     	frm.submit();
        

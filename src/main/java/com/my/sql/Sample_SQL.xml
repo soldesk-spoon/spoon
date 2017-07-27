@@ -6,7 +6,27 @@
     <select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
       
             SELECT bid, board_subject,member_id, board_hits, board_created, board_like FROM spoon_board
-   WHERE BOARD_DELYN='N' ORDER BY bid DESC;
+   WHERE 
+   
+   <choose>
+   <when test="searchT == null">
+   BOARD_DELYN='N' ORDER BY bid DESC;
+   </when>
+   <when test="searchT.equals('selectTi')">
+   board_subject like CONCAT('%',#{searchName},'%') and BOARD_DELYN='N' ORDER BY bid DESC;
+   </when>
+   <when test="searchT.equals('selectCont')">
+   board_contents like CONCAT('%',#{searchName},'%') and BOARD_DELYN='N' ORDER BY bid DESC;
+   </when>
+   <when test="searchT.equals('selectMem')">
+   member_id like CONCAT('%',#{searchName},'%') and BOARD_DELYN='N' ORDER BY bid DESC;
+   </when>
+   <when test="searchT.equals('selectSub')">
+   subway_name like CONCAT('%',#{searchName},'%') and BOARD_DELYN='N' ORDER BY bid DESC;
+   </when>
+   </choose>
+    
+   
     </select>
      
     <select id="selectBoardListByHit" parameterType="hashmap" resultType="hashmap">

@@ -22,6 +22,8 @@ public class BoardBean {
 	String board_shopname;
 	String board_lat;
 	String board_lng;
+	String searchT;
+	String searchName;
 
 	
 	
@@ -128,6 +130,17 @@ public class BoardBean {
 	public void setBoard_address(String board_address) {
 		this.board_address = board_address;
 	}
-	
+	public String getSearchT() {
+		return searchT;
+	}
+	public void setSearchT(String searchT) {
+		this.searchT = searchT;
+	}
+	public String getSearchName() {
+		return searchName;
+	}
+	public void setSearchName(String searchName) {
+		this.searchName = searchName;
+	}
 	
 }

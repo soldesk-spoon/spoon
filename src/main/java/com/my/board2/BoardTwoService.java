@@ -20,5 +20,9 @@ public interface BoardTwoService {
 
 	Map<String, Object> selectAnswerBoard(int qid) throws Exception;
 
-	void insertAnswer(AnswerBean answerBean) throws Exception;
+
+	void insertComment(BoardBean2 boardBean2) throws Exception;
+
+
+	void updateCommentNY(int qid) throws Exception;
 }

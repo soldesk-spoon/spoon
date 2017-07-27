@@ -5,7 +5,11 @@
 <%@ include file="../include/include-header.jsp" %>
 </head>
 <body>
+<%@ include file="../include/include_logo.jsp" %>
+<%@ include file="../include/include-session.jsp" %>
 <input type="hidden" id="qid" name="qid" value="${map.qid }">
+<input type="hidden" id="mid1" name="mid1" value="${map.mid}">
+<input type="hidden" id="adminNY" name="adminNY" value="${adminNY}">
     <table class="board_view">
         <colgroup>
             <col width="15%"/>
@@ -24,7 +28,7 @@
             </tr>
             <tr>
             <th scope="row">작성자</th>
-                <td>***추가해야됨<%-- ${map.qna_hits } --%></td>
+                <td>${map.member_id}</td>
                 <th scope="row">작성시간</th>
                 <td>${map.qna_created }</td>
             </tr>
@@ -41,21 +45,33 @@
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">수정하기</a>
      <a href="#this" class="btn" id="delete">삭제하기</a>
-     
-     <table>
+     <br><br>
+     <table class="board_view">
      	<tr>
-     		<td>답변 : </td>
-     		<c:if test="${resultString eq null}">
-     			${resultString}
-     			<form name="answerForm" id="answerForm" method="post" action="/spoon/QnA_board/insertAnswer.do">
-     			<input type="hidden" id="qid" name="qid" value="${map.qid }">
-     			<textarea cols="2" rows="10" id="answer" name="answer" ></textarea>
-     			<input type="button" id="answerbtn" name="answerbtn" value="답변 작성 " onclick="insertAnswer();">
-     			</form>
+     		<td>
+     		<c:if test="${adminNY eq 'N'}">
+     			<c:if test="${map.qna_comment eq null}">
+     				답변이 없습니다.
+     			</c:if>
+     			<c:if test="${map.qna_comment ne null}">
+     				${map.qna_comment}
+     			</c:if>
      		</c:if>
-     		<c:if test="${resultString ne null}">
-     			${answerMap.answer}
+     		<c:if test="${adminNY eq 'Y'}">
+     			<c:if test="${map.qna_comment eq null}">
+     				<form name="commentForm" id="commentForm" method="post" action="/spoon/QnA_board/insertComment.do">
+     				<input type="hidden" id="qid" name="qid" value="${map.qid }">
+     				<textarea cols="100" rows="2" id="comment" name="comment" ></textarea>
+     				<input type="button" id="commentbtn" name="commentbtn" value="답변 작성 " onclick="insertComment();">
+     				</form>
+     			</c:if>
+     			<c:if test="${map.qna_comment ne null}">
+     				${map.qna_comment }
+     				<br><br>&nbsp;&nbsp;&nbsp;
+     				<input type="button" value="삭제하기" onclick="deleteComment();">
+     			</c:if>
      		</c:if>
+     		</td>
      	</tr>
      </table>
     <%@ include file="../include/include-body.jsp" %>
@@ -73,18 +89,41 @@
             });
             
             $("#delete").on("click", function(e){ //삭제하기 버튼
-                e.preventDefault();
-                fn_deleteBoard();
+                
+            	var mid = document.getElementById('mid').value;
+           		var mid1 = document.getElementById('mid1').value;
+           		var adminNY = document.getElementById('adminNY').value;
+           		if(adminNY == 'N'){
+           			if(mid != mid1){
+                		alert("삭제 권한이 없습니다.");
+                		return false;
+                	}
+           		}
+            	
+            	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+            		e.preventDefault();
+                    fn_deleteBoard();
+            	}else{   //취소
+            	    return;
+            	}
+            	
             });
         });
          
         function fn_openBoardList(){
-        	document.location.href="/spoon/QnA_board/openBoardList.do";
+        	document.location.href="/spoon/QnA_board/d";
         }
          
         function fn_openBoardUpdate(obj){
         	var B = ${map.qid};
-            document.location.href="/spoon/QnA_board/openBoardUpdate.do?qid="+B;
+            var mid = document.getElementById('mid').value;
+       		var mid1 = document.getElementById('mid1').value;
+        	
+        	if(mid != mid1){
+        		alert("수정권한이 권한이 없습니다.");
+        		return false;
+        	}
+        	document.location.href="/spoon/QnA_board/openBoardUpdate.do?qid="+B;
             /*
             var bid = "${map.bid}";
             var comSubmit = new ComSubmit();
@@ -92,10 +131,10 @@
             comSubmit.addParam("BID", bid);
             comSubmit.submit();*/
         }
-        
+      
         function fn_deleteBoard(){
         	var B = ${map.qid};
-            document.location.href="/shop/QnA_board/deleteBoard.do?qid="+B;
+            document.location.href="/spoon/QnA_board/deleteBoard.do?qid="+B;
             /*
         	var comSubmit = new ComSubmit();
             comSubmit.setUrl("<c:url value='/sample/deleteBoard.do' />");
@@ -104,8 +143,16 @@
              */
         }
         
-        function insertAnswer() {
+        function insertComment() {
+       		
+        	document.commentForm.submit();
         	
+        	
+        }
+        
+        function deleteComment() {
+        	var B = ${map.qid};
+        	document.location.href = "/spoon/QnA_board/deleteComment.do?qid="+B;
         }
         
     </script>

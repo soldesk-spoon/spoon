@@ -45,6 +45,27 @@ public class SampleController {
         ModelAndView mv = new ModelAndView("/board/boardList");
         String selectobj = request.getParameter("sel");
         System.out.println(selectobj);
+        
+        String searchType=request.getParameter("selectSearch");
+        String searchName=request.getParameter("searchName");
+        System.out.println("searchType : "+searchType);
+        System.out.println("searchName : "+searchName);
+     /*   
+        if(searchType.equals("selectTi")){
+        	
+        }else if(searchType.equals("selectCont")){
+        	
+        }else if(searchType.equals("selectMem")){
+        	
+        }else if(searchType.equals("selectSub")){
+        	
+        }*/
+        
+        boardBean.setSearchT(searchType);
+        boardBean.setSearchName(searchName);
+        
+        mv.addObject("searchType", searchType);
+        mv.addObject("searchName", searchName);
         List<BoardBean> list = sampleService.selectBoardList(boardBean);
         
       
@@ -69,7 +90,7 @@ public class SampleController {
             session.setAttribute("mid", mid);
         }
                 
-        
+       
         mv.addObject("list", list);
          
         return mv;
@@ -127,7 +148,7 @@ public class SampleController {
         uploadFileVo uploadfilevo = new uploadFileVo();
         int bid = Integer.parseInt(request.getParameter("bid"));
     	
-        String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\resources\\data\\";
+        String realFolder ="D:\\javaProject\\mywork_spring\\spoon\\src\\main\\webapp\\resources\\data\\";
         File dir = new File(realFolder);
         if (!dir.isDirectory()) {
             dir.mkdirs();
@@ -193,7 +214,7 @@ public class SampleController {
         System.out.println(sumlike);
         sampleService.updateSumlike(bid); 
         //System.out.println(imgMap);
-        String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\WEB-INF\\images\\";
+        String realFolder ="D:\\javaProject\\mywork_spring\\spoon\\src\\main\\webapp\\resources\\data\\";
        
         mv.addObject("imgPath", realFolder);
         mv.addObject("imgmap",imgMap);

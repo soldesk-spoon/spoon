@@ -29,7 +29,7 @@
 	</select>
 	<br>
 </div>
-<table width="751" height="95" class="board_list">
+<table width="648" class="board_list">
     <colgroup>
         <col width="10%"/>
         <col width="*"/>
@@ -39,11 +39,12 @@
     </colgroup>
     <thead>
         <tr>
-            <th scope="col">글번호</th>
-            <th scope="col">제목</th>
-            <th scope="col">조회수</th>
-            <th scope="col">추천수</th>
-            <th scope="col">작성일</th>
+            <th width="60" scope="col">글번호</th>
+            <th width="130" scope="col">제목</th>
+            <th width="101" scope="col">조회수</th>
+            <th width="100" scope="col">추천수</th>
+            <th width="122" scope="col">작성일</th>
+            <th width="107" scope="col">작성자</th>
         </tr>
     </thead>
     <tbody>
@@ -59,6 +60,7 @@
                         <td>${row.board_hits }</td>
                         <td>${row.board_like }</td>
                         <td>${row.board_created }</td>
+                        <td>${row.member_id}</td>
                     </tr>
                 </c:forEach>
             </c:when>
@@ -114,5 +116,21 @@
 		
         
     </script>
+    <form method="post" action="/spoon/sample/openBoardList.do" name="search">
+<!--     <input type="hidden" id="searchType" name="searchType"> -->
+    <table><tr><td><select id="selectSearch" name="selectSearch">
+		<option id="selectTi" value="selectTi" ${searchType eq  "selectTi" ? "selected" :""}  >제목</option>
+		<option id="selectCont" value="selectCont" ${searchType eq  "selectCont" ? "selected" :""} >내용</option>
+		<option id="selectMem" value="selectMem" ${searchType eq  "selectMem" ? "selected" :""} >작성자</option>
+		<option id="selectSub" value="selectSub" ${searchType eq  "selectSub" ? "selected" :""} >주변역</option>
+	</select></td>
+	<td><input type="text" id="searchName" name="searchName" value="${searchName }"></td>
+	<td><input type="submit" value="send"></td>
+	</tr></table>
+    	
+    
+    
+    </form>
+    
 </body>
 </html>
