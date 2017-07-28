@@ -148,12 +148,11 @@ public class SampleController {
         uploadFileVo uploadfilevo = new uploadFileVo();
         int bid = Integer.parseInt(request.getParameter("bid"));
     	
-        String realFolder ="D:\\javaProject\\mywork_spring\\spoon\\src\\main\\webapp\\resources\\data\\";
+        String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\resources\\data\\";
         File dir = new File(realFolder);
         if (!dir.isDirectory()) {
             dir.mkdirs();
         }
-        
         List<MultipartFile> mf = mhsq.getFiles("file1");
         for (int i = 0; i < mf.size(); i++) {
         if (mf.get(i).getOriginalFilename().equals("")) {
@@ -214,7 +213,7 @@ public class SampleController {
         System.out.println(sumlike);
         sampleService.updateSumlike(bid); 
         //System.out.println(imgMap);
-        String realFolder ="D:\\javaProject\\mywork_spring\\spoon\\src\\main\\webapp\\resources\\data\\";
+        String realFolder ="C:\\Project\\Project_workspace\\spoon\\src\\main\\webapp\\resources\\data\\";
        
         mv.addObject("imgPath", realFolder);
         mv.addObject("imgmap",imgMap);

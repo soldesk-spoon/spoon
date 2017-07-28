@@ -41,10 +41,13 @@
             </tr>
         </tbody>
     </table>
-     
+     <div class="board_view">
+     <div style="padding-top: 3px;">
     <a href="#this" class="btn" id="list">목록으로</a>
     <a href="#this" class="btn" id="update">수정하기</a>
      <a href="#this" class="btn" id="delete">삭제하기</a>
+     </div>
+     </div>
      <br><br>
      <table class="board_view">
      	<tr>
