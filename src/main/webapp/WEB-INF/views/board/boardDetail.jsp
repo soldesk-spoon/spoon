@@ -83,7 +83,7 @@
            	</tr>
             
          	
-			<tr>
+			<tr style="border-top: 1px solid #ccc">
 					<!-- <td><button type="button" id="prev_btn" class="btn">이전</button></td> -->
 			<td colspan="2" align="center">
 		<div id="carousel1" class="carousel slide" data-ride="carousel">
@@ -113,7 +113,7 @@
       		
            	<tr>
            	<td colspan="4">
-           		<div id="staticMap" style="width:850px;height:350px;"></div>    
+           		<div id="staticMap" style="width:1000px;height:350px;"></div>    
 <input type="hidden" id="input_lat" name="input_lat" value="${map.board_lat}">
 <input type="hidden" id="input_lng" name="input_lng" value="${map.board_lng}">
 <input type="hidden" id="rest" name="rest" value="${rest}">
